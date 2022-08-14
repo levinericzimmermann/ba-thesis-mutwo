@@ -1,4 +1,27 @@
 \documentclass[12pt,a4paper,ngerman]{article}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false,
+  breakatwhitespace=true,
+  tabsize=3
+}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{luainputenc}
@@ -173,7 +196,7 @@ Prof. Dr. Michael Edwards
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Einführung in Umgebungen computergestützter Komposition}
+\section{Überblick zu Umgebungen computergestützter Komposition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -339,12 +362,31 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
 
 \subsubsection{Module und Packete}
 
+Der Quellcode von mutwo ist nach rigiden Regeln strukturiert.
+Die Struktur basiert auf Pythons System von verschachtelten Modulen, Importe und Paketen.
+Grundsätzliche Absicht der rigiden Struktur ist eine einfache Verwendung für Benutzer und eine Vereinfachung der Entwicklung und Instandhaltung eines komplexen Softwareprojekts.
+
+Der Paketname der Bibliothek ist mutwo.
+Pakete können im Python-Ökosystem auf der Plattform \emph{pypi} verwaltet werden.
+Mit dem standardisierten Pythonpaketmanager \emph{pip} können Pakete von \emph{pypi} installiert werden.
+
+\lstset{language=bash}
+
+\begin{lstlisting}
+    pip3 install mutwo
+\end{lstlisting}
+
+Das Paket mutwo ist in unterschiedliche Module geteilt.
+Die unterschiedlichen Module korrelieren mit den zuvor beschriebenen elementaren Bestandteile von mutwo.
+Sie werden flankiert von zusätzlichen Hilfsmodulen.
+
 \begin{table}[h!]
     \begin{center}
         \begin{tabular}{l l} 
             \hline
-            Modulsuffix & Modulbeschreibung \\ [0.5ex] 
+            Modulname & Modulbeschreibung \\ [0.5ex] 
             \hline\hline
+            \texttt{configurations} & Globale modulübergreifende Konfigurationsvariablen \\
             \texttt{constants} & Globale modulübergreifende Konstanten \\
             \texttt{converters} & Importieren und Exportieren von Daten, Übersetzen interner Strukturen \\
             \texttt{events} & Definition verschiedener Ereignisklassen \\
@@ -358,6 +400,26 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
 
     \caption{Moduldefinitionen}
 \end{table}
+
+Module oder Pakete können in Python auf unterschiedliche Weisen importiert werden.
+Die folgende Zeile dokumentiert die in mutwo bevorzugte Weise:
+
+\lstset{language=Python}
+
+\begin{lstlisting}
+    from mutwo import parameters
+\end{lstlisting}
+
+Mutwo Module enthalten direkt die verwendbaren Objekte.
+Sie können nur eine limitierte Anzahl bestimmter Submodule enthalten.
+Weil die Regel für alle mutwo Module gilt ist sie einfach zu verstehen für neue Benutzer.
+Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
+
+\begin{quote}
+    ``Flat is better than nested.''
+\end{quote}
+
+Folgende Tabelle beschreibt die möglichen Submodule eines Moduls.
 
 \begin{table}[h!]
     \begin{center}
@@ -373,8 +435,8 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
     \end{center}
 
     \caption{Submoduldefinitionen}
-
 \end{table}
+
 
 \begin{table}[h!]
     \begin{center}
@@ -389,17 +451,14 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
         \end{tabular}
     \end{center}
 
-    \caption{Exemplarische Auswahl verschiedener mutwo-Packete}
+    \caption{Exemplarische Auswahl verschiedener mutwo Pakete}
 
 \end{table}
 
 
-
 \subsection{Eigenschaften und Limitierungen}
 
-\subsection{Details}
-
-\subsection{Beispiele}
+\subsection{Beispiel-orientierte Einführung}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
