@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+biber ba_mutwo_zimmermann_2022.bcf
+lualatex ba_mutwo_zimmermann_2022.tex
