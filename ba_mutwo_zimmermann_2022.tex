@@ -282,9 +282,7 @@ Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
             Tonhöhe & \texttt{Pitch} & \texttt{frequency} & Hertz \\ 
             Tonhöhenintervall & \texttt{PitchInterval} & \texttt{interval} & Cents \\ 
             Dauer & \texttt{Duration} & \texttt{duration} & beats \\ 
-            Text & \texttt{Lyric} & \texttt{phonetic\_script} & X-SAMPA\footnote{%
-                Das ``Extended Speech Assessment Methods Phonetic Alphabet' ist eine Möglichkeit die phonetischen IPA Symbole in ASCII darzustellen.~\cite{xsampaWikipedia}
-            } \\ 
+            Text & \texttt{Lyric} & \texttt{phonetic\_script} & X-SAMPA\footnotemark \\ 
             Lautstärke & \texttt{Volume} & \texttt{amplitude} & Volt \\ [1ex] 
             \hline
         \end{tabular}
@@ -292,6 +290,10 @@ Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
 
     \caption{Liste exemplarischer Ein-Wert-Parameter}
 \end{table}
+
+\footnotetext{%
+    Das ``Extended Speech Assessment Methods Phonetic Alphabet'' ermöglicht die Darstellung der phonetischen IPA Symbole in ASCII.~\cite{xsampaWikipedia}
+}
 
 Andere Bestandteile mutwos erwarten nur die minimal--definierte Schnittstelle.
 Das ermöglicht Benutzern die Implementierung einer Repräsentation einer Kategorie, die der jeweiligen Denkweise entspricht.
@@ -395,7 +397,7 @@ Sie werden flankiert von zusätzlichen Hilfsmodulen.
             \texttt{version} & Versionsdefinition des Moduls \\
             \texttt{utilities} & Hilfsmethoden, Errordefinition \\ [1ex] 
             \hline
-        \end{tabular}
+        \end{tabular}\label{table:modulDefinition}
     \end{center}
 
     \caption{Moduldefinitionen}
@@ -410,7 +412,7 @@ Die folgende Zeile dokumentiert die in mutwo bevorzugte Weise:
     from mutwo import parameters
 \end{lstlisting}
 
-Mutwo Module enthalten direkt die verwendbaren Objekte.
+Mutwo Module enthalten direkt die verwendbaren Objekte (Klassen, Funktionen).
 Sie können nur eine limitierte Anzahl bestimmter Submodule enthalten.
 Weil die Regel für alle mutwo Module gilt ist sie einfach zu verstehen für neue Benutzer.
 Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
@@ -419,13 +421,13 @@ Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
     ``Flat is better than nested.''
 \end{quote}
 
-Folgende Tabelle beschreibt die möglichen Submodule eines Moduls.
+Folgende Tabelle beschreibt die möglichen Submodule eines Moduls:
 
 \begin{table}[h!]
     \begin{center}
         \begin{tabular}{l l} 
             \hline
-            Modulsuffix & Modulbeschreibung \\ [0.5ex] 
+            Submodulname & Modulbeschreibung \\ [0.5ex] 
             \hline\hline
             \texttt{abc} & Abstrakte Klassen, Definition der gemeinsamen API \\
             \texttt{configurations} & Globale modifizierbare Variablen zur Modulkonfiguration \\
@@ -437,24 +439,49 @@ Folgende Tabelle beschreibt die möglichen Submodule eines Moduls.
     \caption{Submoduldefinitionen}
 \end{table}
 
+Die Strukturierung des Quellcodes in thematisch getrennte Module und Submodule ist aber unzureichend.
+Weil die grundsätzliche Designprämisse von sehr generischen Strukturen ausgeht, die aber präzise spezifiziert werden können, ist der potenzielle Umfang der Bibliothek schwer fasslich.
+In mutwo ist das Problem durch eine modulare Struktur von thematisch getrennten Paketen gelöst.
+Jedes Paket hat einen eigenen Namen auf \emph{pypi}, hat eine eigene, unabhängige Version, kann eigene Abhängigkeiten definieren und ist je nach Abhängigkeitsstruktur unabhängig von anderen Paketen installierbar.
 
-\begin{table}[h!]
-    \begin{center}
-        \begin{tabular}{l l l} 
-            \hline
-            Packetname & Modulprefix & Packetbeschreibung \\ [0.5ex] 
-            \hline\hline
-            \textbf{mutwo.core} & \texttt{core} & Kunstform-, medien- und kulturagnostische Objekte \\
-            \textbf{mutwo.music} & \texttt{music} & Musikspezifische Objekte \\
-            \textbf{mutwo.midi} & \texttt{midi} & Importieren und Exportieren von SMF\footnote{Standard Midi Files} \\
-            \hline
-        \end{tabular}
-    \end{center}
+Die modulare Strukturierung in separate Pakete hilft nicht nur der Entwicklung und Instandhaltung, sondern ermöglicht auch Nutzern nur diejenigen Programmbestandteile zu installieren, die für ein bestimmtes Projekt benötigt werden.
+Das macht die Bibliothek leichter.
+Mit der modularen Struktur können Dritte unkompliziert die Bibliothek durch weitere Funktionen erweitern.
+Sie können einfach ein neues Paket dem mutwo Ökosystem hinzufügen.
 
-    \caption{Exemplarische Auswahl verschiedener mutwo Pakete}
+Technisch ist die Modularität durch Pythons Unterstützung von \emph{namespace packages} gelöst.
+Das ermöglicht voneinander unabhängigen Pakete die Installation von Quellcode unter einem gemeinsamen Paketnamen.
 
-\end{table}
+Einzelne Pakete im mutwo Ökosystem sind auf standardisierte Weise benannt.
+Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die enthaltenen Funktionen zusammen:
 
+\begin{itemize}
+    \item{\textbf{mutwo.core}: Kunstform-, medien- und kulturagnostische Objekte}
+    \item{\textbf{mutwo.music}: Musikspezifische Objekte}
+    \item{\textbf{mutwo.reaper}: Funktionen die mit der DAW Reaper zusammenhängen}
+    \item{\dots}
+\end{itemize}
+
+Das mutwo Ökosystem setzt die anfänglich beschriebene Struktur von Modulen und Submodulen auch in separaten Paketen um.
+Die Namen der Module sind allerdings Kompositionen aus einem Präfix und einem Suffix.
+Der Präfix ist der Suffix des Paketnamen (zB. \texttt{core} oder \texttt{music}).
+Der Suffix beschreibt die Funktion des Moduls (zB. \texttt{events} oder \texttt{parameters}, siehe Tabelle \ref{table:modulDefinition}).
+Präfix und Suffix sind durch einen Unterstrich getrennt:
+
+\begin{itemize}
+    \item{\texttt{core\_parameters}}
+    \item{\texttt{music\_events}}
+    \item{\texttt{midi\_converters}}
+\end{itemize}
+
+Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben:
+
+
+\begin{lstlisting}
+    from mutwo import core_parameters
+    from mutwo import music_events
+    from mutwo import midi_converters
+\end{lstlisting}
 
 \subsection{Eigenschaften und Limitierungen}
 
