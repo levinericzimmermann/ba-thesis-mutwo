@@ -6,7 +6,7 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\lstset{
+\lstset{%
   language=Python,
   aboveskip=3mm,
   belowskip=3mm,
@@ -24,6 +24,7 @@
 }
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{lscape}
 \usepackage[utf8]{luainputenc}
 \usepackage{relsize,etoolbox}
 \usepackage[onehalfspacing]{setspace}
@@ -193,10 +194,238 @@ Prof. Dr. Michael Edwards
 
 \section{Einleitung}
 
+\begin{quote}
+    ``It would seem axiomatic that any music [\dots] reveals the philosophic attitude of its creator.
+    It also seems self-evident that if his attitude is vigorous and individualistic, his practical requirements are not neccessarily satisfied by the traditions he was born to;
+    they may even require direct antitheses.''~\cite{genesisOfMusic}
+\end{quote}
+
+Komposition ist von einer unbestimmten Menge Werkzeuge bedingt.
+Die Menge umfasst Kulturtechnologien wie Notation oder Stimmungen, Handwerk wie Instrumentenbau, Architekturen wie Konzerthäuser und \emph{pendapa}, soziale Strukturen des Musizierens oder mathematische und logische Denkmodelle.
+
+Letztgenannte Modelle umfassen Stimmführungsregeln in Fugen oder 12-Ton Reihen.
+Sie können als Folge diskreter deterministischer Handlungsschritte (sogenannter Algorithmen) beschrieben werden.
+Mit algorithmische Komposition ist Komposition bezeichnet, die diese Werkzeuge verwendet.
+% XXX: Satz kürzer machen, besser leserlich
+% wie Stimmführungsregeln in Fugen oder 12-Ton Reihen.
+
+Mit Aufkommen der Computer wurden traditionelle Werkzeuge digitalisiert.
+Lejaren Hiller ist als erste Person bekannt, der Algorithmen in einer computergestützten Komposition umsetzte.
+Auf Hiller folgten weitere, die zum Zweck der Komposition Algorithmen in Computerprogrammen implementierten.
+% Vielleicht Beispiele nennen? James Tenny, John Cage, etc.?
+Mit fortschreitender Entwicklung ist die Notwendigkeit gewachsen generische Programmbestandteile zu entwickeln, die in unterschiedlichsten Arbeiten wieder verwendet werden können (Bibliotheken oder Rahmen).
+
+Im Herbst 2020 finde ich mich vor einer Vielzahl von Software für algorithmische Komposition.
+Unzufrieden mit bestehenden Lösungen beginnen Tim Pauli und ich eine eigene Lösung zu entwickeln.
+Fast zwei Jahre später, im Sommer 2022, umfasst das \emph{mutwo} Ökosystem über 22000 Zeilen Quellcode und 430 Tests.
+Seit initialer Entwicklung sind sechs Kompositionen mit \emph{mutwo} entstanden.
+
+In vorliegender Arbeit möchte ich \emph{mutwo} dokumentieren.
+Quelloffen und mit der GPL-3.0 Lizenz veröffentlicht ist \emph{mutwo} für Dritte zugänglich.
+Wirkliche Zugänglichkeit ist aber nur mit ausreichender Dokumentation gewährleistet.
+Meine kompositorische Arbeit ist durch die Bemühungen unzähliger Menschen möglich, die Freie Software veröffentlichen und dokumentieren.
+Mit der Dokumentation \emph{mutwos} möchte ich einen Teil in die Gemeinschaften Freier Software zurückgeben.
+
+Die von Partch genannte ``praktische Notwendigkeit''.
+
+% Struktur BA Arbeit
+
+% Dabei nochmal auf Partch Zitat eingehen
+
+% Code:
+%   core: 4314
+%   music: 8061
+%   midi: 1528
+%   csound: 385
+%   abjad: 4017
+%   reaper: 108
+%   common: 1091
+%   ekmelily: 1356
+%   isis: 388
+%   mbrola: 162
+%   zimmermann: 335
+%   mmml: 965
+%
+%   ==============
+%     22710 lines
+
+
+% Tests:
+%   core: 146
+%   music: 168
+%   common: 16
+%   midi: 41
+%   abjad: 22
+%   ekmelily: 9
+%   csound: 8
+%   isis: 4
+%   mbrola: 7
+%   reaper: 2
+%   zimmermann: 8
+%
+%   =============
+%     431 tests
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Überblick zu Umgebungen computergestützter Komposition}
+\section{Umgebungen computergestützter Komposition}
+
+% name
+% veröffentlichungsjahr
+% entwickler/institution
+% lizenz
+% kosten (2022)
+% unterstützte Plattformen 
+% Sprache (implementierung) 
+% Sprache (Anwendung) 
+% beschreibung
+% aktiv
+% notation
+% midi
+% gui
+% 
+% kulitta
+
+
+\begin{landscape}
+    \begin{table}[h!]
+
+        \begin{center}
+
+            \begin{smaller}
+
+                \begin{tabularx}{22cm}{X X X X X X X X X}
+                    \hline
+                    Name &
+                    Initiale Entwicklung &
+                    Lizenz &
+                    Kosten (2022) &
+                    Kompatible Plattformen &
+                    Implementiert in\dots &
+                    Angewendet mit\dots & 
+                    Westliche Notation &
+                    MIDI \\ [0.5ex] 
+
+                    \hline\hline
+
+                    Common Music &
+                    1989 &
+                    Vizsage Public License &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Common Lisp &
+                    Common Lisp & 
+                    ja &
+                    ja \\[1cm]
+
+
+                    JMusic &
+                    1998 &
+                    PSF License v2 &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Java &
+                    Java & 
+                    ja &
+                    ja \\[1cm]
+
+                    OpenMusic &
+                    1998 &
+                    GPL v3.0 &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Common Lisp &
+                    OpenMusic & 
+                    ja &
+                    ja \\[1cm]
+
+                    slippery-chicken &
+                    2000 &
+                    GPL v3.0 &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Common Lisp &
+                    Common Lisp & 
+                    ja &
+                    ja \\[1cm]
+
+                    Abjad &
+                    2013 &
+                    GPL v3.0 &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Python &
+                    Python & 
+                    ja &
+                    nein \\[1cm]
+
+                    Opusmodus &
+                    2014 &
+                    Properetär &
+                    250€ - 399€ &
+                    macOS &
+                    Common Lisp &
+                    Common Lisp & 
+                    ja &
+                    ja \\[1cm]
+
+                    JythonMusic &
+                    2014 &
+                    GPL v2.0 &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Jython &
+                    Jython & 
+                    ja &
+                    ja \\[1cm]
+
+                    Euterpea 2.0 &
+                    2015 &
+                    zlib &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Haskell &
+                    Haskell & 
+                    ja &
+                    ja \\[1cm]
+
+                    SCAMP &
+                    2019 &
+                    GPL v3.0 &
+                    -- &
+                    Linux/GNU, macOS, Windows &
+                    Python &
+                    Python & 
+                    ja &
+                    ja \\%
+                    [0.5ex]
+                    \hline
+                \end{tabularx}
+
+            \end{smaller}
+
+        \end{center}
+
+    \caption{Liste aktiver Bibliotheken}
+    \end{table}
+\end{landscape}
+
+\subsection{isobar}
+
+\subsection{Abjad}
+
+\subsection{SCAMP}
+
+\subsection{Open Music}
+
+\subsection{Opusmodus}
+
+\subsection{Slippery Chicken}
+
+\subsection{Strasheela}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,33 +434,65 @@ Prof. Dr. Michael Edwards
 
 \subsection{Motivation}
 
+% unzufriedenheit bestehender loesungen:
+%   - schwierigkeit am rande von common-western-music etwas zu machen
+%       - stimmungen
+%       - aber auch andere notation: kepathian
+%   - bei bestehenden loesungen: zu viel konzentration auf notation oder westliche musik
+
+% wuensche von software:
+%   - moeglichst wenig einschraenkungen (auch keine von denen ich heute denke dass sie ok sind)
+%       - keine bestimmte aesthetik (ala slippery chicken)
+%       - keine bestimmte arbeitsweise (ala scamp)
+%       - medien-neutral
+%       - protokoll-neutral
+%       - software-neutral
+%       - quelloffen und unabhaengig von (grossen) institutionen oder unternehmen
+%       - möglichst offen verständlich
+%       - hackable & configurable: wenige verstecke variablen
+%   - erstmal als programmier-bibliothek gedacht und weniger als gui software
+%   - OS (plattform) unabhängig
+
+% einerseits möglichst flexibel
+% andererseits möglichst leicht verständlich
+
+% nicht per se widersprüchlich: denn es sollte einfach möglichst gut anpassbar sein für
+% die eigenen zwecke, und das benötigt nunmalls flexibilität und aber auch verständlichkeit
+
+
 \subsection{Softwarearchitektur}
+
+\subsubsection{Komponenten und Beziehungen}
 
 \subsubsection{Ereignisse}
 
-Ereignisse sind die wichtigsten Elemente in mutwo.
-Ein Ereignis ist eine sortierte Sequenz von Vektoren.
-Vektoren beschreiben Bewegungen in bestimmten Dimensionen wie zB. Zeit oder räumliche Achsen (X, Y und Z).\footnote{%
-        In der Version 0.61.0 von mutwos Kernpaket sind Ereignissen immer nur der Vektor \emph{Dauer} in der Dimension \emph{Zeit} zugeordnet.
-        Das ist ein Implementierungsdetail, was in zukünftigen Versionen anders umgesetzt werden mag.
-}
-Ereignissen sind zusätzlich Parametern zugeordnet, die Eigenschaften der Bewegung definieren.
-Parameter könnten für einen Klang zB. eine Tonhöhe sein.
-Für eine zweidimensionale räumliche Bewegung wäre potenzieller Parameter eine Farbe, für eine dreidimensionale Bewegung eine bestimmte Gangart.
+Ein Ereignis beschreibt eine Bewegung in einem Koordinatensystem mit $n\in\mathbb{N}:n>0$ Dimensionen.
+Die Bewegung wird durch $n$ Vektoren dargestellt.
+Dimensionen können Zeit, räumlichen Achsen (X, Y und Z) oder theoretischen Konstrukte (zB. den Primzahlexponenten eines Tonnetzes) entsprechen.
+% Wahrscheinlich unwichtiges Detail
+% \footnote{%
+%         In Version 0.61.0 von mutwos Kernpaket sind Ereignissen immer nur der Vektor \emph{Dauer} in der Dimension \emph{Zeit} zugeordnet.
+%         Das ist ein Implementierungsdetail, was in zukünftigen Versionen anders umgesetzt werden mag.
+% }
 
-\begin{figure}[h!]
-    \includegraphics[scale=0.4]{uml_diagrams/event_parameter_basic_150.png}
+Ereignissen sind zusätzliche Objekte zugeordnet, die Eigenschaften der Bewegung definieren.
+Ein zugewiesenes Objekt könnte für einen Klang zB. eine Tonhöhe sein.
+Für eine zweidimensionale räumliche Bewegung wäre eine Farbe denkbar, für eine dreidimensionale Bewegung eine bestimmte Gangart.
 
-    \caption{%
-        Ein Ereignis kann einen oder mehrere Vektoren enthalten.
-        Ein Ereignis kann einen oder mehrere Parameter enthalten.
-    }
-\end{figure}
+In mutwos Terminologie werden Objekte, die als Attribute einem bestimmten Ereignis zugewiesen sind, als Parameter bezeichnet.
+Weil auch Vektoren als Attribute einem Ereignis zugeordnet sind, sind sie nur eine besondere Unterkategorie von Parametern.
+In mutwos objektorientiertem Paradigma sind Ereignisse und Parameter Klassen und deren Instanzen.
 
-In mutwos objektorientiertem Paradigma sind Ereignisse Klassen und deren Instanzen.
-Genauso sind Parameter als Klassen umgesetzt.
-Zur Vereinfachung gehören Vektoren zum Datentyp Parameter.
-Vektoren und Parameter sind Attribute von Ereignissen.
+% Ich bin mir nicht sicher, ob diese Grafik so besonders informativ ist.
+
+% \begin{figure}[h!]
+%     \includegraphics[scale=0.4]{uml_diagrams/event_parameter_basic_150.png}
+% 
+%     \caption{%
+%         Ein Ereignis kann einen oder mehrere Vektoren enthalten.
+%         Ein Ereignis kann einen oder mehrere Parameter enthalten.
+%     }
+% \end{figure}
 
 \begin{table}[h!]
     \begin{center}
@@ -296,7 +557,7 @@ Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
 }
 
 Andere Bestandteile mutwos erwarten nur die minimal--definierte Schnittstelle.
-Das ermöglicht Benutzern die Implementierung einer Repräsentation einer Kategorie, die der jeweiligen Denkweise entspricht.
+Das ermöglicht Benutzern die Implementierung einer Repräsentation einer Kategorie, die der jeweiligen Interpretation entspricht.
 Das Design mutwos versichert, dass die von Benutzern hinzugefügten Repräsentationen mit anderen Bibliothekskomponenten kompatibel sind.
 
 \begin{figure}[h!]
@@ -337,12 +598,12 @@ Transformieren bedeutet hier entweder eine Veränderung des Inhalts oder eine Ve
 \end{table}
 
 
-Übersetzer in mutwo folgen bedingt einem funktionalem Paradigma, dh.\ ein Übersetzer verändert nicht die Eingangsentität, sondern erzeugt eine neue, unabhängige Entität.
+Übersetzer in mutwo folgen einem funktionalem Paradigma, dh.\ ein Übersetzer verändert nicht die Eingangsentität, sondern erzeugt eine neue, unabhängige Entität.
 Das vereinfacht das Übersetzen derselben Entität mit unterschiedlichen Übersetzer.
 
 \subsubsection{Generatoren}
 
-Generatoren liefern zumeist generische Daten, die für generative Kunst nützlich sein mögen.
+Generatoren liefern (zumeist generische) Daten, die für generative Kunst nützlich sein mögen.
 Generatoren umfassen Funktionen, Klassen, Konstanten oder andere Objekte.
 Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte, die von Benutzern kreativ angewendet werden können.
 
@@ -366,7 +627,7 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
 
 Der Quellcode von mutwo ist nach rigiden Regeln strukturiert.
 Die Struktur basiert auf Pythons System von verschachtelten Modulen, Importe und Paketen.
-Grundsätzliche Absicht der rigiden Struktur ist eine einfache Verwendung für Benutzer und eine Vereinfachung der Entwicklung und Instandhaltung eines komplexen Softwareprojekts.
+Absicht der rigiden Struktur ist eine einfache Verwendung für Benutzer und eine Vereinfachung der Entwicklung und Instandhaltung eines komplexen Softwareprojekts.
 
 Der Paketname der Bibliothek ist mutwo.
 Pakete können im Python-Ökosystem auf der Plattform \emph{pypi} verwaltet werden.
@@ -465,7 +726,7 @@ Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die entha
 Das mutwo Ökosystem setzt die anfänglich beschriebene Struktur von Modulen und Submodulen auch in separaten Paketen um.
 Die Namen der Module sind allerdings Kompositionen aus einem Präfix und einem Suffix.
 Der Präfix ist der Suffix des Paketnamen (zB. \texttt{core} oder \texttt{music}).
-Der Suffix beschreibt die Funktion des Moduls (zB. \texttt{events} oder \texttt{parameters}, siehe Tabelle \ref{table:modulDefinition}).
+Der Suffix beschreibt die Funktion des Moduls (zB. \texttt{events} oder \texttt{parameters}, siehe Tabelle~\ref{table:modulDefinition}).
 Präfix und Suffix sind durch einen Unterstrich getrennt:
 
 \begin{itemize}
@@ -483,7 +744,35 @@ Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben
     from mutwo import midi_converters
 \end{lstlisting}
 
-\subsection{Eigenschaften und Limitierungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Strategien zur Umsetzung generischer, flexibler Strukturen}
+
+\subsubsection{Abstrakte Klassen}
+
+\subsubsection{Funktionen als Argumente}
+
+\subsubsection{Dynamische Zuweisung von Attributen}
+
+\subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
+
+\subsubsection{Abwesenheit vorgegebener Arbeitsmodelle}
+
+\subsubsection{Deskriptive Fehlermeldungen und Warnungen}
+
+\subsubsection{Warnungen statt Fehler}
+
+\subsubsection{Konfigurierbare globale Standardwerte}
+
+\subsubsection{Annotation von Typen im Quellcode}
+
+\subsubsection{Rigide Namenskonventionen}
+
+\subsubsection{Dokumentation der API}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Beispiel-orientierte Einführung}
 
