@@ -113,8 +113,12 @@
 \subsectionfont{\fontsize{12}{15}\selectfont}
 
 
-\setlength\parindent{0pt}
-\parskip2mm
+% \setlength\parindent{1pt}
+% \parskip0mm
+
+% If there is an empty line, we will only create a new paragraph (but no white space)
+\parskip=0pt plus 1pt
+\parindent=0pt
 
 
 % header and footer style
@@ -177,7 +181,7 @@
 %	AUTHOR SECTION
 %----------------------------------------------------------------------------------------
 
-\noindent
+% noindent
 \begin{minipage}[b]{.25\textwidth}
 \end{minipage}%
 \begin{minipage}[b]{.25\textwidth}
@@ -239,26 +243,39 @@ Prof. Dr. Michael Edwards
     they may even require direct antitheses.''~\parencite[S. 3]{genesisOfMusic}
 \end{quote}
 
+\noindent
 Komposition ist von einer unbestimmten Menge Werkzeuge bedingt.
 Die Menge umfasst Kulturtechnologien wie Notation oder Stimmungen, Handwerk wie Instrumentenbau, Architekturen wie Konzerthäuser und \emph{pendapa}, soziale Strukturen des Musizierens oder mathematische und logische Denkmodelle.
 
+\bigskip
+
+\noindent
 Letztgenannte Teilmenge umfasst Stimmführungsregeln oder 12-Ton Reihen.
-Sie können als eine Sequenz diskreter Handlungsschritte beschrieben werden, die Eingangswerte in Ausgangswerte transformieren (i.e. Algorithmen)~\parencite[S. 3]{introductionToAlgorithms}.
+Sie können als eine geordnete Sequenz diskreter Handlungsschritte beschrieben werden, die Eingangswerte in Ausgangswerte transformieren (i.e. Algorithmen)~\parencite[S. 3]{introductionToAlgorithms}.
 Algorithmische Komposition bezeichnet Komposition, die diese Werkzeuge verwendet~\parencite[S. 1]{algorithmicCompositionParadigms}.
 % XXX: Satz kürzer machen, besser leserlich
 % wie Stimmführungsregeln in Fugen oder 12-Ton Reihen.
 
+\bigskip
+
+\noindent
 Mit dem Aufkommen der Computer wurden traditionelle Werkzeuge digitalisiert.
 Lejaren Hiller und Leonard Isaacson sind als erste Personen bekannt, die Algorithmen in einem Computersystem zum Zweck der Komposition implementierten~\parencite[S. 63]{algorithmicCompositionParadigms}.
 Auf sie folgten weitere.
 % Vielleicht Beispiele nennen? James Tenny, John Cage, etc.?
 Mit fortschreitender Entwicklung wuchs die Notwendigkeit generische Programmbestandteile zu entwickeln, die in unterschiedlichsten Arbeiten wieder verwendet werden können (Bibliotheken oder Rahmen)~\parencite[S. 78]{paradigmsAndComputerMusic}.
 
+\bigskip
+
+\noindent
 Im Herbst 2020 kann ich eine Vielzahl von Softwarebibliotheken für algorithmische Komposition finden.
 Unzufrieden mit bestehenden Lösungen beginnen Tim Pauli und ich eine autonome Lösung zu entwickeln.
 Fast zwei Jahre später, im Sommer 2022, umfasst das resultierende \emph{mutwo} Ökosystem über 22000 Zeilen Quellcode und 430 Tests.
 Seit initialer Entwicklung sind mithilfe des Projektes sechs Kompositionen entstanden.
 
+\bigskip
+
+\noindent
 In vorliegender Arbeit möchte ich \emph{mutwo} dokumentieren.
 Quelloffen und mit der GPL-3.0 Lizenz veröffentlicht ist \emph{mutwo} für Dritte zugänglich.
 Wirkliche Zugänglichkeit ist aber nur mit ausreichender Dokumentation gewährleistet.
@@ -267,6 +284,7 @@ Mit der Dokumentation \emph{mutwos} möchte ich einen Teil in die Gemeinschaften
 
 \subsection{Komposition und Werkzeuge (II)}
 
+\noindent
 % Absatz: Begründung Aufwand eigenes Werkzeug entwickeln
 Was Partch mit ``praktische Notwendigkeiten'' bezeichnet, begreife ich als kompositorische Werkzeuge.
 Das Zitat impliziert, dass diese mitnichten neutral sind, sondern sich in einem engen Austausch mit den inneren Vorstellungen der Werkschaffenden befinden.
@@ -286,26 +304,84 @@ Andrew Gerzso benennt die von konventioneller Musik geprägten Annahmen eines Se
 Kyam Allami bemängelt die oberflächliche, exotisierende Repräsentationen außereuropäischer Tonsystemen in kommerzieller Musiksoftware~\parencite[S. 59f]{microtonalityAndTheStruggle}.
 Aber auch esoterischere Technologien wie Softwarebibliotheken für algorithmische Komposition unterliegen inhärenten Limitierungen.
 
+\bigskip
+
 % Absatz: die Limitierungen in bestehender Software ist und was du anders machen wolltest (Motivation)
+\noindent
 Limitierende Paradigmen mir bekannter Bibliotheken waren und sind ausschlaggebend für die Entwicklung \emph{mutwos}.
 % eigentlich wie bei partch hat mich anfang die tonhöhen problematik gestört.
 Meine initiale Begegnung mit Einschränkungen betraf Tonhöhenstrukturen.
 In meiner kompositorischen Arbeit begreife ich Intervalle als ganzzahlige Frequenzverhältnisse (reine Stimmung).
 Meine bevorzugte Tonhöhenrepräsentation von Verhältnissen befindet sich jenseits europäischer Tonhöhennamen oder der MIDI Spezifikation.
 
-In der Bibliothek \emph{SCAMP} werden Tonhöhen als Gleitkommazahl repräsentiert, die für Tonhöhennummern der MIDI Spezifikation stehen~\parencite{scampNoteLikeDefinition}.
+\bigskip
+
+\noindent
+In der Bibliothek \emph{SCAMP} werden Tonhöhen als Gleitkommazahl repräsentiert, die Tonhöhennummern der MIDI Spezifikation bezeichnen~\parencite{scampNoteLikeDefinition}.
+
+\smallskip
+
 Die Software \emph{Euterpea} deklariert Tonhöhen als zweielementige Tupel.
 Das erste Element ist ein Tonklassenname europäischer Tradition (zB. \texttt{cs} oder \texttt{fbb}) und das zweite eine natürliche Zahl zur Indikation der Oktave~\parencite{euterpeaPitchDefinition}.
+
+\smallskip
+
 Die Notenklasse der Bibliothek \emph{jMusic} definiert drei unterschiedliche Konstruktoren, um Tonhöhen festzulegen:
 wird dem Tonhöhenargument natürliche Zahlen zugewiesen, werden diese als Tonhöhennummern der MIDI Spezifikation interpretiert.
 Gleitkommazahl werden als Frequenz gelesen, Zeichenketten als europäische Tonhöhennamen.
-Die innere Repräsentation der Klasse erlaubt nur die Darstellung in Frequenz oder MIDI Nummer, sodass Tonhöhennamen umgewandelt werden~\parencite{jMusicSource}.
+Die innere Repräsentation der Klasse erlaubt nur die Darstellung in Frequenz oder MIDI Nummer, sodass Tonhöhennamen vom Konstruktor umgewandelt werden~\parencite{jMusicSource}.
+
+\smallskip
+
 In \emph{slippery-chicken} sind Tonhöhen über eine eigene Klasse implementiert.
 Die Funktion \texttt{make-pitch} erzeugt eine neue \texttt{pitch}--Instanz.
 Ähnlich wie bei \emph{jMusic} gibt es unterschiedliche mögliche Datentypen des notwendigen Arguments \texttt{pitch} der \texttt{make-pitch} Funktion.
 Falls \texttt{pitch} ein Symbol oder eine Zeichenkette ist, wird das Argument als Tonname europäischer Tradition gelesen.
 Ist \texttt{pitch} eine Zahl wird diese als die Frequenz der Tonhöhe interpretiert.
 Der Klasse \texttt{pitch} sind Attribute zugewiesen wie zB. \texttt{midi-note}, \texttt{white-note}, \texttt{accidental} oder \texttt{frequency}~\parencite{slipperyChickenSource}.
+
+\bigskip
+
+\noindent
+Die exemplarische Beschreibungen verdeutlichen die Schwierigkeit der Repräsentation von Tonhöhen als Schwingungsverhältnisse in bestehenden Lösungen.
+Es ist denkbar, beschriebene Software zu erweitern.
+
+\smallskip
+
+In \emph{SCAMP} oder \emph{Euterpea} könnte man eine neue Klasse bzw. Deklaration und Umwandlungsfunktion definieren, die Tonhöhen als Verhältnisse beschreiben.
+
+\smallskip
+
+In \emph{jMusic} oder \emph{slippery-chicken} könnte man von den Klassen \texttt{Note} bzw. \texttt{pitch} erben.
+In der abgeleiteten Klasse könnten dann ein weiteres Attribut (zB. \texttt{ratio}) hinzugefügt werden bzw. der entsprechende Konstruktor hinzugefügt werden.
+
+\smallskip
+
+Die Erweiterung von \emph{SCAMP} oder \emph{Euterpea} befände sich aber außerhalb der Bibliothek.
+Die Operationen mit dem erweiterten Potenzial würden jenseits einer Interaktion mit Funktionen und Instanzen der Bibliothek statt finden.
+
+\smallskip
+
+Die Erweiterung von \emph{jMusic} oder \emph{slippery-chicken} befände sich innerhalb der Bibliothek.
+Die abgeleiteten Klassen oder neue Konstruktoren enthielten vererbte Attribute, die für sie potenziell unwesentlich wären (zB. Informationen zu westlicher Notation).
+
+\bigskip
+
+Das Projekt \emph{mutwo} ist der Versuch der Realisierung der Utopie allen Benutzer:innen unvoreingenommen ihre jeweilige Repräsentation zu unterstützen.
+Das Projekt ist Versuch und Utopie, weil die Komplexität der Spezifikation und Implementierung Einschränkungen bedingt.
+Eine Präzision dieser Limitierungen findet sich im späteren Teil vorliegender Arbeit.
+Die Einschränkungen betreffen daneben auch Grenzen, denen alle Programmierumgebungen algorithmischer Komposition unterworfen sind.
+Sie exkludieren zB. musikalische Praxen, welche Improvisation der Komposition vorziehen.
+
+\bigskip
+
+Strukturell besteht der erste Teil der Arbeit aus einer knappen Übersicht bestehender Softwareprojekte.
+Im zweiten Teil wird \emph{mutwo} vorgestellt.
+Ausgangspunkt ist hierbei eine umfassende Darstellung der Motivation der Entwicklung und Absicht der Software.
+Daran knüpft eine abstrakte Spezifikation ihrer Architektur an.
+Anschließend werden konkrete Programmierstrategien zur Umsetzung der Absicht vorgestellt.
+Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
+Vor abschließender Zusammenfassung werden zwei Fallstudien präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekte eingesetzt werden kann.
 
 % Mutwo grundsaetzliche Idee: Utopie, dass alle unterschiedliche Denkpositionen ermoeglicht werden (theoretisch)
 % Aufbau Bachelor-Arbeit:
@@ -565,13 +641,19 @@ Dimensionen können Zeit, räumlichen Achsen (X, Y und Z) oder theoretischen Kon
 %         Das ist ein Implementierungsdetail, was in zukünftigen Versionen anders umgesetzt werden mag.
 % }
 
+\bigskip
+
 Ereignissen sind zusätzliche Objekte zugeordnet, die Eigenschaften der Bewegung definieren.
 Ein zugewiesenes Objekt könnte für einen Klang zB. eine Tonhöhe sein.
 Für eine zweidimensionale räumliche Bewegung wäre eine Farbe denkbar, für eine dreidimensionale Bewegung eine bestimmte Gangart.
 
+\bigskip
+
 In mutwos Terminologie werden Objekte, die als Attribute einem bestimmten Ereignis zugewiesen sind, als Parameter bezeichnet.
 Weil auch Vektoren als Attribute einem Ereignis zugeordnet sind, sind sie nur eine besondere Unterkategorie von Parametern.
 In mutwos objektorientiertem Paradigma sind Ereignisse und Parameter Klassen und deren Instanzen.
+
+\bigskip
 
 % Ich bin mir nicht sicher, ob diese Grafik so besonders informativ ist.
 
@@ -618,6 +700,8 @@ Mit den drei Ereignisklassen \texttt{SimpleEvent}, \texttt{SequentialEvent} und 
 
 Parameter repräsentieren generische Kategorien, die Ereignissen zugeordnet werden.
 Generische Kategorien können beispielweise eine Farbe, eine Tonhöhe oder ein Luftdruck sein.
+
+\bigskip
 
 In mutwos Design sind Parameter als abstrakte Klassen definiert, die eine minimale, öffentliche Programmierschnittstelle beschreiben.
 Diese minimale Schnittstelle versucht Parameter auf eine kompakte Identität zu reduzieren, die unabhängig ist von bestimmten Traditionen.
@@ -719,6 +803,8 @@ Der Quellcode von mutwo ist nach rigiden Regeln strukturiert.
 Die Struktur basiert auf Pythons System von verschachtelten Modulen, Importe und Paketen.
 Absicht der rigiden Struktur ist eine einfache Verwendung für Benutzer und eine Vereinfachung der Entwicklung und Instandhaltung eines komplexen Softwareprojekts.
 
+\bigskip
+
 Der Paketname der Bibliothek ist mutwo.
 Pakete können im Python-Ökosystem auf der Plattform \emph{pypi} verwaltet werden.
 Mit dem standardisierten Pythonpaketmanager \emph{pip} können Pakete von \emph{pypi} installiert werden.
@@ -795,13 +881,19 @@ Weil die grundsätzliche Designprämisse von sehr generischen Strukturen ausgeht
 In mutwo ist das Problem durch eine modulare Struktur von thematisch getrennten Paketen gelöst.
 Jedes Paket hat einen eigenen Namen auf \emph{pypi}, hat eine eigene, unabhängige Version, kann eigene Abhängigkeiten definieren und ist je nach Abhängigkeitsstruktur unabhängig von anderen Paketen installierbar.
 
+\bigskip
+
 Die modulare Strukturierung in separate Pakete hilft nicht nur der Entwicklung und Instandhaltung, sondern ermöglicht auch Nutzern nur diejenigen Programmbestandteile zu installieren, die für ein bestimmtes Projekt benötigt werden.
 Das macht die Bibliothek leichter.
 Mit der modularen Struktur können Dritte unkompliziert die Bibliothek durch weitere Funktionen erweitern.
 Sie können einfach ein neues Paket dem mutwo Ökosystem hinzufügen.
 
+\bigskip
+
 Technisch ist die Modularität durch Pythons Unterstützung von \emph{namespace packages} gelöst.
 Das ermöglicht voneinander unabhängigen Pakete die Installation von Quellcode unter einem gemeinsamen Paketnamen.
+
+\bigskip
 
 Einzelne Pakete im mutwo Ökosystem sind auf standardisierte Weise benannt.
 Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die enthaltenen Funktionen zusammen:
@@ -810,7 +902,6 @@ Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die entha
     \item{\textbf{mutwo.core}: Kunstform-, medien- und kulturagnostische Objekte}
     \item{\textbf{mutwo.music}: Musikspezifische Objekte}
     \item{\textbf{mutwo.reaper}: Funktionen die mit der DAW Reaper zusammenhängen}
-    \item{\dots}
 \end{itemize}
 
 Das mutwo Ökosystem setzt die anfänglich beschriebene Struktur von Modulen und Submodulen auch in separaten Paketen um.
