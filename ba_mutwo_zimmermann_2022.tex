@@ -654,7 +654,7 @@ Ist eine Bibliothek zu unspezifisch, mag diese Voraussetzung unerfüllt bleiben.
 
 % Der generische Aufbau wird flankiert von dem Designziel möglichst einfach, offen und verständlich zu sein
 Der Komplexität unspezifischer Abstraktionen wird die Absicht entgegengesetzt, möglichst einfach, offen und verständlich zu sein.
-Beide Zielen unterliegen der gemeinsamen Intention offen, zurückhaltend und freundlich zu Benutzer:innen zu sein.
+Beide Zielen unterliegen der gemeinsamen Intention offen, zurückhaltend und freundlich gegenüber Benutzer:innen zu sein.
 In den folgenden Präzisierungen der Softwarearchitektur und der Entwicklungsstrategien wird verdeutlicht, wie diese Gegensätze ineinander integriert sind.
 
 
@@ -681,6 +681,20 @@ In den folgenden Präzisierungen der Softwarearchitektur und der Entwicklungsstr
 \subsection{Softwarearchitektur}
 
 \subsubsection{Komponenten und Beziehungen}
+
+Objekte in \emph{mutwo} sind in rigide Kategorien eingeteilt:
+
+\bigskip
+
+\hspace{0.5cm}
+\begin{minipage}{0.95\textwidth}
+    \begin{description}[style=multiline, leftmargin=2.25cm, font=\normalfont\emph]
+        \item[Ereignisse] beschreiben eine Bewegung.
+        \item[Parameter] sind Ereignissen zugeordnet und definieren die Qualität der Bewegung.
+        \item[Übersetzer] transformieren Inhalt oder Form einer Entität (z. B. Ereignis, Parameter).
+        \item[Generatoren] erzeugen Daten für eine künstlerische Arbeit.
+    \end{description}
+\end{minipage}
 
 \subsubsection{Ereignisse}
 
