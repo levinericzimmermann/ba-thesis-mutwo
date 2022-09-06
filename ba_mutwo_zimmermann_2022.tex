@@ -371,7 +371,7 @@ Das Projekt \emph{mutwo} ist der Versuch der Realisierung der Utopie allen Benut
 Das Projekt ist Versuch und Utopie, weil die Komplexität der Spezifikation und Implementierung Einschränkungen bedingt.
 Eine Präzision dieser Limitierungen findet sich im späteren Teil vorliegender Arbeit.
 Die Einschränkungen betreffen daneben Grenzen, denen alle Programmierumgebungen algorithmischer Komposition unterworfen sind.
-Sie tendieren z. B. zum Ausschluss musikalische Praxen, welche Improvisation der Komposition vorziehen.
+Sie tendieren z. B. zum Ausschluss musikalischer Praxen, welche Improvisation der Komposition vorziehen.
 
 \bigskip
 
@@ -382,7 +382,7 @@ Ausgangspunkt ist hierbei eine umfassende Darstellung der Motivation der Entwick
 Daran knüpft eine abstrakte Spezifikation ihrer Architektur an.
 Anschließend werden konkrete Programmierstrategien zur Umsetzung der Absicht vorgestellt.
 Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
-Vor abschließender Zusammenfassung werden zwei Fallstudien präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekte eingesetzt werden kann.
+Vor abschließender Zusammenfassung werden zwei Fallstudien präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekten eingesetzt werden kann.
 
 % Code:
 %   core: 4314
@@ -587,6 +587,7 @@ Vor abschließender Zusammenfassung werden zwei Fallstudien präsentiert, die ze
 \section{\emph{mutwo}}
 
 \subsection{Motivation und Absicht}
+\label{motivationUndAbsicht}
 
 Motivation der initialen Entwicklung \emph{mutwos} war die Erkenntnis einer Diskrepanz zwischen bestehenden Softwareprojekten und meiner eigenen Arbeitsweise.
 Diese Diskrepanz bedingte die Vorstellung eines Softwaredesigns, was möglichst generisch und flexibel ist.
@@ -682,7 +683,7 @@ In den folgenden Präzisierungen der Softwarearchitektur und der Entwicklungsstr
 
 \subsubsection{Komponenten und Beziehungen}
 
-Objekte in \emph{mutwo} sind in rigide Kategorien eingeteilt:
+Objekte in \emph{mutwo} sind in strikte Kategorien eingeteilt:
 
 \bigskip
 
@@ -736,11 +737,11 @@ In \emph{mutwos} objektorientiertem Paradigma sind Ereignisse und Parameter Klas
     \begin{center}
         \begin{tabular}{l l l l} 
             \hline
-            Klassenname & enthält Ereignisse & innere Verhältnisse & Beispiel \\ [0.5ex] 
+            Klassenname & ist Behälter & innere Verhältnisse & Beispiel \\ [0.5ex] 
             \hline\hline
             \texttt{SimpleEvent} & nein & - & ein Ton, ein Strich \\ 
             \texttt{SequentialEvent} & ja & akkumulierend & eine Melodie, ein Quadrat \\ 
-            \texttt{SimultaneousEvent} & ja & parallel & polyphoner Satz, zwei Rechtecke \\ [1ex] 
+            \texttt{SimultaneousEvent} & ja & parallel & Polyphonie, zwei Rechtecke \\ [1ex] 
             \hline
         \end{tabular}
     \end{center}
@@ -763,28 +764,31 @@ Mit den drei Ereignisklassen \texttt{SimpleEvent}, \texttt{SequentialEvent} und 
 
 
 \subsubsection{Parameter}
+\label{parameterSpecification}
 
 Parameter repräsentieren generische Kategorien, die Ereignissen zugeordnet werden.
 Generische Kategorien können beispielweise eine Farbe, eine Tonhöhe oder ein Luftdruck sein.
 
 \bigskip
 
-In \emph{mutwos} Design sind Parameter als abstrakte Klassen definiert, die eine minimale, öffentliche Programmierschnittstelle beschreiben.
-Diese minimale Schnittstelle versucht Parameter auf eine kompakte Identität zu reduzieren, die unabhängig ist von bestimmten Traditionen.
+% XXX: Erwähne die abstrakte Klassen - Implementierungsdetails später (Entwicklungsstrategien)
+% In \emph{mutwos} Design sind Parameter als abstrakte Klassen definiert, die eine minimale, öffentliche Programmierschnittstelle beschreiben.
+% Diese minimale Schnittstelle versucht Parameter auf eine kompakte Identität zu reduzieren, die unabhängig ist von bestimmten Traditionen.
+\emph{Mutwo} versucht Parameter über eine möglichst kompakte, generische Identität zu beschreiben.
 Wenn möglich besteht diese kompakte Identität aus nur einem Wert (z. B. Zeichenkette oder Zahl).
 Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
 
 \begin{table}[h!]
     \begin{center}
-        \begin{tabular}{l l l l} 
+        \begin{tabular}{l l} 
             \hline
-            Parameter & Klassenname & Elementares Klassenattribut & Einheit \\ [0.5ex] 
+            Parameter & Einheit \\ [0.5ex] 
             \hline\hline
-            Tonhöhe & \texttt{Pitch} & \texttt{frequency} & Hertz \\ 
-            Tonhöhenintervall & \texttt{PitchInterval} & \texttt{interval} & Cents \\ 
-            Dauer & \texttt{Duration} & \texttt{duration} & beats \\ 
-            Text & \texttt{Lyric} & \texttt{phonetic\_script} & X-SAMPA\footnotemark \\ 
-            Lautstärke & \texttt{Volume} & \texttt{amplitude} & Volt \\ [1ex] 
+            Tonhöhe & Hertz \\ 
+            Tonhöhenintervall & Cents \\ 
+            Dauer & beats \\ 
+            Text & X-SAMPA\footnotemark \\ 
+            Lautstärke & Volt \\ [1ex] 
             \hline
         \end{tabular}
     \end{center}
@@ -795,20 +799,6 @@ Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
 \footnotetext{%
     Das ``Extended Speech Assessment Methods Phonetic Alphabet'' ermöglicht die Darstellung der phonetischen IPA Symbole in ASCII.~\parencite{xsampaWikipedia}
 }
-
-Andere Bestandteile \emph{mutwos} erwarten nur die minimal--definierte Schnittstelle.
-Das ermöglicht Benutzern die Implementierung einer Repräsentation einer Kategorie, die der jeweiligen Interpretation entspricht.
-Das Design \emph{mutwos} versichert, dass die von Benutzern hinzugefügten Repräsentationen mit anderen Bibliothekskomponenten kompatibel sind.
-
-\begin{figure}[h!]
-    \includegraphics[scale=0.4]{uml_diagrams/pitches.png}
-
-    \caption{%
-        Schematische Darstellung eines Parameter und unterschiedlicher Subklassen.
-        Die Subklassen werden mit unterschiedlichen Argumenten initialisiert.
-    }
-
-\end{figure}
 
 \subsubsection{Übersetzer}
 
@@ -821,7 +811,8 @@ Transformieren bedeutet hier entweder eine Veränderung des Inhalts oder eine Ve
 
 
 \begin{table}[h!]
-    \hspace{-0.5cm}
+    % \hspace{-0.5cm}
+    \begin{center}
         \smaller
         \begin{tabular}{l l l l} 
             \hline
@@ -829,11 +820,13 @@ Transformieren bedeutet hier entweder eine Veränderung des Inhalts oder eine Ve
             \hline\hline
             \texttt{EventToMidiFile} & Instanz einer Ereignisklasse & Standard Midi File (SMF) & Format \\ 
             \texttt{MidiFileToEvent} & Standard Midi File (SMF) & Instanz einer Ereignisklasse & Format \\ 
-            \texttt{TwoPitchesToCommonHarmonicTuple} & Zwei Tonhöheninstanzen & Instanzen gemeinsamer Harmonischer & Inhalt \\ 
+            % XXX: Ist zu lange, kleinere Tabelle sieht schöner aus :)
+            % \texttt{TwoPitchesToCommonHarmonicTuple} & Zwei Tonhöheninstanzen & Instanzen gemeinsamer Harmonischer & Inhalt \\ 
             \texttt{PitchToTabulaturaPitch} & Tonhöheninstanz & Tonhöheninstanz & Inhalt \\ [1ex] 
             \hline
         \end{tabular}
 
+    \end{center}
     \caption{Exemplarische Übersetzer}
 \end{table}
 
@@ -865,26 +858,35 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
     \caption{Exemplarische Generatoren}
 \end{table}
 
-\subsubsection{Module und Packete}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Entwicklungsstrategien}
+
+\subsubsection{Strukturierung des Quellcodes}
+\label{quellcodeStruktur}
 
 Der Quellcode von \emph{mutwo} ist nach rigiden Regeln strukturiert.
 Die Struktur basiert auf Pythons System von verschachtelten Modulen, Importe und Paketen.
-Absicht der rigiden Struktur ist eine einfache Verwendung für Benutzer und eine Vereinfachung der Entwicklung und Instandhaltung eines komplexen Softwareprojekts.
+Die Strenge der Struktur folgt zwei Absichten.
+Erstens soll sie für Benutzer:innen einfach -- da konsistent und repetetiv -- verwendbar sein.
+Zweitens vereinfacht sie die Entwicklung und Instandhaltung eines komplexen Softwareprojekts.
 
 \bigskip
 
 Der Paketname der Bibliothek ist \emph{mutwo}.
-Pakete können im Python-Ökosystem auf der Plattform \emph{pypi} verwaltet werden.
-Mit dem standardisierten Pythonpaketmanager \emph{pip} können Pakete von \emph{pypi} installiert werden.
-
-\lstset{language=bash}
-
-\begin{lstlisting}
-    pip3 install mutwo
-\end{lstlisting}
-
+% XXX: Das ist ein unwichtiges Detail über Python, was nicht viel über mutwos Entwicklungsstrategien erzählt
+% Pakete können im Python-Ökosystem auf der Plattform \emph{pypi} verwaltet werden.
+% Mit dem standardisierten Pythonpaketmanager \emph{pip} können Pakete von \emph{pypi} installiert werden.
+% 
+% \lstset{language=bash}
+% 
+% \begin{lstlisting}
+%     pip3 install mutwo
+% \end{lstlisting}
+% 
 Das Paket \emph{mutwo} ist in unterschiedliche Module geteilt.
-Die unterschiedlichen Module korrelieren mit den zuvor beschriebenen elementaren Bestandteile von \emph{mutwo}.
+Die unterschiedlichen Module korrelieren mit den zuvor beschriebenen elementaren Bestandteilen von \emph{mutwo}.
 Sie werden flankiert von zusätzlichen Hilfsmodulen.
 
 \begin{table}[h!]
@@ -895,7 +897,7 @@ Sie werden flankiert von zusätzlichen Hilfsmodulen.
             \hline\hline
             \texttt{configurations} & Globale modulübergreifende Konfigurationsvariablen \\
             \texttt{constants} & Globale modulübergreifende Konstanten \\
-            \texttt{converters} & Importieren und Exportieren von Daten, Übersetzen interner Strukturen \\
+            \texttt{converters} & Import und Export von Daten, Übersetzen interner Strukturen \\
             \texttt{events} & Definition verschiedener Ereignisklassen \\
             \texttt{generators} & Generierung von für künstlerische Arbeiten hilfreiche Daten \\
             \texttt{parameters} & Klassen, deren Instanzen Ereignisattributen zugeordnet werden \\
@@ -923,18 +925,18 @@ Weil die Regel für alle \emph{mutwo} Module gilt ist sie einfach zu verstehen f
 Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
 
 \begin{quote}
-    ``Flat is better than nested.''
+    ``Flat is better than nested.''~\parencite{theZenOfPython}
 \end{quote}
 
 Folgende Tabelle beschreibt die möglichen Submodule eines Moduls:
 
-\begin{table}[h!]
+\begin{table}[H]
     \begin{center}
         \begin{tabular}{l l} 
             \hline
             Submodulname & Modulbeschreibung \\ [0.5ex] 
             \hline\hline
-            \texttt{abc} & Abstrakte Klassen, Definition der gemeinsamen API \\
+            \texttt{abc} & Abstrakte Klassen \\  % Definition der gemeinsamen öffentlichen Schnittstelle (API)
             \texttt{configurations} & Globale modifizierbare Variablen zur Modulkonfiguration \\
             \texttt{constants} & Globale Konstanten des Moduls \\
             \hline
@@ -947,7 +949,7 @@ Folgende Tabelle beschreibt die möglichen Submodule eines Moduls:
 Die Strukturierung des Quellcodes in thematisch getrennte Module und Submodule ist aber unzureichend.
 Weil die grundsätzliche Designprämisse von sehr generischen Strukturen ausgeht, die aber präzise spezifiziert werden können, ist der potenzielle Umfang der Bibliothek schwer fasslich.
 In \emph{mutwo} ist das Problem durch eine modulare Struktur von thematisch getrennten Paketen gelöst.
-Jedes Paket hat einen eigenen Namen auf \emph{pypi}, hat eine eigene, unabhängige Version, kann eigene Abhängigkeiten definieren und ist je nach Abhängigkeitsstruktur unabhängig von anderen Paketen installierbar.
+Jedes Paket hat einen einzigartigen Namen, hat eine unabhängige Version, kann eigene Abhängigkeiten definieren und ist je nach Abhängigkeitsstruktur unabhängig von anderen Paketen installierbar.
 
 \bigskip
 
@@ -964,28 +966,44 @@ Das ermöglicht voneinander unabhängigen Pakete die Installation von Quellcode 
 \bigskip
 
 Einzelne Pakete im \emph{mutwo} Ökosystem sind auf standardisierte Weise benannt.
-Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die enthaltenen Funktionen zusammen:
+Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die enthaltenen Funktionen zusammen.
 
-\begin{itemize}
-    \item{\textbf{mutwo.core}: Kunstform-, medien- und kulturagnostische Objekte}
-    \item{\textbf{mutwo.music}: Musikspezifische Objekte}
-    \item{\textbf{mutwo.reaper}: Funktionen die mit der DAW Reaper zusammenhängen}
-\end{itemize}
+\bigskip
+
+\hspace{0.5cm}
+\begin{minipage}{0.95\textwidth}
+    \begin{description}[style=multiline, leftmargin=3.25cm, font=\normalfont\emph]
+        \item[mutwo.core] Kunstform-, medien- und kulturagnostische Objekte
+        \item[mutwo.music] Musikspezifische Objekte
+        \item[mutwo.reaper] Funktionen, die mit der DAW Reaper zusammenhängen
+    \end{description}
+\end{minipage}
+
+\bigskip
 
 Das \emph{mutwo} Ökosystem setzt die anfänglich beschriebene Struktur von Modulen und Submodulen auch in separaten Paketen um.
-Die Namen der Module sind allerdings Kompositionen aus einem Präfix und einem Suffix.
+Die Namen der Module sind Kompositionen aus einem Präfix und einem Suffix.
 Der Präfix ist der Suffix des Paketnamen (z. B. \texttt{core} oder \texttt{music}).
-Der Suffix beschreibt die Funktion des Moduls (z. B. \texttt{events} oder \texttt{parameters}, siehe Tabelle~\ref{table:modulDefinition}).
-Präfix und Suffix sind durch einen Unterstrich getrennt:
+Der Suffix beschreibt die Funktion des Moduls (z. B. \texttt{events} oder \texttt{parameters}).
+Präfix und Suffix sind durch einen Unterstrich getrennt.
 
-\begin{itemize}
-    \item{\texttt{core\_parameters}}
-    \item{\texttt{music\_events}}
-    \item{\texttt{midi\_converters}}
-\end{itemize}
+\begin{table}[H]
+    \begin{center}
+        \begin{tabular}{l l l}
+            \hline
+            Paketidentität (Präfix) & Modulfunktion (Suffix) & Modulname \\ [0.5ex] 
+            \hline\hline
+            \texttt{core} & \texttt{parameters} & \texttt{core\_parameters} \\
+            \texttt{music} & \texttt{events} & \texttt{music\_events} \\
+            \texttt{midi} & \texttt{converters} & \texttt{midi\_converters} \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \caption{Exemplarische Module}
+\end{table}
 
 Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben:
-
 
 \begin{lstlisting}
     from mutwo import core_parameters
@@ -993,13 +1011,72 @@ Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben
     from mutwo import midi_converters
 \end{lstlisting}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Abstrakte Basisklassen}
 
-\subsection{Entwicklungsstrategien}
+Wie in \emph{\nameref{quellcodeStruktur}} vorgestellt, enthält jedes \emph{mutwo} Modul potenziell das \texttt{abc}~\footnote{%
+    i.\ e. \emph{abstract base classes}%
+} Teilmodul.
+In diesen Modul werden abstrakte Klassen definiert.
+Abstrakte Klassen sind Klassen deren Methoden oder Attribute nicht oder nur stellenweise implementiert sind.
+Abstrakte Klassen können deshalb nicht initialisiert werden.
+Von abstrakten Klassen können unterschiedliche dritte Klassen erben, die fehlende Teile implementieren.
+Sind alle fehlende Teile implementiert, kann eine abgeleitete Klasse initialisiert werden~\parencite{abstractTypeWiki}.
 
-% \subsubsection{Abstrakte Klassen}
-% 
+\bigskip
+
+In \emph{mutwo} ermöglichen abstrakte Klassen die Definition der öffentlichen Schnittstelle (API) einer Programmkomponente.
+Verschiedene, zusammenhängende Programmkomponente erwarten voneinander entsprechende API.
+Sie sind damit unabhängig von spezifischen Implementierungen.
+Diese Technologie unterliegt der im im Kapitel \emph{\nameref{parameterSpecification}} beschriebene Definition der Parameterklassen.
+Die im \texttt{abc} Teilmodul des \texttt{parameters} Modul deklarierte Klassen definieren so ihre kompakte Identität über ein nicht--implementiertes Attribut.
+
+\begin{table}[h!]
+    \begin{center}
+        \begin{tabular}{l l l l} 
+            \hline
+            Parameter & Klassenname & Abstraktes Attribut & Attributdatentyp \\ [0.5ex] 
+            \hline\hline
+            Tonhöhe & \texttt{Pitch} & \texttt{frequency} & Gleitkommazahl \\ 
+            Tonhöhenintervall & \texttt{PitchInterval} & \texttt{interval} & Gleitkommazahl \\ 
+            Dauer & \texttt{Duration} & \texttt{duration} & Bruch \\ 
+            Text & \texttt{Lyric} & \texttt{phonetic\_script} & Zeichenkette \\ 
+            Lautstärke & \texttt{Volume} & \texttt{amplitude} & Gleitkommazahl \\ [1ex] 
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \caption{Präzision der Liste exemplarischer Ein-Wert-Parameter}
+\end{table}
+
+Dritte Bestandteile \emph{mutwos} erwarten nur diese minimal--definierte Schnittstelle.
+Das ermöglicht Benutzern die Implementierung einer Repräsentation einer Kategorie, die der jeweiligen Interpretation entspricht.
+Das Design \emph{mutwos} versichert, dass die von Benutzern hinzugefügten Repräsentationen mit anderen Bibliothekskomponenten kompatibel sind.
+
+\begin{figure}[h!]
+    \includegraphics[scale=0.4]{uml_diagrams/pitches.png}
+
+    \caption{%
+        Schematische Darstellung eines Parameter und seine unterschiedliche Subklassen.
+        Die Subklassen ermöglichen unterschiedliche Perspektiven derselben Entität.
+        Sie werden mit unterschiedlichen Argumenten initialisiert.
+    }
+
+\end{figure}
+
+\subsubsection{Konvention vor Konfiguration}
+
+Das Entwicklungsparadigma \emph{Konvention vor Konfiguration} entspannt den in \emph{\nameref{motivationUndAbsicht}} beschriebenen Konflikt zwischen Anpassbarkeit und Einfachheit.
+Viele Funktionen und Methoden \emph{mutwos} haben eine große Anzahl potenzieller Argumente.
+Häufig ist Intention der reichen Argumente das generische, adaptive Designziel zu erfüllen.
+Häufig werden Argumente nur selten von Benutzer:innen deklariert werden müssen.
+
+\smallskip
+
+Das Paradigma \emph{Konvention vor Konfiguration}.
+
+
+%  \footnote{https://en.wikipedia.org/wiki/Convention\_over\_configuration}
+
 % \subsubsection{Funktionen als Argumente}
 % 
 % \subsubsection{Dynamische Zuweisung von Attributen}
@@ -1012,10 +1089,8 @@ Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben
 % 
 % \subsubsection{Warnungen statt Fehler}
 % 
-% \subsubsection{Konfigurierbare globale Standardwerte (``convention over configuration'')}
-% 
-% %  \footnote{https://en.wikipedia.org/wiki/Convention\_over\_configuration}
-% 
+
+
 % \subsubsection{Annotation von Typen im Quellcode}
 % 
 % \subsubsection{Rigide Namenskonventionen}
