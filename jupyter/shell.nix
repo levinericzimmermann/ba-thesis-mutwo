@@ -6,6 +6,12 @@
     python39Packages.pip
     python39Packages.virtualenv
     jupyter
+    # Dependencies for mutwo.music (somehow doesn't work yet)
+    mbrola
+    arcan.espeak 
+    espeak-classic
+    # for nbconvert with markdown
+    pandoc
   ]);
   runScript = "bash";
 }).env

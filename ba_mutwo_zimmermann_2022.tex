@@ -863,6 +863,34 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
 
 \subsection{Entwicklungsstrategien}
 
+\subsubsection{Programmiersprache}
+
+\emph{Mutwo} ist in der Programmiersprache Python implementiert.
+Python ist eine interpretierte, multi-paradigmatische, plattformübergreifende Sprache.
+Sie wurde zum ersten Mal 1991 veröffentlicht.
+
+\bigskip
+
+Die Begründung für diese Wahl ist in den folgenden Punkten.
+
+\begin{enumerate}
+    \item{
+            \textbf{Python ist einfach zu lernen und zu benutzen.}
+            Pythons imperativer vereinfachter Syntax ist intuitiv rasch zu begreifen.
+            Als interpretierte Sprache entfällt die Komplexität der Kompilierung.
+            \emph{Mutwos} Zielgruppe sind nicht primär  professionelle Softwareentwickler:innen, sondern Künstler:innen.
+            Deshalb ist eine flache, schnelle Lernkurve sehr bedeutend.
+            % Das ist eine sehr wichtige Eigenschaft, weil \emph{mutwo} in erster Linie für und von  intendiert ist
+    }
+    \item{
+            \textbf{Python ist populär.}
+    }
+    \item{
+            \textbf{Python ist plattformübergreifend.}
+    }
+\end{enumerate}
+
+
 \subsubsection{Strukturierung des Quellcodes}
 \label{quellcodeStruktur}
 
@@ -1063,39 +1091,58 @@ Das Design \emph{mutwos} versichert, dass die von Benutzern hinzugefügten Repr�
 
 \end{figure}
 
-\subsubsection{Konvention vor Konfiguration}
+\subsubsection{\emph{Konvention vor Konfiguration} (Sensible Voreinstellungen)}
 
 Das Entwicklungsparadigma \emph{Konvention vor Konfiguration} entspannt den in \emph{\nameref{motivationUndAbsicht}} beschriebenen Konflikt zwischen Anpassbarkeit und Einfachheit.
 Viele Funktionen und Methoden \emph{mutwos} haben eine große Anzahl potenzieller Argumente.
 Häufig ist Intention der reichen Argumente das generische, adaptive Designziel zu erfüllen.
-Häufig werden Argumente nur selten von Benutzer:innen deklariert werden müssen.
+Benutzer:innen werden für einige Argumente selten eine Notwendigkeit entwickeln, diese explizit zu deklarieren.
 
-\smallskip
+\bigskip
 
-Das Paradigma \emph{Konvention vor Konfiguration}.
+In dieser Situation kann genanntes Paradigma helfen.
+\emph{Konvention vor Konfiguration} empfiehlt, dass Benutzer:innen einer Bibliothek nur unkonventionelle Konfigurationen spezifizieren müssen~\parencite{conventionOverConfiguration}.
 
+\bigskip
 
-%  \footnote{https://en.wikipedia.org/wiki/Convention\_over\_configuration}
+\emph{Mutwo} realisiert diese Empfehlung mithilfe sensibler Voreinstellungen.
+Viele Argumente haben voreingestellte Standardwerte.
+Wird kein expliziter Wert deklariert, fallen Funktionen und Methoden auf diese zurück.
+Dadurch müssen Benutzer:innen nur elementare oder für sie relevante Argumente angeben.
 
-% \subsubsection{Funktionen als Argumente}
-% 
-% \subsubsection{Dynamische Zuweisung von Attributen}
-% 
-% \subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
-% 
-% \subsubsection{Abwesenheit vorgegebener Arbeitsmodelle}
-% 
-% \subsubsection{Deskriptive Fehlermeldungen und Warnungen}
-% 
-% \subsubsection{Warnungen statt Fehler}
-% 
+\bigskip
 
+Dieses Paradigma birgt die Gefahr bestimmte (Musik--)Traditionen oder Ästhetiken zu priorisieren.
+Die Gefahr ist darin begründet, dass manche (die den Konventionen entsprechenden) Lösungen einfacher umzusetzen sind als andere.
+In meinem Verständnis wiegt der Mehrwert einer einfachen, intuitiven und von Standardformulierungen befreiten Anwendung diese Gefahr auf.
 
-% \subsubsection{Annotation von Typen im Quellcode}
-% 
-% \subsubsection{Rigide Namenskonventionen}
-% 
-% \subsubsection{Dokumentation der API}
+\subsubsection{Globale Voreinstellungen}
+
+Um beschriebene Gefahr weiter einzudämmen vereinfacht \emph{mutwo} das Überschreiben der Voreinstellungen mithilfe globaler Variablen.
+Wird kein expliziter Wert deklariert, weisen Funktionen und Methoden während der Laufzeit dynamisch die Werte ihrer Argumente diesen Variablen zu.
+
+\begin{center}
+    \fbox{\includegraphics[page=1,scale=0.95]{jupyter/Globale_Voreinstellungen.pdf}}
+\end{center}
+
+\subsubsection{Dokumentation öffentlicher Schnittstellen}
+
+\subsubsection{Funktionen als Argumente}
+
+\subsubsection{Dynamische Zuweisung von Attributen}
+
+\subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
+
+\subsubsection{Abwesenheit vorgegebener Arbeitsmodelle}
+
+\subsubsection{Deskriptive Fehlermeldungen und Warnungen}
+
+\subsubsection{Warnungen statt Fehler}
+
+\subsubsection{Annotation von Typen im Quellcode}
+
+\subsubsection{Rigide Namenskonventionen}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
