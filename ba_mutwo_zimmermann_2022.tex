@@ -949,7 +949,7 @@ Die folgende Zeile dokumentiert die in \emph{mutwo} bevorzugte Weise:
 
 \emph{Mutwo} Module enthalten direkt die verwendbaren Objekte (Klassen, Funktionen).
 Sie können nur eine limitierte Anzahl bestimmter Submodule enthalten.
-Weil die Regel für alle \emph{mutwo} Module gilt ist sie einfach zu verstehen für neue Benutzer.
+Weil die Regel für alle \emph{mutwo} Module gilt, ist Struktur der Module einfach zu verstehen für neue Benutzer:innen.
 Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
 
 \begin{quote}
@@ -1118,12 +1118,20 @@ In meinem Verständnis wiegt der Mehrwert einer einfachen, intuitiven und von St
 
 \subsubsection{Globale Voreinstellungen}
 
-Um beschriebene Gefahr weiter einzudämmen vereinfacht \emph{mutwo} das Überschreiben der Voreinstellungen mithilfe globaler Variablen.
+Um beschriebene Gefahr weiter einzudämmen, vereinfacht \emph{mutwo} das Überschreiben der Voreinstellungen mithilfe globaler Variablen.
 Wird kein expliziter Wert deklariert, weisen Funktionen und Methoden während der Laufzeit dynamisch die Werte ihrer Argumente diesen Variablen zu.
+Wird eine Abweichung einer Konvention notwendig, kann die Konvention mit wenigen imperativen Zeilen überschrieben werden.
+
+\vspace{-0.5cm}
 
 \begin{center}
     \fbox{\includegraphics[page=1,scale=0.95]{jupyter/Globale_Voreinstellungen.pdf}}
 \end{center}
+
+Daneben unterstützt diese Strategie eine flexible Arbeitsweise, die unmittelbar auf Veränderungen reagiert.
+Ein Beispiel ist ein Szenario einer Komposition mit Instrumenten alter Musik und einer Klangdatei.
+Der Kammerton Instrumente alter Musik variiert.
+Wird die Klangdatei in \emph{mutwo} erzeugt, kann der Kammerton je nach Instrument global neu gesetzt werden.
 
 \subsubsection{Dokumentation öffentlicher Schnittstellen}
 
