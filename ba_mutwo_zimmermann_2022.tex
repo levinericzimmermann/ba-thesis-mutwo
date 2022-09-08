@@ -322,7 +322,7 @@ In der Bibliothek \emph{SCAMP} werden Tonhöhen als Gleitkommazahl repräsentier
 \smallskip
 
 Die Software \emph{Euterpea} deklariert Tonhöhen als zweielementige Tupel.
-Das erste Element ist ein Tonklassenname europäischer Tradition (z. B. \texttt{cs} oder \texttt{fbb}) und das zweite eine natürliche Zahl zur Indikation der Oktave~\parencite{euterpeaPitchDefinition}.
+Das erste Element ist ein Tonklassenname europäischer Tradition (z.~B. \texttt{cs} oder \texttt{fbb}) und das zweite eine natürliche Zahl zur Indikation der Oktave~\parencite{euterpeaPitchDefinition}.
 
 \smallskip
 
@@ -338,7 +338,7 @@ Die Funktion \texttt{make-pitch} erzeugt eine neue \texttt{pitch}--Instanz.
 Ähnlich wie bei \emph{jMusic} gibt es unterschiedliche mögliche Datentypen des notwendigen Arguments \texttt{pitch} der \texttt{make-pitch} Funktion.
 Falls \texttt{pitch} ein Symbol oder eine Zeichenkette ist, wird das Argument als Tonname europäischer Tradition gelesen.
 Ist \texttt{pitch} eine Zahl wird diese als die Frequenz der Tonhöhe interpretiert.
-Der Klasse \texttt{pitch} sind Attribute zugewiesen wie z. B. \texttt{midi-note}, \texttt{white-note}, \texttt{accidental} oder \texttt{frequency}~\parencite{slipperyChickenSource}.
+Der Klasse \texttt{pitch} sind Attribute zugewiesen wie z.~B. \texttt{midi-note}, \texttt{white-note}, \texttt{accidental} oder \texttt{frequency}~\parencite{slipperyChickenSource}.
 
 \bigskip
 
@@ -353,7 +353,7 @@ In \emph{SCAMP} oder \emph{Euterpea} könnte man eine neue Klasse bzw. Deklarati
 \smallskip
 
 In \emph{jMusic} oder \emph{slippery-chicken} könnte man von den Klassen \texttt{Note} bzw. \texttt{pitch} erben.
-In der abgeleiteten Klasse könnten dann ein weiteres Attribut (z. B. \texttt{ratio}) hinzugefügt werden bzw. der entsprechende Konstruktor hinzugefügt werden.
+In der abgeleiteten Klasse könnten dann ein weiteres Attribut (z.~B. \texttt{ratio}) hinzugefügt werden bzw. der entsprechende Konstruktor hinzugefügt werden.
 
 \smallskip
 
@@ -363,7 +363,7 @@ Die Operationen mit dem erweiterten Potenzial würden jenseits einer Interaktion
 \smallskip
 
 Die Erweiterung von \emph{jMusic} oder \emph{slippery-chicken} befände sich innerhalb der Bibliothek.
-Die abgeleiteten Klassen oder neue Konstruktoren enthielten vererbte Attribute, die für sie potenziell unwesentlich wären (z. B. Informationen zu westlicher Notation).
+Die abgeleiteten Klassen oder neue Konstruktoren enthielten vererbte Attribute, die für sie potenziell unwesentlich wären (z.~B. Informationen zu westlicher Notation).
 
 \bigskip
 
@@ -371,7 +371,7 @@ Das Projekt \emph{mutwo} ist der Versuch der Realisierung der Utopie allen Benut
 Das Projekt ist Versuch und Utopie, weil die Komplexität der Spezifikation und Implementierung Einschränkungen bedingt.
 Eine Präzision dieser Limitierungen findet sich im späteren Teil vorliegender Arbeit.
 Die Einschränkungen betreffen daneben Grenzen, denen alle Programmierumgebungen algorithmischer Komposition unterworfen sind.
-Sie tendieren z. B. zum Ausschluss musikalischer Praxen, welche Improvisation der Komposition vorziehen.
+Sie tendieren z.~B. zum Ausschluss musikalischer Praxen, welche Improvisation der Komposition vorziehen.
 
 \bigskip
 
@@ -613,7 +613,7 @@ Ist eine Bibliothek zu unspezifisch, mag diese Voraussetzung unerfüllt bleiben.
             \emph{Mutwo} trennt innere Repräsentationen von Spezifikationen dritter Software oder Protokolle.
             Spezifikationen dieser entstehen am Rande der Bibliothek, wenn innere Repräsentationen in die entsprechenden Strukturen umgewandelt werden.
             % maybe too verbose
-            % Notation wird z. B. nicht durch bestimmte tags von \emph{MusicXML} oder Codeschnipsel von \emph{Lilypond} beschrieben, sondern über abstraktere, generische Objekte.
+            % Notation wird z.~B. nicht durch bestimmte tags von \emph{MusicXML} oder Codeschnipsel von \emph{Lilypond} beschrieben, sondern über abstraktere, generische Objekte.
             Das ermöglicht eine flexible Adaption an unterschiedliche dritte Software oder Protokolle.
     }
 
@@ -692,16 +692,17 @@ Objekte in \emph{mutwo} sind in strikte Kategorien eingeteilt:
     \begin{description}[style=multiline, leftmargin=2.25cm, font=\normalfont\emph]
         \item[Ereignisse] beschreiben eine Bewegung.
         \item[Parameter] sind Ereignissen zugeordnet und definieren die Qualität der Bewegung.
-        \item[Übersetzer] transformieren Inhalt oder Form einer Entität (z. B. Ereignis, Parameter).
+        \item[Übersetzer] transformieren Inhalt oder Form einer Entität (z.~B. Ereignis, Parameter).
         \item[Generatoren] erzeugen Daten für eine künstlerische Arbeit.
     \end{description}
 \end{minipage}
 
 \subsubsection{Ereignisse}
+\label{eventDefinitions}
 
 Ein Ereignis beschreibt eine Bewegung in einem Koordinatensystem mit $n\in\mathbb{N}:n>0$ Dimensionen.
 Die Bewegung wird durch $n$ Vektoren dargestellt.
-Dimensionen können der Zeit, räumlichen Achsen (X, Y und Z) oder theoretischen Konstrukte (z. B. den Primzahlexponenten eines Tonnetzes) entsprechen.
+Dimensionen können der Zeit, räumlichen Achsen (X, Y und Z) oder theoretischen Konstrukte (z.~B. den Primzahlexponenten eines Tonnetzes) entsprechen.
 % Wahrscheinlich unwichtiges Detail
 % \footnote{%
 %         In Version 0.61.0 von mutwos Kernpaket sind Ereignissen immer nur der Vektor \emph{Dauer} in der Dimension \emph{Zeit} zugeordnet.
@@ -711,7 +712,7 @@ Dimensionen können der Zeit, räumlichen Achsen (X, Y und Z) oder theoretischen
 \bigskip
 
 Ereignissen sind zusätzliche Objekte zugeordnet, die Eigenschaften der Bewegung definieren.
-Ein zugewiesenes Objekt könnte für einen Klang z. B. eine Tonhöhe sein.
+Ein zugewiesenes Objekt könnte für einen Klang z.~B. eine Tonhöhe sein.
 Für eine zweidimensionale räumliche Bewegung wäre eine Farbe denkbar, für eine dreidimensionale Bewegung eine bestimmte Gangart.
 
 \bigskip
@@ -775,7 +776,7 @@ Generische Kategorien können beispielweise eine Farbe, eine Tonhöhe oder ein L
 % In \emph{mutwos} Design sind Parameter als abstrakte Klassen definiert, die eine minimale, öffentliche Programmierschnittstelle beschreiben.
 % Diese minimale Schnittstelle versucht Parameter auf eine kompakte Identität zu reduzieren, die unabhängig ist von bestimmten Traditionen.
 \emph{Mutwo} versucht Parameter über eine möglichst kompakte, generische Identität zu beschreiben.
-Wenn möglich besteht diese kompakte Identität aus nur einem Wert (z. B. Zeichenkette oder Zahl).
+Wenn möglich besteht diese kompakte Identität aus nur einem Wert (z.~B. Zeichenkette oder Zahl).
 Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
 
 \begin{table}[h!]
@@ -1011,8 +1012,8 @@ Ihr Name setzt sich durch das Wort \emph{mutwo} und einem Begriff für die entha
 
 Das \emph{mutwo} Ökosystem setzt die anfänglich beschriebene Struktur von Modulen und Submodulen auch in separaten Paketen um.
 Die Namen der Module sind Kompositionen aus einem Präfix und einem Suffix.
-Der Präfix ist der Suffix des Paketnamen (z. B. \texttt{core} oder \texttt{music}).
-Der Suffix beschreibt die Funktion des Moduls (z. B. \texttt{events} oder \texttt{parameters}).
+Der Präfix ist der Suffix des Paketnamen (z.~B. \texttt{core} oder \texttt{music}).
+Der Suffix beschreibt die Funktion des Moduls (z.~B. \texttt{events} oder \texttt{parameters}).
 Präfix und Suffix sind durch einen Unterstrich getrennt.
 
 \begin{table}[H]
@@ -1040,6 +1041,7 @@ Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben
 \end{lstlisting}
 
 \subsubsection{Abstrakte Basisklassen}
+\label{abstractBaseClasses}
 
 Wie in \emph{\nameref{quellcodeStruktur}} vorgestellt, enthält jedes \emph{mutwo} Modul potenziell das \texttt{abc}~\footnote{%
     i.\ e. \emph{abstract base classes}%
@@ -1136,14 +1138,28 @@ Wird die Klangdatei in \emph{mutwo} erzeugt, kann der Kammerton an unterschiedli
 \subsubsection{Dokumentation öffentlicher Schnittstellen}
 
 Im Quellcode \emph{mutwos} sind die für Dritte intendierten Objekte dokumentiert.
-Mithilfe der Software \emph{Sphinx} wird automatisiert aus dem dokumentierten Quellcode eine Dokumentation erzeugt.
-Das hilft den Reichtum der Argumente und Konfigurationsvariablen transparent zu machen.
+Mithilfe der Software \emph{Sphinx} wird automatisiert aus dem Quellcode eine Dokumentation erzeugt.
+Das unterstützt der Transparenz vielfältiger Argumente und Konfigurationsvariablen.
 In Appendix kann die automatisierte Dokumentation gefunden werden.
 % Um den Reichtum der Argumente und Konfigurationsvariablen transparent zu machen
 
-\subsubsection{Dynamische Akzessoren und Attribute}
+\subsubsection{Unspezifische Ereignisse; dynamische Akzessoren}
 
-\emph{Funktionen als Argumente}
+Kapitel \emph{\nameref{abstractBaseClasses}} beschreibt, wie \emph{mutwos} Parameter individuelle Repräsentationen ermöglichen.
+Adäquat dazu werden Ereignisse möglichst generisch behandelt.
+Entwickler:innen werden nicht zur Verwendung bestimmten Formen spezifischer Ereignisse (z.~B. Pause, Akkord, Note) gezwungen.
+\emph{Mutwos} Vertrag erwartet nur, dass Benutzer:innen Instanzen der Ereignisbasisklassen oder Instanzen davon abgeleiteter Klassen verwenden.
+Die Ereignisbasisklassen sind die in Kapitel \emph{\nameref{eventDefinitions}} beschriebenen Klassen \texttt{SimpleEvent}, \texttt{SequentialEvent} und \texttt{SimultaneousEvent}~\footnote{%
+    Übersetzer und andere \emph{mutwo} Objekte benötigen Basisklassen, um Blätter eines Ereignisbaums erkennen zu können und um zwischen akkumulierenden und parallelen Ereignisbehälter unterscheiden zu können.
+    Zukünftig könnte das Problem mit dynamischen Akzessoren und standardisierten Rückfallwerte gelöst werden.
+    Dann müsste \emph{mutwos} Vertrag nur das Erben der generischen Klasse \texttt{Event} fordern.
+}.
+
+\bigskip
+
+Die Abwesenheit spezifischer Ereignisklassen ist mithilfe Pythons Unterstützung von Introspektion, dynamischen Attributen und anonymen Funktionen gelöst.
+
+% \emph{Funktionen als Argumente}
 
 \subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
 
