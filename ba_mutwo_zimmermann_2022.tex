@@ -1118,7 +1118,7 @@ In meinem Verständnis wiegt der Mehrwert einer einfachen, intuitiven und von St
 
 \subsubsection{Globale Voreinstellungen}
 
-Um beschriebene Gefahr weiter einzudämmen, vereinfacht \emph{mutwo} das Überschreiben der Voreinstellungen mithilfe globaler Variablen.
+Um beschriebene Gefahr einzudämmen, vereinfacht \emph{mutwo} das Überschreiben der Voreinstellungen mithilfe globaler Variablen.
 Wird kein expliziter Wert deklariert, weisen Funktionen und Methoden während der Laufzeit dynamisch die Werte ihrer Argumente diesen Variablen zu.
 Wird eine Abweichung einer Konvention notwendig, kann die Konvention mit wenigen imperativen Zeilen überschrieben werden.
 
@@ -1131,13 +1131,19 @@ Wird eine Abweichung einer Konvention notwendig, kann die Konvention mit wenigen
 Daneben unterstützt diese Strategie eine flexible Arbeitsweise, die unmittelbar auf Veränderungen reagiert.
 Ein Beispiel ist ein Szenario einer Komposition mit Instrumenten alter Musik und einer Klangdatei.
 Der Kammerton Instrumente alter Musik variiert.
-Wird die Klangdatei in \emph{mutwo} erzeugt, kann der Kammerton je nach Instrument global neu gesetzt werden.
+Wird die Klangdatei in \emph{mutwo} erzeugt, kann der Kammerton an unterschiedliche Instrument angepasst werden.
 
 \subsubsection{Dokumentation öffentlicher Schnittstellen}
 
-\subsubsection{Funktionen als Argumente}
+Im Quellcode \emph{mutwos} sind die für Dritte intendierten Objekte dokumentiert.
+Mithilfe der Software \emph{Sphinx} wird automatisiert aus dem dokumentierten Quellcode eine Dokumentation erzeugt.
+Das hilft den Reichtum der Argumente und Konfigurationsvariablen transparent zu machen.
+In Appendix kann die automatisierte Dokumentation gefunden werden.
+% Um den Reichtum der Argumente und Konfigurationsvariablen transparent zu machen
 
-\subsubsection{Dynamische Zuweisung von Attributen}
+\subsubsection{Dynamische Akzessoren und Attribute}
+
+\emph{Funktionen als Argumente}
 
 \subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
 
