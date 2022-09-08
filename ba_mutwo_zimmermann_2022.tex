@@ -1147,17 +1147,37 @@ In Appendix kann die automatisierte Dokumentation gefunden werden.
 
 Kapitel \emph{\nameref{abstractBaseClasses}} beschreibt, wie \emph{mutwos} Parameter individuelle Repräsentationen ermöglichen.
 Adäquat dazu werden Ereignisse möglichst generisch behandelt.
-Entwickler:innen werden nicht zur Verwendung bestimmten Formen spezifischer Ereignisse (z.~B. Pause, Akkord, Note) gezwungen.
+Entwickler:innen werden nicht zur Verwendung bestimmten Formen spezifischer Ereignisse (z.~B. Pause, Akkord, Note, Takt) gezwungen.
 \emph{Mutwos} Vertrag erwartet nur, dass Benutzer:innen Instanzen der Ereignisbasisklassen oder Instanzen davon abgeleiteter Klassen verwenden.
 Die Ereignisbasisklassen sind die in Kapitel \emph{\nameref{eventDefinitions}} beschriebenen Klassen \texttt{SimpleEvent}, \texttt{SequentialEvent} und \texttt{SimultaneousEvent}~\footnote{%
-    Übersetzer und andere \emph{mutwo} Objekte benötigen Basisklassen, um Blätter eines Ereignisbaums erkennen zu können und um zwischen akkumulierenden und parallelen Ereignisbehälter unterscheiden zu können.
+    Übersetzer und andere \emph{mutwo} Objekte benötigen Basisklassen, um Blattknoten eines Ereignisbaums erkennen zu können und um zwischen akkumulierenden und parallelen Ereignisbehälter unterscheiden zu können.
     Zukünftig könnte das Problem mit dynamischen Akzessoren und standardisierten Rückfallwerte gelöst werden.
     Dann müsste \emph{mutwos} Vertrag nur das Erben der generischen Klasse \texttt{Event} fordern.
 }.
 
 \bigskip
 
-Die Abwesenheit spezifischer Ereignisklassen ist mithilfe Pythons Unterstützung von Introspektion, dynamischen Attributen und anonymen Funktionen gelöst.
+Die Abwesenheit spezifischer Ereignisklassen ist mithilfe Pythons Unterstützung von Introspektion, Funktionen höherer Ordnung und dynamischen Attributen möglich.
+Spezifische Klassen mögen darin begründet sein, dass dritte Programmkomponente bestimmte Attribute oder Methoden von ihren Eingangswerten erwarten (müssen).
+Indem dritte Programmkomponente als Funktionen höherer Ordnung implementiert sind, kann \emph{mutwo} die Anforderung anders erfüllen.
+Neben der Ereignisinstanz sind die Eingangswerte dritter Programmkomponente Funktionen.
+Diese Funktionen erhalten wiederum später die Ereignisinstanz als Eingangswert.
+Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
+Über den Umweg der als Eingangswert mitgegebenen Funktion kann die dritte Programmkomponente somit die benötigten Attribute erhalten.
+
+%%%%%%%%%%
+%%%%%%%%%% Hier kann jetzt das jupyter notebook eingefuegt werden!
+
+%%%%%%%%%% Nach diesem notebook dann nochmal kurz gedanke, dass diese funktionen dann auch adhoc benutzt werden
+%%%%%%%%%% koennen um einfach irgendeine funktion rein zu geben und um dann ereignisse nur als dauern zu lesen.
+%%%%%%%%%% ZB. Performer:in improvisiert zu jeder Bewegung noch einen TOn, jetzt kann ich das simulieren indem
+%%%%%%%%%% ich einfach einen random generator funktion reingebe!
+
+%%%%%%%%%% Nach diesem notebook kann kurze erklaerung ueber dynamische attribute erfolgen, und dann zweiter teil 
+%%%%%%%%%% desselben notebooks, wo erklaert wird, ok, vielleicht will man zwischendrin auch noch einfach einen
+%%%%%%%%%% bestimmten ton haben, dann fuegt man einfach simpleevent hinzu und gibt dem einfach direkt ein pitch attribut
+
+
 
 % \emph{Funktionen als Argumente}
 
