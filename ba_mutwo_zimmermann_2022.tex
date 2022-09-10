@@ -1057,7 +1057,7 @@ Sind alle fehlende Teile implementiert, kann eine abgeleitete Klasse initialisie
 In \emph{mutwo} ermöglichen abstrakte Klassen die Definition der öffentlichen Schnittstelle (API) einer Programmkomponente.
 Verschiedene, zusammenhängende Programmkomponente erwarten voneinander entsprechende API.
 Sie sind damit unabhängig von spezifischen Implementierungen.
-Diese Technologie unterliegt der im im Kapitel \emph{\nameref{parameterSpecification}} beschriebene Definition der Parameterklassen.
+Diese Technologie unterliegt der im im Kapitel \emph{\nameref{parameterSpecification}} beschriebenen Definition der Parameterklassen.
 Die im \texttt{abc} Teilmodul des \texttt{parameters} Modul deklarierte Klassen definieren so ihre kompakte Identität über ein nicht--implementiertes Attribut.
 
 \begin{table}[h!]
@@ -1159,11 +1159,11 @@ Die Ereignisbasisklassen sind die in Kapitel \emph{\nameref{eventDefinitions}} b
 
 Die Abwesenheit spezifischer Ereignisklassen ist mithilfe Pythons Unterstützung von Introspektion, Funktionen höherer Ordnung und dynamischen Attributen möglich.
 Spezifische Klassen mögen darin begründet sein, dass dritte Programmkomponente bestimmte Attribute oder Methoden von ihren Eingangswerten erwarten (müssen).
-Indem dritte Programmkomponente als Funktionen höherer Ordnung implementiert sind, kann \emph{mutwo} die Anforderung anders erfüllen.
+Indem dritte Programmkomponente als Funktionen höherer Ordnung implementiert sind, kann \emph{mutwo} diese Anforderung mit geringeren Einschränkungen von unterstützten Datentypen erfüllen.
 Neben der Ereignisinstanz sind die Eingangswerte dritter Programmkomponente Funktionen.
 Diese Funktionen erhalten wiederum später die Ereignisinstanz als Eingangswert.
 Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
-Über den Umweg der als Eingangswert mitgegebenen Funktion kann die dritte Programmkomponente somit die benötigten Attribute erhalten.
+Über den Umweg der als Eingangswert mitgegebenen Funktion, kann die dritte Programmkomponente somit versichern, ein spezifisches Attribut zu erhalten.
 
 %%%%%%%%%%
 %%%%%%%%%% Hier kann jetzt das jupyter notebook eingefuegt werden!
@@ -1178,32 +1178,110 @@ Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
 %%%%%%%%%% bestimmten ton haben, dann fuegt man einfach simpleevent hinzu und gibt dem einfach direkt ein pitch attribut
 
 
+% XXX: Diese hier sind nicht so relevant. 
+% \subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
+% \subsubsection{Abwesenheit vorgegebener Arbeitsmodelle}
 
-% \emph{Funktionen als Argumente}
-
-\subsubsection{Trennung von format-, programm-, protokollspezifischen Darstellungen und interner Repräsentation}
-
-\subsubsection{Abwesenheit vorgegebener Arbeitsmodelle}
-
-\subsubsection{Deskriptive Fehlermeldungen und Warnungen}
-
-\subsubsection{Warnungen statt Fehler}
+% XXX: Die letzen vier sind hingegen einfach und schnell zu erklaeren.
 
 \subsubsection{Annotation von Typen im Quellcode}
+\label{typeAnnotations}
 
-\subsubsection{Rigide Namenskonventionen}
+% In Python müssen Variablen und Argumente nicht wie in z.~B. der Sprache Java typisiert werden.
+In Python muss der Datentyp von Variablen, Argumente oder Rückgabewerte nicht spezifiziert werden.
+Seit Python 3.6 werden aber optionale Annotationen der Datentypen unterstützt.
+Die Annotationen haben keinen Einfluss in der der Programmlaufzeit.
+Sie ermöglichen aber in der Entwicklungsphase dritten Programmen inkonsistente Argumenttypen im Quellcode zu markieren.
+Das mag einer frühzeitigen Vermeidung bestimmter Fehler helfen.
 
+\bigskip
+
+Die Argumente und Rückgabewerte der Funktionen und Methoden \emph{mutwos} sind mit ihrem Datentyp annotiert.
+Neben dem Mehrwert eines fehlerreduzierten Programmes, ist primäre Absicht der Annotation Kommunikation.
+Die Kommunikation ist an Entwickler:innen und Benutzer:innen \emph{mutwos} gerichtet.
+Aufgrund der unspezifischen Struktur provoziert \emph{mutwo} projektspezifische Adaptionen.
+Um Anpassungen vornehmen zu können müssen Dritte ein klares, schnelles Verständnis eines zu erweiternden Objekts gewinnen können.
+Annotationen helfen hierbei unmittelbar zu begreifen, welche Art von Daten operiert werden.
+Sie befreien von mühevoller Analyse des Quellcodes, um z.~B. nachzuvollziehen, welchem Datentyp der Rückgabewert einer Funktion entspricht.
+
+\subsubsection{Konsistente Namenskonventionen}
+
+\emph{Mutwos} Quellcode verfolgt eine konsistente Benennung von Objekten.
+Die Benennung ist einerseits in Konventionen der Sprache Python verursacht (z.~B. \emph{camel case} Klassennamen).
+Aber andererseits werden diese Konventionen mit zusätzlichen Regeln erweitert.
+
+\begin{enumerate}
+    \item{%
+            \textbf{Abkürzungen müssen vermieden werden.}
+            Abkürzungen verdecken die Bedeutung von Variablen.
+            Wollen Dritte einen Quellcode oder eine Schnittstelle verstehen, erhöhen Abkürzungen die Einstiegshürde.
+            % Es ist uneindeutig wann eine Variable abkürzt werden soll und wann nicht.
+    }
+    \item{%
+            \textbf{Variablen müssen niemals im Plural sein.}
+            Stattdessen muss für einen Behälter der Datentyp des Behälters angegeben werden.
+            Exemplarisch soll eine Liste von Tonhöhenobjekte deshalb nicht \texttt{pitches}, sondern \texttt{pitch\_list} benannt werden.
+            Das vermittelt unmittelbar Eigenschaften über die Objektsammlung (z.~B. ob sie modifizierbar ist).
+    }
+    \item{%
+            \textbf{Modulnamen sollten im Plural sein.}
+            Einige Standardmodule Pythons stehen im Plural (z.~B. \texttt{fractions}, \texttt{collections}, \texttt{types}).
+            Das ist als Konvention von diesen Modulen abgeleitet.
+            Mithilfe der vorhergehenden Regel sind Module am Namen erkenntlich.
+    }
+\end{enumerate}
+
+% ist ausschweifend == verbose?
+Die Begründung für die ausschweifende und strenge Benennung entspricht der für die \emph{\nameref{typeAnnotations}}.
+Möglichst eindeutig und klar für Dritte zu sein wird deswegen als wichtiger empfunden als ein reduzierter Text.
+
+% \subsubsection{Warnungen und Fehlermeldungen}
+
+% \subsubsection{Deskriptive Fehlermeldungen und Warnungen}
+% 
+% \subsubsection{Warnungen statt Fehler}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Limitierungen und Grenzen}
 
+% Ich habe vor allem die Software entwickelt, dh. Dinge die ich benutzt habe sind
+% bereits einfach darstellbar (hier gilt: "battery-included"). Aber Dinge die mich nicht
+% interessieren gibt es da noch nicht. Dh. wenn jemand sich für Ähnliches wie ich interessiert
+% ist es für diese Person einfacher (geringere Einstiegshürde) mutwo zu benutzen.
+%
+% (oder es ist einfacher sachen damit zu machen die meiner ästhetik entsprechen)
+
+
+% Wirklichkeit (Pragmatismus) vs. Theorie (Idealismus)
+%
+%  gegenwärtige implementierung:
+%
+%    1. notation_indicators und playing_indicators sind sehr von Lilypond geprägt.
+%    2. Ereignisse können nur das Koordinatensystem Dauer verwenden.
+%
+% -> -> es geht immer um die arbeit an wirklichen projekten, weshalb manchmal wichtiger ist
+%       einfach irgendwas fertig zu machen, das funktioniert.
+
+
+% wegen den ersten beiden gründe sind manche sachen noch unnötig kompliziert in mutwo,
+% gegenwärtig.
+%
+%   - rhytmusnotation in westlicher musik
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Beispiel-orientierte Einführung}
+
+% Hier ist die Idee ein Art minimales Gamelan Beispiel zu geben.
+%
+% Und zwar:
+%
+%   1. Definition von Tonhoehenklasse
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
