@@ -377,7 +377,7 @@
       }
     % Slightly bigger margins than the latex defaults
     
-    \geometry{verbose,paperheight=10.1in,paperwidth=8.1in,tmargin=0.15in,bmargin=0.1in,lmargin=0.35in,rmargin=0.15in}
+    \geometry{verbose,paperheight=10.15in,paperwidth=7.1in,tmargin=0.1in,bmargin=0.1in,lmargin=0.35in,rmargin=0.15in}
     
     
 
@@ -415,7 +415,7 @@ Ordnung}}\label{funktionen-huxf6herer-ordnung}}
 \end{tcolorbox}
 
 % \begin{texttt}
-    Als nächstes wird für dieses Beispiel die Klasse \emph{Note}
+    Als nächstes wird für dieses Beispiel die vereinfachte Klasse \emph{Note}
 definiert. Sie soll eine Note im Kontext westlicher Musik
 repräsentieren.
 % \end{texttt}
@@ -458,8 +458,8 @@ Dokumentation der Klasse} \emph{EventToMidiFile} kann nachgelesen
 werden, dass diese unter anderem mit dem Argument
 \emph{simple\_event\_to\_pitch\_list} initialisiert wird. Hier ist auch dokumentiert,
 dass dessen Standardwert davon ausgeht, dass einem
-\emph{SimpleEvent} ein Attribut namens \emph{pitch\_list} zugewiesen ist, was
-\emph{Note} aber nicht kennt. Deswegen muss das Argument
+\emph{SimpleEvent} ein Attribut namens \emph{pitch\_list} zugewiesen ist.
+Weil \emph{Note} das Attribut nicht kennt, muss das Argument
 überschreiben werden, sodass es das \emph{pitch} Attribut der Klasse \emph{Note} finden kann.
 
 

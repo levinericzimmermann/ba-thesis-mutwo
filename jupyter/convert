@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+.venv/bin/jupyter nbconvert --to latex $1
