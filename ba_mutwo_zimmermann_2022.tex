@@ -1160,6 +1160,9 @@ Die Ereignisbasisklassen sind die in Kapitel \emph{\nameref{eventDefinitions}} b
 Die Abwesenheit spezifischer Ereignisklassen ist mithilfe Pythons Unterstützung von Introspektion, Funktionen höherer Ordnung und dynamischen Attributen möglich.
 Spezifische Klassen mögen darin begründet sein, dass dritte Programmkomponente bestimmte Attribute oder Methoden von ihren Eingangswerten erwarten (müssen).
 Indem dritte Programmkomponente als Funktionen höherer Ordnung implementiert sind, kann \emph{mutwo} diese Anforderung mit geringeren Einschränkungen von unterstützten Datentypen erfüllen.
+
+\bigskip
+
 Neben der Ereignisinstanz sind die Eingangswerte dritter Programmkomponente Funktionen.
 Diese Funktionen erhalten wiederum später die Ereignisinstanz als Eingangswert.
 Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
@@ -1189,10 +1192,14 @@ Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
 
 % In Python müssen Variablen und Argumente nicht wie in z.~B. der Sprache Java typisiert werden.
 In Python muss der Datentyp von Variablen, Argumente oder Rückgabewerte nicht spezifiziert werden.
-Seit Python 3.6 werden aber optionale Annotationen der Datentypen unterstützt.
+Seit Python 3.5 werden aber optionale Annotationen der Datentypen unterstützt~\parencite{typingModuleDocumentation}.
 Die Annotationen haben keinen Einfluss in der der Programmlaufzeit.
 Sie ermöglichen aber in der Entwicklungsphase dritten Programmen inkonsistente Argumenttypen im Quellcode zu markieren.
-Das mag einer frühzeitigen Vermeidung bestimmter Fehler helfen.
+% XXX: Stimmt das wirklich? https://wphomes.soic.indiana.edu/jsiek/what-is-gradual-typing/
+%      Ja, weil das steht auch hier:
+%
+%      Static type checking catches bugs earlier, thereby removing the greater cost of fixing bugs later in the development cycle or the even greater cost of a bug that occurs in the field. Good point! Fans of dynamic typing will argue that you catch even more bugs by creating a thorough test suite for your programs. Nevertheless, I believe static type checking provides a convenient and low-cost way to catch type errors.
+Das mag einer frühzeitigen Vermeidung bestimmter Fehler helfen~\parencite{typeHintPep}.
 
 \bigskip
 
@@ -1207,7 +1214,7 @@ Sie befreien von mühevoller Analyse des Quellcodes, um z.~B. nachzuvollziehen, 
 \subsubsection{Konsistente Namenskonventionen}
 
 \emph{Mutwos} Quellcode verfolgt eine konsistente Benennung von Objekten.
-Die Benennung ist einerseits in Konventionen der Sprache Python verursacht (z.~B. \emph{camel case} Klassennamen).
+Die Benennung ist einerseits in Konventionen der Sprache Python begründet (z.~B. Klassennamen sind Binnenversalien).
 Aber andererseits werden diese Konventionen mit zusätzlichen Regeln erweitert.
 
 \begin{enumerate}
@@ -1232,8 +1239,8 @@ Aber andererseits werden diese Konventionen mit zusätzlichen Regeln erweitert.
 \end{enumerate}
 
 % ist ausschweifend == verbose?
-Die Begründung für die ausschweifende und strenge Benennung entspricht der für die \emph{\nameref{typeAnnotations}}.
-Möglichst eindeutig und klar für Dritte zu sein wird deswegen als wichtiger empfunden als ein reduzierter Text.
+Die Begründung für die ausführliche, wortreiche Benennung entspricht der für die \emph{\nameref{typeAnnotations}}.
+Möglichst eindeutig und klar für Dritte zu sein wird als wichtiger empfunden als ein reduzierter Text.
 
 % \subsubsection{Warnungen und Fehlermeldungen}
 
