@@ -377,7 +377,7 @@
       }
     % Slightly bigger margins than the latex defaults
     
-    \geometry{verbose,tmargin=0.5in,bmargin=0.5in,lmargin=0.5in,rmargin=0.5in}
+    \geometry{verbose,paperheight=10.1in,paperwidth=8.1in,tmargin=0.15in,bmargin=0.1in,lmargin=0.35in,rmargin=0.15in}
     
     
 
@@ -415,7 +415,7 @@ Ordnung}}\label{funktionen-huxf6herer-ordnung}}
 \end{tcolorbox}
 
 % \begin{texttt}
-    Als nächstes wird für dieses Beispiel die Klasse \textbf{Note}
+    Als nächstes wird für dieses Beispiel die Klasse \emph{Note}
 definiert. Sie soll eine Note im Kontext westlicher Musik
 repräsentieren.
 % \end{texttt}
@@ -456,11 +456,11 @@ In der
 \href{https://mutwo.readthedocs.io/en/latest/api/mutwo.midi_converters.html\#mutwo.midi_converters.EventToMidiFile}{API
 Dokumentation der Klasse} \emph{EventToMidiFile} kann nachgelesen
 werden, dass diese unter anderem mit dem Argument
-\emph{simple\_event\_to\_pitch\_list} initialisiert wird. Wir können auch nachlesen,
-dass dessen Standardwert davon ausgeht, dass ein
-\emph{SimpleEvent} ein Attribut namens \emph{pitch\_list} hat, was
-\emph{Note} aber nicht kennt. Deswegen müssen wir das Argument
-überschreiben, sodass es unser \emph{pitch} Attribut finden kann.
+\emph{simple\_event\_to\_pitch\_list} initialisiert wird. Hier ist auch dokumentiert,
+dass dessen Standardwert davon ausgeht, dass einem
+\emph{SimpleEvent} ein Attribut namens \emph{pitch\_list} zugewiesen ist, was
+\emph{Note} aber nicht kennt. Deswegen muss das Argument
+überschreiben werden, sodass es das \emph{pitch} Attribut der Klasse \emph{Note} finden kann.
 
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
