@@ -283,6 +283,7 @@ Meine kompositorische Arbeit ist durch die Bemühungen unzähliger Menschen mög
 Mit der Dokumentation \emph{mutwos} möchte ich einen Teil in die Gemeinschaften Freier Software zurückgeben.
 
 \subsection{Komposition und Werkzeuge (II)}
+\label{compositionAndTools2}
 
 \noindent
 % Absatz: Begründung Aufwand eigenes Werkzeug entwickeln
@@ -1281,7 +1282,7 @@ Aber andererseits werden diese Konventionen mit zusätzlichen Regeln erweitert.
 
 % ist ausschweifend == verbose?
 Die Begründung für die ausführliche, wortreiche Benennung entspricht der Begründung für die \emph{\nameref{typeAnnotations}}.
-Möglichst eindeutig und klar für Dritte zu sein wird als wichtiger gewichtet als ein reduzierter Text.
+Möglichst eindeutig und klar für Dritte zu sein wird als entscheidender gewichtet als ein reduzierter Text.
 
 % \subsubsection{Warnungen und Fehlermeldungen}
 
@@ -1293,6 +1294,35 @@ Möglichst eindeutig und klar für Dritte zu sein wird als wichtiger gewichtet a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Limitierungen und Grenzen}
+
+Die in \emph{\nameref{compositionAndTools2}} verwendeten Begriffe Utopie und Versuch implizieren das Scheitern der Wirklichkeit.
+Sie implizieren zugleich ein kontinuierliches Weiter, in dem Scheitern Teil eines Zyklus ist.
+Zentral wird ein Konflikt zwischen Wirklichkeit (Pragmatismus) und Vorstellung (Idealismus) verhandelt.
+Die anspruchsvolle Spezifikation \emph{mutwos}, besonders der generischen Strukturen, steht projektbezogenen Arbeiten (und den damit verbundenen Fristen) unfreundlich entgegen.
+
+\smallskip
+
+In der Version \texttt{0.17.1} des Pakets \texttt{mutwo.music} wird der Parameter \texttt{PlayingIndicator} definiert.
+Die Klasse \texttt{PlayingIndicator} fungiert als Sammelbegriff verschiedener Spieltechniken wie Artikulationen, Ornamente oder Flageoletts.
+Die jeweilige Spieltechnik ist als eigene Klasse implementiert, die von der Klasse \texttt{PlayingIndicator} erbt.
+Beschriebene Spieltechniken stehen in enger Beziehung zu europäischer Notation.
+Europäische Notation kann im \emph{mutwo} Ökosystem gegenwärtig nur mit dem Paket \texttt{mutwo.abjad} erzeugt werden.
+Mit \texttt{mutwo.abjad} können \emph{mutwo} Datenstrukturen in Datenstrukturen der Bibliothek \emph{abjad} übersetzt werden.
+\emph{Abjad} ist ein Adapter der Notationssoftware \emph{Lilypond}.
+Die Repräsentationen \emph{abjad} stehen deshalb \emph{Lilyponds} Syntax und Befehle sehr nahe.
+Diese Verkettung von Eigenschaften bedingt, dass verschiedene Spielindikatoren \emph{mutwos} Syntax und Eigenheiten von \emph{Lilypond} wiederspiegeln.
+Um die Klasse \texttt{WoodwindFingering} zu initialisieren sind z.~B. die Argumente \texttt{cc}, \texttt{left\_hand} und \texttt{right\_hand} erforderlich.
+Die Argumente erwarten jeweils einen Tupel, der mit Zeichenketten gefüllt ist.
+Diese Form der Repräsentation von Griffen entspricht dem Befehl in \emph{Lilypond}. 
+Eine so direkte Beziehung verletzt die Intention \emph{mutwos}.
+Die korrekte Umsetzung des oberen Beispiels könnte eine Implementierung einer einfachen, verständlichen, dokumentierten Repräsentation von Holzbläsergriffen umfassen.
+Die innere Repräsentationen \emph{mutwos} wäre dann so gestaltet, dass sie offen und neutral gegenüber unterschiedliche dritte Formate wie \emph{MusicXML} oder \emph{Lilypond} wäre.
+Die Ursache der problematischen Situation ist eine Mischung aus einer projektspezifischen Notwendigkeit für eine bestimmte, noch abwesende Funktion und zugleich der projektspezifischen Einschränkung der Ressource Zeit.
+
+\smallskip
+
+
+% Manche der Probleme sind schwieriger zu löse
 
 % Ich habe vor allem die Software entwickelt, dh. Dinge die ich benutzt habe sind
 % bereits einfach darstellbar (hier gilt: "battery-included"). Aber Dinge die mich nicht
