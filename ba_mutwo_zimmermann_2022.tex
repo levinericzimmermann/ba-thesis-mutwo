@@ -867,12 +867,13 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
 \subsubsection{Programmiersprache}
 
 \emph{Mutwo} ist in der Programmiersprache Python implementiert.
-Python ist eine interpretierte, multi-paradigmatische, plattformübergreifende Sprache.
-Sie wurde zum ersten Mal 1991 veröffentlicht.
+Python ist eine interpretierte, höhere, multi-paradigmatische, plattformübergreifende Sprache.
+Sie wurde zum ersten Mal 1991 veröffentlicht~\parencite{generalPythonFAQ}.
 
-\bigskip
+\smallskip
 
-Die Begründung für diese Wahl ist in den folgenden Punkten.
+Die Entscheidung für die Implementierungs \emph{mutwo} in Python kann in folgenden Argumenten zusammengefasst werden.
+
 
 \begin{enumerate}
     \item{
@@ -885,9 +886,15 @@ Die Begründung für diese Wahl ist in den folgenden Punkten.
     }
     \item{
             \textbf{Python ist populär.}
+            Die Wahrscheinlichkeit ist erhöht, dass bereits Dritte Probleme gelöst haben, die in einem Moment für Projekte in \emph{mutwo} relevant werden.
+            Die Lösungen können verwendet und je nach Lizenz angepasst werden.
+            Das reduziert die notwendige Entwicklungszeit und erlaubt einen stärkeren Fokus auf die eigentliche Aufgabe, der künstlerischen Arbeit.
+            Zweitens ermöglicht eine populäre Sprache eine schnelle Recherche gewöhnlicher Probleme im Netz.
+            Besonders für Anfänger:innen kann die Einstiegshürde damit signifikant gesenkt werden.
     }
     \item{
             \textbf{Python ist plattformübergreifend.}
+            Weil entsprechend der \emph{\nameref{motivationUndAbsicht}} die Bibliothek \emph{mutwo} plattformübergreifend verwendet werden soll, ist eine unterliegende Technologie notwendig die das unterstützt.
     }
 \end{enumerate}
 
@@ -1093,7 +1100,8 @@ Das Design \emph{mutwos} versichert, dass die von Benutzern hinzugefügten Repr�
 
 \end{figure}
 
-\subsubsection{\emph{Konvention vor Konfiguration} (Sensible Voreinstellungen)}
+\subsubsection{\emph{Konvention vor Konfiguration}}
+\label{conventionOverConfiguration}
 
 Das Entwicklungsparadigma \emph{Konvention vor Konfiguration} entspannt den in \emph{\nameref{motivationUndAbsicht}} beschriebenen Konflikt zwischen Anpassbarkeit und Einfachheit.
 Viele Funktionen und Methoden \emph{mutwos} haben eine große Anzahl potenzieller Argumente.
@@ -1145,7 +1153,7 @@ In Appendix kann die automatisierte Dokumentation gefunden werden.
 
 \subsubsection{Unspezifische Ereignisse; dynamische Akzessoren}
 
-Kapitel \emph{\nameref{abstractBaseClasses}} beschreibt, wie \emph{mutwos} Parameter individuelle Repräsentationen ermöglichen.
+Kapitel \emph{\nameref{abstractBaseClasses}} beschreibt, wie \emph{mutwos} Parametermodell individuelle Repräsentationen ermöglichen.
 Adäquat dazu werden Ereignisse möglichst generisch behandelt.
 Entwickler:innen werden nicht zur Verwendung bestimmten Formen spezifischer Ereignisse (z.~B. Pause, Akkord, Note, Takt) gezwungen.
 \emph{Mutwos} Vertrag erwartet nur, dass Benutzer:innen Instanzen der Ereignisbasisklassen oder Instanzen davon abgeleiteter Klassen verwenden.
@@ -1168,21 +1176,50 @@ Diese Funktionen erhalten wiederum später die Ereignisinstanz als Eingangswert.
 Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
 Über den Umweg der als Eingangswert mitgegebenen Funktion, kann die dritte Programmkomponente somit versichern, ein spezifisches Attribut zu erhalten.
 
+% XXX: Ja, es ist auch möglich DEFAULT_PITCH_LIST_TO_SEARCH_NAME zu überschreiben.
+%      Aber dann wird immer noch eine pitch liste gesucht und nicht eine einzelne tonhöhe.
+%
+% In folgendem Beispiel ist die Abstraktion konkretisiert.
+% Zur verbesserten Anschaulichkeit wird die 
 
-\hspace{-1.4cm}
-\fbox{\includegraphics[page=1,scale=0.85]{jupyter/unspezifische_ereignisse_1_improved.pdf}}
 
 %%%%%%%%%%
 %%%%%%%%%% Hier kann jetzt das jupyter notebook eingefuegt werden!
 
+% higher order functions
+\hspace{-0.5cm}
+\fbox{\includegraphics[page=1,scale=0.85]{jupyter/unspezifische_ereignisse_1_improved.pdf}}
+
+Python ermöglicht dynamische Zuweisungen von Attributen.
+Ein zusätzliches Entwurfsmuster in \emph{mutwos} Ereignismodell ist damit die ad-hoc Zuordnung benötigter Attribute.
+In manchen Fällen bedingt das elegantere Lösungen als das Schreiben einer neuen oder das Modifizieren einer bestehenden Klasse.
+
+\vspace{0.75cm}
+
+
+% dynamic attributes
+% \begin{center}
+\hspace{-0.4cm}
+\fbox{\includegraphics[page=1,scale=0.875]{jupyter/unspezifische_ereignisse_2.pdf}}
+% \end{center}
+
+\vspace{0.75cm}
+
+Die Komplexität unspezifischer Ereignisse wird mit der Strategie \nameref{conventionOverConfiguration} abgefangen.
+Das Paket \texttt{mutwo.music} implementiert die Klasse \texttt{NoteLike}.
+Die Klasse \texttt{NoteLike} ist von der gleichnamigen Klasse der Bibliothek \emph{SCAMP} beeinflusst.
+Sie repräsentiert ein diskretes musikalisches Ereignis mit keiner, einer oder mehreren Tonhöhen (ein Ton, eine Pause, ein Akkord).
+Sie mag ausreichen für viele Anwendungsfälle musikbezogener Funktionen \emph{mutwos}.
+Deshalb sind alle Standardwerte so gesetzt, dass sie den Feldern der Klasse \texttt{NoteLike} entsprechen.
+Das gewährleistet, dass das avancierte, komplexere Potenzial \emph{mutwos} Ereignismodell nur verstanden und angewandt werden muss, wenn die projektspezifischen Anforderungen es bedingen.
+
+
+%% XXX: Finde ich nicht so wichtig (ist cool, aber ich selber benutze es kaum)
+%
 %%%%%%%%%% Nach diesem notebook dann nochmal kurz gedanke, dass diese funktionen dann auch adhoc benutzt werden
 %%%%%%%%%% koennen um einfach irgendeine funktion rein zu geben und um dann ereignisse nur als dauern zu lesen.
 %%%%%%%%%% ZB. Performer:in improvisiert zu jeder Bewegung noch einen TOn, jetzt kann ich das simulieren indem
 %%%%%%%%%% ich einfach einen random generator funktion reingebe!
-
-%%%%%%%%%% Nach diesem notebook kann kurze erklaerung ueber dynamische attribute erfolgen, und dann zweiter teil 
-%%%%%%%%%% desselben notebooks, wo erklaert wird, ok, vielleicht will man zwischendrin auch noch einfach einen
-%%%%%%%%%% bestimmten ton haben, dann fuegt man einfach simpleevent hinzu und gibt dem einfach direkt ein pitch attribut
 
 
 % XXX: Diese hier sind nicht so relevant. 
@@ -1197,7 +1234,7 @@ Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
 % In Python müssen Variablen und Argumente nicht wie in z.~B. der Sprache Java typisiert werden.
 In Python muss der Datentyp von Variablen, Argumente oder Rückgabewerte nicht spezifiziert werden.
 Seit Python 3.5 werden aber optionale Annotationen der Datentypen unterstützt~\parencite{typingModuleDocumentation}.
-Die Annotationen haben keinen Einfluss in der der Programmlaufzeit.
+Die Annotationen haben keinen Einfluss in der Programmlaufzeit.
 Sie ermöglichen aber in der Entwicklungsphase dritten Programmen inkonsistente Argumenttypen im Quellcode zu markieren.
 % XXX: Stimmt das wirklich? https://wphomes.soic.indiana.edu/jsiek/what-is-gradual-typing/
 %      Ja, weil das steht auch hier:
@@ -1243,8 +1280,8 @@ Aber andererseits werden diese Konventionen mit zusätzlichen Regeln erweitert.
 \end{enumerate}
 
 % ist ausschweifend == verbose?
-Die Begründung für die ausführliche, wortreiche Benennung entspricht der für die \emph{\nameref{typeAnnotations}}.
-Möglichst eindeutig und klar für Dritte zu sein wird als wichtiger empfunden als ein reduzierter Text.
+Die Begründung für die ausführliche, wortreiche Benennung entspricht der Begründung für die \emph{\nameref{typeAnnotations}}.
+Möglichst eindeutig und klar für Dritte zu sein wird als wichtiger gewichtet als ein reduzierter Text.
 
 % \subsubsection{Warnungen und Fehlermeldungen}
 
