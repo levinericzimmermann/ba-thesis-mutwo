@@ -1293,65 +1293,6 @@ Möglichst eindeutig und klar für Dritte zu sein wird als entscheidender gewich
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Limitierungen und Grenzen}
-
-Die in \emph{\nameref{compositionAndTools2}} verwendeten Begriffe Utopie und Versuch implizieren das Scheitern der Wirklichkeit.
-Sie implizieren zugleich ein kontinuierliches Weiter, in dem Scheitern Teil eines Zyklus ist.
-Zentral wird ein Konflikt zwischen Wirklichkeit (Pragmatismus) und Vorstellung (Idealismus) verhandelt.
-Die anspruchsvolle Spezifikation \emph{mutwos}, besonders der generischen Strukturen, steht projektbezogenen Arbeiten (und den damit verbundenen Fristen) unfreundlich entgegen.
-
-\smallskip
-
-In der Version \texttt{0.17.1} des Pakets \texttt{mutwo.music} wird der Parameter \texttt{PlayingIndicator} definiert.
-Die Klasse \texttt{PlayingIndicator} fungiert als Sammelbegriff verschiedener Spieltechniken wie Artikulationen, Ornamente oder Flageoletts.
-Die jeweilige Spieltechnik ist als eigene Klasse implementiert, die von der Klasse \texttt{PlayingIndicator} erbt.
-Beschriebene Spieltechniken stehen in enger Beziehung zu europäischer Notation.
-Europäische Notation kann im \emph{mutwo} Ökosystem gegenwärtig nur mit dem Paket \texttt{mutwo.abjad} erzeugt werden.
-Mit \texttt{mutwo.abjad} können \emph{mutwo} Datenstrukturen in Datenstrukturen der Bibliothek \emph{abjad} übersetzt werden.
-\emph{Abjad} ist ein Adapter der Notationssoftware \emph{Lilypond}.
-Die Repräsentationen \emph{abjad} stehen deshalb \emph{Lilyponds} Syntax und Befehle sehr nahe.
-Diese Verkettung von Eigenschaften bedingt, dass verschiedene Spielindikatoren \emph{mutwos} Syntax und Eigenheiten von \emph{Lilypond} wiederspiegeln.
-Um die Klasse \texttt{WoodwindFingering} zu initialisieren sind z.~B. die Argumente \texttt{cc}, \texttt{left\_hand} und \texttt{right\_hand} erforderlich.
-Die Argumente erwarten jeweils einen Tupel, der mit Zeichenketten gefüllt ist.
-Diese Form der Repräsentation von Griffen entspricht dem Befehl in \emph{Lilypond}. 
-Eine so direkte Beziehung verletzt die Intention \emph{mutwos}.
-Die korrekte Umsetzung des oberen Beispiels könnte eine Implementierung einer einfachen, verständlichen, dokumentierten Repräsentation von Holzbläsergriffen umfassen.
-Die innere Repräsentationen \emph{mutwos} wäre dann so gestaltet, dass sie offen und neutral gegenüber unterschiedliche dritte Formate wie \emph{MusicXML} oder \emph{Lilypond} wäre.
-Die Ursache der problematischen Situation ist eine Mischung aus einer projektspezifischen Notwendigkeit für eine bestimmte, noch abwesende Funktion und zugleich der projektspezifischen Einschränkung der Ressource Zeit.
-
-\smallskip
-
-
-% Manche der Probleme sind schwieriger zu löse
-
-% Ich habe vor allem die Software entwickelt, dh. Dinge die ich benutzt habe sind
-% bereits einfach darstellbar (hier gilt: "battery-included"). Aber Dinge die mich nicht
-% interessieren gibt es da noch nicht. Dh. wenn jemand sich für Ähnliches wie ich interessiert
-% ist es für diese Person einfacher (geringere Einstiegshürde) mutwo zu benutzen.
-%
-% (oder es ist einfacher sachen damit zu machen die meiner ästhetik entsprechen)
-
-
-% Wirklichkeit (Pragmatismus) vs. Theorie (Idealismus)
-%
-%  gegenwärtige implementierung:
-%
-%    1. notation_indicators und playing_indicators sind sehr von Lilypond geprägt.
-%    2. Ereignisse können nur das Koordinatensystem Dauer verwenden.
-%
-% -> -> es geht immer um die arbeit an wirklichen projekten, weshalb manchmal wichtiger ist
-%       einfach irgendwas fertig zu machen, das funktioniert.
-
-
-% wegen den ersten beiden gründe sind manche sachen noch unnötig kompliziert in mutwo,
-% gegenwärtig.
-%
-%   - rhytmusnotation in westlicher musik
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Beispiel-orientierte Einführung}
 
 % Hier ist die Idee ein Art minimales Gamelan Beispiel zu geben.
@@ -1364,9 +1305,184 @@ Die Ursache der problematischen Situation ist eine Mischung aus einer projektspe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Limitierungen und Grenzen}
+
+Die in \emph{\nameref{compositionAndTools2}} verwendeten Begriffe Utopie und Versuch implizieren das Scheitern der Wirklichkeit.
+Sie implizieren zugleich ein kontinuierliches Weiter, in dem Scheitern Teil eines Zyklus ist.
+Zentral wird ein Konflikt zwischen Wirklichkeit (Pragmatismus) und Vorstellung (Idealismus) verhandelt.
+Die anspruchsvolle Spezifikation \emph{mutwos}, besonders der generischen Strukturen, steht projektbezogenen Arbeiten (wegen den damit verbundenen Fristen) unverträglich entgegen.
+
+\smallskip
+
+In Version \texttt{0.17.1} des Pakets \texttt{mutwo.music} wird der Parameter \texttt{PlayingIndicator} definiert.
+Die Klasse \texttt{PlayingIndicator} fungiert als Sammelbegriff verschiedener Spieltechniken wie Artikulationen, Ornamente oder Flageoletts.
+Die jeweilige Spieltechnik ist als eigene Klasse implementiert, die von der Klasse \texttt{PlayingIndicator} erbt.
+Beschriebene Spieltechniken stehen in enger Beziehung zu europäischer Notation.
+Europäische Notation kann im \emph{mutwo} Ökosystem gegenwärtig nur mit dem Paket \texttt{mutwo.abjad} erzeugt werden.
+Mit \texttt{mutwo.abjad} können \emph{mutwo} Datenstrukturen in Datenstrukturen der Bibliothek \emph{abjad} übersetzt werden.
+\emph{Abjad} ist ein Adapter der Notationssoftware \emph{Lilypond}.
+Die Repräsentationen \emph{abjad} stehen deshalb \emph{Lilyponds} Syntax und Befehle sehr nahe.
+Diese Verkettung von Eigenschaften bedingt, dass verschiedene Spielindikatoren \emph{mutwos} Syntax und Eigenheiten von \emph{Lilypond} wiederspiegeln.
+Um ein Objekt der Klasse \texttt{WoodwindFingering} zu initialisieren sind z.~B. die Argumente \texttt{cc}, \texttt{left\_hand} und \texttt{right\_hand} erforderlich.
+Die Argumente erwarten jeweils einen Tupel, der mit Zeichenketten gefüllt ist.
+Diese Form der Repräsentation von Holzbläsergriffen entspricht dem Befehl in \emph{Lilypond}. 
+Eine so direkte Beziehung verletzt die Intention \emph{mutwos}.
+Die korrekte Umsetzung des oberen Beispiels könnte eine Implementierung einer einfachen, verständlichen, dokumentierten Repräsentation von Holzbläsergriffen umfassen.
+Die innere Repräsentationen \emph{mutwos} wäre dann so gestaltet, dass sie offen und neutral gegenüber unterschiedliche dritte Formate wie \emph{MusicXML}, \emph{MSCX} oder \emph{Lilypond} wäre.
+Ursache der ungenügenden Situation ist eine Mischung aus einer projektspezifischen Notwendigkeit für eine bestimmte, noch abwesende Funktion und der projektspezifischen Einschränkung der Ressource Zeit.
+
+\smallskip
+
+Im abstrakten Ereignismodell \emph{mutwos} sind Ereignisse Kompositionen einer unbestimmten, benutzerdefinierten Menge von Vektoren.
+In Version \texttt{0.61.6} des Pakets \texttt{mutwo.core} enthalten Ereignisse immer nur den Vektor Dauer.
+In der initialen Entwicklung \emph{mutwos} enthielt das Ereignismodell nur Ereignisse mit Dauern.
+Erst in kürzlichen Projekten (einer räumlichen Laufpartitur und einer algorithmischen Zeichnung) verstand ich die Notwendigkeit, Ereignisse generischer zu beschreiben.
+
+\smallskip
+
+\emph{Mutwo} enthält und enthielt eine Vielzahl solcher Beispiele.
+Die Entwicklungsstrategie ist die ad-hoc Realisierung eines Prototypen in einem projektspezifischen Kontext und anschließender Verbesserung.
+
+\bigskip
+
+Das zweite Beispiel macht auf eine weitere Schwierigkeit aufmerksam.
+Sie hängt mit der geringen Anzahl Entwickler:innen und dem jungen Lebensalter des Projekts \emph{mutwo} zusammen.
+Das Design \emph{mutwos} fordert die Beschreibung generischer Strukturen (z.~B. eine allgemeine Tonhöhenklasse).
+Zugleich sollen die generischen Strukturen spezifiziert werden, um konkrete Vorstellungen repräsentieren zu können (z.~B. eine Tonhöhenklasse im Sinne europäischer Musiktheorie oder eine Tonhöhenklasse für die reine Stimmung).
+Die Konkretisierungen, die in \emph{mutwo} bereits implementiert sind, vereinfachen die Realisierung bestimmter Vorstellungen.
+Sie erschweren damit zugleich die abwesenden Konkretisierungen, welche von Benutzer:innen autark entwickelt werden müssen.
+Damit bevorzugt \emph{mutwo} indirekt bestimmte Ästhetiken, Vorstellungen oder Traditionen, nämlich solche, die von mir benötigt werden.
+Das Ungleichgewicht kann niemals aufgelöst werden.
+Es kann aber ausgeglichen werden, wenn die Anzahl der Entwickler:innen der Bibliothek \emph{mutwo} zunehmen.
+Eine höhere Anzahl Mitwirkender verdichtet die Menge unterschiedlicher Weltvorstellungen; die Bibliothek wird damit diverser und unparteiischer.
+Dieses Argument ist nicht nur für Ereignisse und Parameter, sondern auch für Übersetzer valide.
+Bestehende Übersetzerpakete wie \texttt{mutwo.mbrola} (Sprachsynthese), \texttt{mutwo.csound} (Klangsynthese) oder \texttt{mutwo.ekmelily} (mikrotonale Notation mit \emph{Lilypond}) spiegeln Anforderungen meiner eigenen künstlerischen Arbeit wieder, die nicht notwendigerweise den Anforderungen Dritter entsprechen.
+
+% Manche der Probleme sind schwieriger zu löse
+
+% wegen den ersten beiden gründe sind manche sachen noch unnötig kompliziert in mutwo,
+% gegenwärtig.
+%
+%   - rhytmusnotation in westlicher musik
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Fallstudien}
 
 \subsubsection{\emph{thanatos trees for Tim Pauli}}
+
+Die künstlerische Arbeit \emph{thanatos trees for Tim Pauli} war das erste Werk, welches mit \emph{mutwo} entstand.
+\emph{thanatos trees for Tim Pauli} ist eine Klanginstallation mit 15 bis 17 Audiokanäle und über 25 Lautsprecher.
+Die Lautsprecher sind an Ästen dünner Stämme befestigt, die mithilfe von Baumständer aufgestellt werden.
+
+\begin{figure}[h!]
+    % \hspace{-1cm}
+    \includegraphics[scale=0.28]{pictures/ltk4_open_call_2021_6.jpg}
+
+    \caption{%
+        \emph{thanatos trees for Tim Pauli} im LTK4 in Köln.
+    }
+\end{figure}
+
+Ausgangspunkt der Arbeit war eine Reflexion über die \emph{common-product set} Skala des US-amerikanischen Stimmungstheoretiker Erv Wilson.
+Eine \emph{common-product set} Skala nach Wilson ensteht durch die Multiplikation von $n$ Faktoren aus einer Menge $S$.
+Für z.~B. $n=2$ und $S=\{1, 3, 5, 7\}$ besteht die Skala aus den sechs Partialtönen $1*3=3$, $1*5=5$, $1*7=7$, $3*5=15$, $3*7=21$ und $5*7=35$~\parencite[S. 150f]{ervWilsonBook}.
+Ich bemerkte, dass eine Überlagerung verschiedener \emph{common-product set} Skalen eine symmetrische, zyklische Struktur beschreiben kann.
+Die Struktur besteht aus verschiedenen Gruppen von Harmonien, die über gemeinsame Tonhöhen verbunden sind.
+Jede Harmonie besteht aus einer einzigartigen Menge von Tonhöhe.
+Alle Harmonien enthalten dieselben Intervalle, aber in anderen Lagen oder Umkehrungen.
+Die symmetrische, dezentrale, ambulante Struktur deutete für mich darauf hin, dass sie in einer installativen Situation (d.~h. ohne Anfang und Ende) konsistenter erfahrbar wäre, als in einem konzertanten Kontext.
+
+\begin{figure}[h!]
+    % \hspace{-1cm}
+    % \begin{center}
+        \hspace{0.5cm}
+        \includegraphics[scale=0.185]{pictures/setup-thanatos-trees.png}
+    % \end{center}
+    \caption{%
+        Skizze zum Aufbau der Installation.
+    }
+\end{figure}
+
+Mithilfe von \emph{mutwo} wollte ich eine Klangdatei erzeugen, die in Dauerschleife abgespielt würde.
+Eine Schleife ist adäquat für die zyklischen Eigenschaft der Struktur.
+Die Klangdatei sollte primär aus Sinusoiden bestehen.
+Jeder Sinusoid sollte jeweils eine Tonhöhe einer Harmonie repräsentieren und realisieren.
+Jeder Sinusoid sollte exakt einem Lautsprecher zugewiesen werden.
+
+\smallskip
+
+Der Quellcode des Projekts ist in vier Kategorien unterteilt.
+
+\begin{enumerate}
+    \item{%
+        \textbf{classes}.
+        Verschiedene projektspezifische Klassen werden hier unsortiert definiert.
+        Das umfasst Ereignisse, Generatoren und Parameter.
+    }
+
+    \item{%
+        \textbf{constants}.
+        Hier werden einerseits die globalen Vorbedingungen der Komposition definiert (z.~B. die verwendeten Primzahlen oder Dateipfade).
+        Andererseits werden aus den gegeben Vorbedingungen konkrete Instanzen der zuvor beschriebenen Klassen initialisiert.
+    }
+
+    \item{%
+        \textbf{converters}.
+        Die Übersetzung unterschiedlicher interne Repräsentationen (von einer groben zu einer feineren Auflösung) sind implementiert.
+        Die feinste Auflösungen werden in Klangdateien übersetzt.
+        Auch diese Übersetzungen sind als Klassen definiert.
+    }
+
+    \item{%
+        \textbf{synthesis}.
+        In dieser Kategorie finden sich der Quellcode für die Klangsynthesesprache \emph{Csound}.
+        Dieser Quellcode wird von den Übersetzer benutzt, um die Klangdateien zu generieren.
+    }
+\end{enumerate}
+
+Die wichtigste kompositorische Identität findet sich in den Kategorien \emph{converters} und \emph{constants}.
+Abbildung \ref{fig:thanatosMutwoStructure} zeigt schematisch, wie die Arbeit als eine Entwicklung unkonkreter Ereignisse in konkretere Ereignisse konzipiert ist.
+Das Element \texttt{Weather} in der Abbildung beeinflusst die Übersetzung der \texttt{Partial} Instanzen in die \texttt{Vibration} Instanzen.
+Der Zyklus der harmonischen Gruppen wird in der Klangdatei mehrmals wiederholt.
+Jede Repetition variiert die Realisierung einer Gruppe.
+Variiert werden Eigenschaften wie präsente Frequenzbereiche oder das Ein- und Ausschwingverhalten einzelner Töne.
+Ursache der Variation ist eine Instanz der \texttt{Weather} Klasse.
+Die Idee ist, dass im Verlauf der Installation dasselbe Objekt unter verschiedenen Umwelteinflüsse (unterschiedlichem Wetter) erfahren werden kann.
+
+\bigskip
+
+% XXX: Zum Schluss schreiben, wie mutwo spezifisch das Projekt realisiert wurde, was besonders daran ist.
+%
+% 1. Sachen aus dem Projekt wurden später in den allgemeinen mutwo Code übernommen (Übersetzer von LoudnessToAmplitude, Ambitus, ...)
+%
+% 2. Ich wollte zuerst nur Sinusoide erzeugen. Aber wegen allgemeiner Struktur konnte ich dann einfach auch direkt MIDI Dateien und ISIS erzeugen etc.
+%
+% 2. (b) So konnte ich auch schnell Reaper Marker Dateien erzeugen, mit denen ich die Gruppen kontrollieren konnte und ein Gefühl für die globalen
+%        Entscheidungen bekommen konnte.
+%
+% 3. Weil mutwo in python geschrieben ist und python populär ist konnte ich direkt und easy die constraint-programming bibliothek von google benutzen :)
+%    Das hat die Aufgabe sehr viel erleichtert.
+
+% \emph{Mutwos} Einteilung in Ereignisse und Übersetzer ist entscheidend für den Projektaufbau.
+
+\begin{figure}[h!]
+    % \hspace{-1cm}
+    \begin{center}
+        % \hspace{0.5cm}
+        \includegraphics[scale=0.5]{pictures/thantostrees-for-timpauli-mutwo-structure.png}
+    \end{center}
+    \caption{%
+        Schematischer Aufbau der Programmstruktur von \emph{thanatos trees for Tim Pauli}.
+        Gelb markierte Elemente repräsentieren Ereignisse, grün markierte Elemente sind Übersetzer.
+    }
+    \label{fig:thanatosMutwoStructure}
+\end{figure}
+
+
+
 
 \subsubsection{\emph{ohne Titel (2)} und \emph{ohne Titel (3)}}
 
@@ -1378,15 +1494,16 @@ Die Ursache der problematischen Situation ist eine Mischung aus einer projektspe
 
 \newpage
 
-\appendix
-
 \printbibliography
 
 \newpage
 
-\listoffigures
+\appendix
+
 
 \newpage
+
+\listoffigures
 
 
 \end{document}

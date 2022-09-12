@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>675</x>
+      <y>369</y>
+      <w>261</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>*Partials*
+
+Eine "Partial" Instanz repräsentiert
+eine bestimmte Tonhöhe in einer
+Gruppe. Sie ist einem bestimmten
+Lautsprecher zugewiesen, ist oder ist
+nicht ein Verbindungston zur folgenden
+oder vorhergehenden Harmonie, etc.
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>675</x>
+      <y>657</y>
+      <w>261</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*Vibrations*
+
+Eine Vibration ist ein bestimmter Ton
+mit einer bestimmten Dauer, Amplitude
+und Ein- oder Ausschwingcharakteristik,
+der sich aus einem "Partial" ableitet.
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>675</x>
+      <y>153</y>
+      <w>261</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>*Groups*
+
+Jede Harmonie ist eine Gruppe.
+Eine Gruppe besteht aus Schwingungs-
+verhältnissen und einer daraus
+abgeleiteten Dauer.
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>351</x>
+      <y>441</y>
+      <w>261</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*Weather*
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>243</y>
+      <w>27</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>486</y>
+      <w>27</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>477</x>
+      <y>459</y>
+      <w>342</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>360.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>288</y>
+      <w>261</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*GroupToPartials*
+
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>549</y>
+      <w>261</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*PartialToVibrations*
+
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>594</x>
+      <y>9</y>
+      <w>414</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>*Vorbedinungen*
+
+die verwendeten Primzahlen, die Dauer eine Zyklus in
+Sekunden, die Anzahl der Repetionen eines Zyklus, die
+verwendeten Lautsprecher, etc.
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>81</y>
+      <w>27</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>603</x>
+      <y>846</y>
+      <w>414</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*Klangdateien*
+
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>801</x>
+      <y>747</y>
+      <w>27</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>828</x>
+      <y>783</y>
+      <w>261</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*VibrationsToSoundFile*
+
+
+customelement=
+drawRectangle(10,10,0,0) //fg= bg= lt= lw= //Parameters (x, y, width, height)
+
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
