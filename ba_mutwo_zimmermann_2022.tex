@@ -383,7 +383,7 @@ Ausgangspunkt ist hierbei eine umfassende Darstellung der Motivation der Entwick
 Daran knüpft eine abstrakte Spezifikation ihrer Architektur an.
 Anschließend werden konkrete Programmierstrategien zur Umsetzung der Absicht vorgestellt.
 Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
-Vor abschließender Zusammenfassung werden zwei Fallstudien präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekten eingesetzt werden kann.
+Vor abschließender Zusammenfassung werden zwei Fallbeispiele präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekten eingesetzt werden kann.
 
 % Code:
 %   core: 4314
@@ -1213,7 +1213,7 @@ Die Klasse \texttt{NoteLike} ist von der gleichnamigen Klasse der Bibliothek \em
 Sie repräsentiert ein diskretes musikalisches Ereignis mit keiner, einer oder mehreren Tonhöhen (ein Ton, eine Pause, ein Akkord).
 Sie mag ausreichen für viele Anwendungsfälle musikbezogener Funktionen \emph{mutwos}.
 Deshalb sind alle Standardwerte so gesetzt, dass sie den Feldern der Klasse \texttt{NoteLike} entsprechen.
-Das gewährleistet, dass das avancierte, komplexere Potenzial \emph{mutwos} Ereignismodell nur verstanden und angewandt werden muss, wenn die projektspezifischen Anforderungen es bedingen.
+Das gewährleistet, dass das avancierte, komplexere Potenzial \emph{mutwos} Ereignismodell nur verstanden und angewandt werden muss, wenn es die projektspezifischen Anforderungen bedingen.
 
 
 %% XXX: Finde ich nicht so wichtig (ist cool, aber ich selber benutze es kaum)
@@ -1370,7 +1370,7 @@ Bestehende Übersetzerpakete wie \texttt{mutwo.mbrola} (Sprachsynthese), \texttt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Fallstudien}
+\subsection{Fallbeispiele}
 
 \subsubsection{\emph{thanatos trees for Tim Pauli}}
 
@@ -1508,6 +1508,60 @@ Gegebenes Beispiel ist exemplarisch für einen bestimmten Mehrwert in der Wahl P
 
 
 \subsubsection{\emph{ohne Titel (2)} und \emph{ohne Titel (3)}}
+
+Die konzertanten Kompositionen \emph{ohne Titel (2)} und \emph{ohne Titel (3)} sind zeitnah und überschneidend innerhalb weniger Monate entstanden.
+Beide haben eine Dauer von etwa 45 Minuten, sind kammermusikalisch besetzt, kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen bestehen), entfalten sich in einer langsamen Form und fokussieren ihre geräuscharmen Klänge auf präzise Intonation.
+Die Instrumentalstimmen beider Werke sind überwiegend in Form von \emph{time--brackets} nach John Cage notiert.
+
+\bigskip
+
+\begin{figure}[h!]
+    % \hspace{-0.5cm}
+    \begin{center}
+        \includegraphics[scale=0.25]{pictures/time-bracket-ohne-titel-3-2.png}
+    \end{center}
+    \caption{%
+        % Exemplarische \emph{time--bracket} eines Mehrklangs der Saxophonstimme von \emph{ohne~Titel~(3)}.
+        Exemplarische \emph{time--bracket} der Violinstimme von \emph{ohne~Titel~(3)}.
+    }
+\end{figure}
+
+
+
+\emph{Time--brackets} sind einzeln notierte Abschnitte, die eine variable Anfangs-- und Endzeit spezifizieren.
+Musiker:innen können autonom entscheiden, wann sie innerhalb gegebener Abschnitten notierte Klänge beginnen und beschließen.
+
+% TODO(ADD REFERENCE, CAGE!)
+
+\bigskip
+
+Neben \emph{time-bracket} Passagen gibt es in beiden Arbeiten (quantitativ reduzierte) Passagen synchronisierter Notationen (als Partitur).
+Die einzelnen Stimmbücher der Musiker:innen können ausgedruckt oder mithilfe eines PDF--Lesers angezeigt werden, um mit einer Stoppuhr gespielt zu werden.
+Alle Stimmbücher werden aber in beiden Arbeiten alternativ als Videodateien bereitgestellt.
+In den Videodateien wechseln die angezeigten Abschnitte mit dem Zeitverlauf automatisch, auf eine Stoppuhr kann verzichtet werden.
+
+\bigskip
+
+Der Quellcode zum Erzeugen der Notation, Videos und Klangdateien von \emph{ohne Titel (2)} und \emph{ohne Titel (3)} ist ähnlich organisiert.
+Abbildung \ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation.
+
+\bigskip
+
+\begin{figure}[h!]
+    % \hspace{-1cm}
+    \begin{center}
+        % \hspace{0.5cm}
+        \includegraphics[scale=0.5]{pictures/thantostrees-for-timpauli-mutwo-structure.png}
+    \end{center}
+    \caption{%
+        Schematischer Aufbau der Programmstruktur von \emph{thanatos trees for Tim Pauli}.
+        Gelb markierte Elemente repräsentieren Ereignisse, grün markierte Elemente sind Übersetzer.
+    }
+    \label{fig:ohneTitelMutwoStructure}
+\end{figure}
+
+
+
 
 
 \section{Zusammenfassung}
