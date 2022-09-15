@@ -1510,7 +1510,7 @@ Gegebenes Beispiel ist exemplarisch für einen bestimmten Mehrwert in der Wahl P
 \subsubsection{\emph{ohne Titel (2)} und \emph{ohne Titel (3)}}
 
 Die konzertanten Kompositionen \emph{ohne Titel (2)} und \emph{ohne Titel (3)} sind zeitnah und überschneidend innerhalb weniger Monate entstanden.
-Beide haben eine Dauer von etwa 45 Minuten, sind kammermusikalisch besetzt, kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen bestehen), entfalten sich in einer langsamen Form und fokussieren ihre geräuscharmen Klänge auf präzise Intonation.
+Beide haben eine Dauer von etwa 45 Minuten, sind kammermusikalisch besetzt, kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen bestehen), entfalten sich in einer langsamen Form und spezifizieren für ihre geräuscharmen Klänge präzise Intonationen.
 Die Instrumentalstimmen beider Werke sind überwiegend in Form von \emph{time--brackets} nach John Cage notiert.
 
 \bigskip
@@ -1527,48 +1527,103 @@ Die Instrumentalstimmen beider Werke sind überwiegend in Form von \emph{time--b
 \end{figure}
 
 
-
 \emph{Time--brackets} sind einzeln notierte Abschnitte, die eine variable Anfangs-- und Endzeit spezifizieren.
-Musiker:innen können autonom entscheiden, wann sie innerhalb gegebener Abschnitten notierte Klänge beginnen und beschließen.
+Musiker:innen können autonom entscheiden, wann sie innerhalb gegebener Abschnitte notierte Klänge beginnen und beschließen.
 
 % TODO(ADD REFERENCE, CAGE!)
 
 \bigskip
 
 Neben \emph{time-bracket} Passagen gibt es in beiden Arbeiten (quantitativ reduzierte) Passagen synchronisierter Notationen (als Partitur).
+Die synchronisierten Abschnitte basieren auf bestehende Literatur; in \emph{ohne Titel (2)} auf den cantus firmus Lassus' \emph{Quid prodest stulto habere divitias}; in \emph{ohne Titel (3)} auf den Westminsterschlag.
+Statt eines Startbereiches gibt es eine explizite Startzeit, statt eines Endbereiches eine Tempoangabe.
+
+\bigskip
+
 Die einzelnen Stimmbücher der Musiker:innen können ausgedruckt oder mithilfe eines PDF--Lesers angezeigt werden, um mit einer Stoppuhr gespielt zu werden.
 Alle Stimmbücher werden aber in beiden Arbeiten alternativ als Videodateien bereitgestellt.
 In den Videodateien wechseln die angezeigten Abschnitte mit dem Zeitverlauf automatisch, auf eine Stoppuhr kann verzichtet werden.
 
 \bigskip
 
-Der Quellcode zum Erzeugen der Notation, Videos und Klangdateien von \emph{ohne Titel (2)} und \emph{ohne Titel (3)} ist ähnlich organisiert.
-Abbildung \ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation.
+Abbildung \ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation des Quellcode zum Erzeugen der Notation, Videos und Klangdateien.
+% von \emph{ohne Titel (2)} und \emph{ohne Titel (3)}.  % XXX Redundant!
+Zentrum der Struktur ist eine Instanz der Ereignisklasse \texttt{TimeBracketContainer}.
+Das Objekt sammelt alle \emph{time--brackets} aller Stimmen (elektronisch und instrumental).
+Sie werden über die \texttt{register} Routine dem \texttt{TimeBracketContainer} zugefügt.
+Abschließend wird der \texttt{TimeBracketContainer} in unterschiedliche Ausgangsformate übersetzt.
 
 \bigskip
+
+Die eigentlichen \emph{time--brackets} sind variabel gewonnen.
+Wichtigste Quelle ist eine Instanz der Ereignisklasse \texttt{FamilyOfPitchCurves} und verbundene Übersetzer.
+Die \texttt{FamilyOfPitchCurves} beschreibt Wahrscheinlichkeitsverläufe einzelner Intonationen über die Dauer eines Stückes.
+
+\smallskip
+
+In \emph{ohne Titel (3)} pendeln Bewegungen zwischen zwei Extrema, die aus potenziellen Flageoletts beider Instrumente abgeleitet sind.
+
+\smallskip
+
+In \emph{ohne Titel (2)} interpolieren Wahrscheinlichkeitsverläufe zwischen harmonischen Ankerpunkte, die Transpositionen des cantus firmus entsprechen.
+
+\smallskip
+
+Übersetzer erzeugen \texttt{TimeBracket} Instanzen aus einem \texttt{FamilyOfPitchCurves} Objekt und Start-- und Endzeiträume.
+Von ihrer Basisklasse erben sie eine Funktion, die Wahrscheinlichkeiten der Intonationen der \texttt{FamilyOfPitchCurves} abhängig von gegebenen Start-- und Endzeiträume und der absoluten Position eines Ereignis in einer \emph{time--bracket} berechnet.
+Mithilfe dieser Information verfolgen Übersetzer unterschiedliche Ansätze, um Inhalt einer \emph{time--bracket} zu bestimmen:
+ein Übersetzer findet Akkorde maximaler Harmonizität\footnote{%
+    Harmonizität nach Barlow.
+} innerhalb eines definiertes Ambitus,
+ein anderer Übersetzer sucht melodische Verläufe mit minimalen Sprüngen und einem euklidischen Rhythmus\footnote{%
+    Ein euklidischer Rhythmus nach
+}.
+Die Ansätze unterliegen selbst Wahrscheinlichkeitsverläufe, die ihre Häufigkeit bestimmen.
+Diese Wahrscheinlichkeitsverläufe sind händisch definiert.
 
 \begin{figure}[h!]
     % \hspace{-1cm}
     \begin{center}
         % \hspace{0.5cm}
-        \includegraphics[scale=0.5]{pictures/thantostrees-for-timpauli-mutwo-structure.png}
+        \includegraphics[scale=0.45]{pictures/ohne-titel-mutwo-structure.png}
     \end{center}
     \caption{%
-        Schematischer Aufbau der Programmstruktur von \emph{thanatos trees for Tim Pauli}.
+        Schematischer Aufbau der Programmstruktur von \emph{ohne Titel (2)} und  \emph{ohne Titel (3)}.
         Gelb markierte Elemente repräsentieren Ereignisse, grün markierte Elemente sind Übersetzer.
     }
     \label{fig:ohneTitelMutwoStructure}
 \end{figure}
 
 
+% Unterschiede zwischen den beiden Stücken oT2 und oT3?
+% Zwar geteilte Programmstruktur und Rahmenbedingungen, aber letztenendes doch sehr unterschiedliche Arbeiten:
+%
+%   oT2:   gerichtete Zeit
+%           - irreversible Ereignisse
+%
+%   oT3: ungerichtete Zeit
+%           - pendeln
+
+
+% Mutwo hints:
+%
+%   - es gibt ein Modell (Ereignisse, Übersetzer, etc.), in das ein Konzept eingebettet / realisiert werden kann.
+%   - Flexible Struktur (synchron vs. asynchron). 
+%   - Elektronik und Instrumente benutzen gleiche Daten, sind gleich erzeugt und vermischen sich deswegen sehr gut
+%   - Innere Repräsentation: JI pitches, äußere Repräsentation: normale europäische Tonhöhennotation
+%   - Saxophon Mehrklänge: einer funktioniert nicht, oder doch anderer Griff: an einer Stelle ändern,
+%     sofort alles geändert (einfach neues Video rendern).
 
 
 
 \section{Zusammenfassung}
 
+\subsection{Evaluation}
+
+% Fallbeispiele: Unterschiedliche Stücke mit unterschiedlichen (innere und äußere) Aufbauten können realisiert werden.
+
 \subsection{Richtungen weiterer Entwicklungen}
 
-\subsection{Evaluation}
 
 \newpage
 
