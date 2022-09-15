@@ -1573,10 +1573,11 @@ In \emph{ohne Titel (2)} interpolieren Wahrscheinlichkeitsverläufe zwischen har
 Von ihrer Basisklasse erben sie eine Funktion, die Wahrscheinlichkeiten der Intonationen der \texttt{FamilyOfPitchCurves} abhängig von gegebenen Start-- und Endzeiträume und der absoluten Position eines Ereignis in einer \emph{time--bracket} berechnet.
 Mithilfe dieser Information verfolgen Übersetzer unterschiedliche Ansätze, um Inhalt einer \emph{time--bracket} zu bestimmen:
 ein Übersetzer findet Akkorde maximaler Harmonizität\footnote{%
-    Harmonizität nach Barlow.
+    Harmonizität beschreibt die Stabilität eines Intervalls.
+    Harmonizität eines Schwingungsverhältnis kann mit Teilbarkeit und Größe seiner Zahlen quantifiziert werden~\parencite[S. 5f]{barlowHarmonicity}.
 } innerhalb eines definiertes Ambitus,
 ein anderer Übersetzer sucht melodische Verläufe mit minimalen Sprüngen und einem euklidischen Rhythmus\footnote{%
-    Ein euklidischer Rhythmus nach
+    Ein euklidischer Rhythmus ist die möglichst gleichmäßige Verteilung einer bestimmten Anzahl Anschläge auf eine bestimmte Anzahl Pulse~\parencite{toussaintEuclidean}.
 }.
 Die Ansätze unterliegen selbst Wahrscheinlichkeitsverläufe, die ihre Häufigkeit bestimmen.
 Diese Wahrscheinlichkeitsverläufe sind händisch definiert.
@@ -1585,7 +1586,7 @@ Diese Wahrscheinlichkeitsverläufe sind händisch definiert.
     % \hspace{-1cm}
     \begin{center}
         % \hspace{0.5cm}
-        \includegraphics[scale=0.45]{pictures/ohne-titel-mutwo-structure.png}
+        \includegraphics[scale=0.42]{pictures/ohne-titel-mutwo-structure.png}
     \end{center}
     \caption{%
         Schematischer Aufbau der Programmstruktur von \emph{ohne Titel (2)} und  \emph{ohne Titel (3)}.
