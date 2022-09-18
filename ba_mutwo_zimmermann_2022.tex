@@ -29,6 +29,7 @@
 \usepackage{relsize,etoolbox}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{hyperref}
+\usepackage{setspace} % Has to be AFTER hyperref, see https://tex.stackexchange.com/questions/188273/using-setspace-package-breaks-footnotes-link
 \usepackage{rotating}
 \usepackage{xcolor}
 \usepackage{xparse}
@@ -52,6 +53,10 @@
 \usepackage[
   headheight=15pt,
   bmargin=34mm,
+  % rmargin=3cm,
+  % lmargin=2.5cm,
+  % bmargin=2cm,
+  % tmargin=2.5cm,
 ]{geometry}
 
 \usepackage[
@@ -144,7 +149,8 @@
 % {\normalsize \mailto{levin-eric.zimmermann@folkwang-uni.de}}}
 % \date{20. September 2020}
 
-\linespread{1.4}
+% \linespread{1.4}
+\linespread{1.5}
 \AtBeginEnvironment{quotation}{\smaller}
 \AtBeginEnvironment{quote}{\smaller}
 
@@ -225,13 +231,18 @@ Prof. Dr. Michael Edwards
 \newpage
 
 
-\tableofcontents
+% \linespread{1.4}
+{
+    \setstretch{1.35}
+    \tableofcontents
+}
 
 
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Einleitung}
 
@@ -655,7 +666,7 @@ Ist eine Bibliothek zu unspezifisch, mag diese Voraussetzung unerfüllt bleiben.
 \end{enumerate}
 
 % Der generische Aufbau wird flankiert von dem Designziel möglichst einfach, offen und verständlich zu sein
-Der Komplexität unspezifischer Abstraktionen wird die Absicht entgegengesetzt, möglichst einfach, offen und verständlich zu sein.
+Der Komplexität unspezifischer Abstraktionen wird die Absicht entgegengesetzt, möglichst einfach, intuitiv--verwendbar und verständlich zu sein.
 Beide Zielen unterliegen der gemeinsamen Intention offen, zurückhaltend und freundlich gegenüber Benutzer:innen zu sein.
 In den folgenden Präzisierungen der Softwarearchitektur und der Entwicklungsstrategien wird verdeutlicht, wie diese Gegensätze ineinander integriert sind.
 
@@ -697,6 +708,24 @@ Objekte in \emph{mutwo} sind in strikte Kategorien eingeteilt:
         \item[Generatoren] erzeugen Daten für eine künstlerische Arbeit.
     \end{description}
 \end{minipage}
+
+\bigskip
+
+Abbildung \ref{fig:mutwoStructure} verdeutlicht die Beziehungen der unterschiedlichen Kategorien zueinander.
+
+\begin{figure}[H]
+    % \hspace{-1cm}
+    \begin{center}
+        % \hspace{0.5cm}
+        \includegraphics[scale=0.38]{pictures/mutwo-structure.png}
+    \end{center}
+    \caption{%
+        Beziehungen zwischen verschiedenen Komponenten \emph{mutwos}.
+    }
+    \label{fig:mutwoStructure}
+\end{figure}
+
+
 
 \subsubsection{Ereignisse}
 \label{eventDefinitions}
@@ -804,7 +833,7 @@ Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
 
 \subsubsection{Übersetzer}
 
-Ein Übersetzer transformiert eine Entität.
+Ein Übersetzer transformiert eine Entität in eine andere Entität.
 Entitäten sind entweder Objekte in Python oder externe Dateien.\footnote{%
     Objekte in Python können Instanzen von \emph{mutwo} internen Klassen, dritten Bibliotheken oder nativen Klassen sein.
     Externe Dateien umfassen beispielweise Mididateien oder Textdateien.
@@ -842,7 +871,7 @@ Das vereinfacht das Übersetzen derselben Entität mit unterschiedlichen Überse
 
 Generatoren liefern (zumeist generische) Daten, die für generative Kunst nützlich sein mögen.
 Generatoren umfassen Funktionen, Klassen, Konstanten oder andere Objekte.
-Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte, die von Benutzern kreativ angewendet werden können.
+Die Rückgabewerte der Funktionen und Klassen sind häufig native Objekte der Programmiersprache, die von Benutzern kreativ angewendet werden können.
 
 \begin{table}[h!]
     \begin{center}
@@ -870,7 +899,7 @@ Die Rückgabewerte der Funktionen und Klassen sind häufig Python native Objekte
 
 \emph{Mutwo} ist in der Programmiersprache Python implementiert.
 Python ist eine interpretierte, höhere, multi-paradigmatische, plattformübergreifende Sprache.
-Sie wurde zum ersten Mal 1991 veröffentlicht~\parencite{generalPythonFAQ}.
+Sie wurde 1991 erstveröffentlicht~\parencite{generalPythonFAQ}.
 
 \smallskip
 
@@ -924,7 +953,7 @@ Der Paketname der Bibliothek ist \emph{mutwo}.
 % \end{lstlisting}
 % 
 Das Paket \emph{mutwo} ist in unterschiedliche Module geteilt.
-Die unterschiedlichen Module korrelieren mit den zuvor beschriebenen elementaren Bestandteilen von \emph{mutwo}.
+Die unterschiedlichen Module korrelieren mit den zuvor beschriebenen elementaren Bestandteilen \emph{mutwos}.
 Sie werden flankiert von zusätzlichen Hilfsmodulen.
 
 \begin{table}[h!]
@@ -937,7 +966,7 @@ Sie werden flankiert von zusätzlichen Hilfsmodulen.
             \texttt{constants} & Globale modulübergreifende Konstanten \\
             \texttt{converters} & Import und Export von Daten, Übersetzen interner Strukturen \\
             \texttt{events} & Definition verschiedener Ereignisklassen \\
-            \texttt{generators} & Generierung von für künstlerische Arbeiten hilfreiche Daten \\
+            \texttt{generators} & Generierung von Daten für künstlerische Arbeiten \\
             \texttt{parameters} & Klassen, deren Instanzen Ereignisattributen zugeordnet werden \\
             \texttt{version} & Versionsdefinition des Moduls \\
             \texttt{utilities} & Hilfsmethoden, Errordefinition \\ [1ex] 
@@ -957,16 +986,35 @@ Die folgende Zeile dokumentiert die in \emph{mutwo} bevorzugte Weise:
     from mutwo import parameters
 \end{lstlisting}
 
-\emph{Mutwo} Module enthalten direkt die verwendbaren Objekte (Klassen, Funktionen).
-Sie können nur eine limitierte Anzahl bestimmter Submodule enthalten.
-Weil die Regel für alle \emph{mutwo} Module gilt, ist Struktur der Module einfach zu verstehen für neue Benutzer:innen.
+Pythons Punktoperator ermöglicht direkten Zugriff auf öffentliche Objekte der auf diese Weise importierten Module.
+
+\lstset{language=Python}
+
+\begin{lstlisting}
+    # Direkter Zugriff auf die Klasse "WesternVolume"
+    my_volume = parameters.WesternVolume("p")
+\end{lstlisting}
+
+Die Module können nur eine limitierte Anzahl expliziter Teilmodule enthalten.
+Auf Objekte der Teilmodule muss mit Wiederholungen des Punktoperators zugegriffen werden.
+
+\lstset{language=Python}
+
+\begin{lstlisting}
+    # Der Punktoperator ist zweimal notwendig, einmal für das
+    # "parameters" Modul und dann für das "configurations" Teilmodul.
+    parameters.configurations.DEFAULT_CONCERT_PITCH = 432
+\end{lstlisting}
+
+Abgesehen von den wenigen Teilmodulen genügt ein einziger Punktoperator, um auf Objekte zuzugreifen.
+Weil die Regel für alle \emph{mutwo} Module gilt, ist ihre Struktur für neue Benutzer:innen einfach zu verstehen.
 Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
 
 \begin{quote}
     ``Flat is better than nested.''~\parencite{theZenOfPython}
 \end{quote}
 
-Folgende Tabelle beschreibt die möglichen Submodule eines Moduls:
+Folgende Tabelle beschreibt alle möglichen Teilmodule eines Moduls:
 
 \begin{table}[H]
     \begin{center}
@@ -974,7 +1022,7 @@ Folgende Tabelle beschreibt die möglichen Submodule eines Moduls:
             \hline
             Submodulname & Modulbeschreibung \\ [0.5ex] 
             \hline\hline
-            \texttt{abc} & Abstrakte Klassen \\  % Definition der gemeinsamen öffentlichen Schnittstelle (API)
+            \texttt{abc} & \emph{\nameref{abstractBaseClasses}} \\  % Definition der gemeinsamen öffentlichen Schnittstelle (API)
             \texttt{configurations} & Globale modifizierbare Variablen zur Modulkonfiguration \\
             \texttt{constants} & Globale Konstanten des Moduls \\
             \hline
@@ -984,7 +1032,7 @@ Folgende Tabelle beschreibt die möglichen Submodule eines Moduls:
     \caption{Submoduldefinitionen}
 \end{table}
 
-Die Strukturierung des Quellcodes in thematisch getrennte Module und Submodule ist aber unzureichend.
+Die Strukturierung des Quellcodes in thematisch getrennte Module (mit wenigen Teilmodulen) ist aber unzureichend.
 Weil die grundsätzliche Designprämisse von sehr generischen Strukturen ausgeht, die aber präzise spezifiziert werden können, ist der potenzielle Umfang der Bibliothek schwer fasslich.
 In \emph{mutwo} ist das Problem durch eine modulare Struktur von thematisch getrennten Paketen gelöst.
 Jedes Paket hat einen einzigartigen Namen, hat eine unabhängige Version, kann eigene Abhängigkeiten definieren und ist je nach Abhängigkeitsstruktur unabhängig von anderen Paketen installierbar.
@@ -1067,9 +1115,9 @@ In \emph{mutwo} ermöglichen abstrakte Klassen die Definition der öffentlichen 
 Verschiedene, zusammenhängende Programmkomponente erwarten voneinander entsprechende API.
 Sie sind damit unabhängig von spezifischen Implementierungen.
 Diese Technologie unterliegt der im im Kapitel \emph{\nameref{parameterSpecification}} beschriebenen Definition der Parameterklassen.
-Die im \texttt{abc} Teilmodul des \texttt{parameters} Modul deklarierte Klassen definieren so ihre kompakte Identität über ein nicht--implementiertes Attribut.
+Die im \texttt{abc} Teilmodul des \texttt{parameters} Modul deklarierte Klassen definieren ihre kompakte Identität über ein nicht--implementiertes Attribut.
 
-\begin{table}[h!]
+\begin{table}[H]
     \begin{center}
         \begin{tabular}{l l l l} 
             \hline
@@ -1095,8 +1143,8 @@ Das Design \emph{mutwos} versichert, dass die von Benutzern hinzugefügten Repr�
     \includegraphics[scale=0.4]{uml_diagrams/pitches.png}
 
     \caption{%
-        Schematische Darstellung eines Parameter und seine unterschiedliche Subklassen.
-        Die Subklassen ermöglichen unterschiedliche Perspektiven derselben Entität.
+        Schematische Darstellung eines Parameter und seine unterschiedliche Teilklassen.
+        Die abgeleiteten Klassen ermöglichen unterschiedliche Perspektiven derselben Entität.
         Sie werden mit unterschiedlichen Argumenten initialisiert.
     }
 
@@ -1296,17 +1344,59 @@ Möglichst eindeutig und klar für Dritte zu sein wird als entscheidender gewich
 
 \subsection{Beispiel-orientierte Einführung}
 
-% Hier ist die Idee ein Art minimales Gamelan Beispiel zu geben.
+% Hier ist die Idee ein Art minimales Gamelanbeispiel zu geben.
 %
 % Und zwar:
 %
 %   1. Definition von Tonhoehenklasse
+%       - KarawitanPitch
+%           - PitchIndex
+%           - Octave
+%           - ConcertPitch
+%           - abstractMethod: pitch_index_to_cent_deviation_dict
+%       - PelogPitch
+%       - SlendroPitch
+%
+%   2. Definition einer Rhythmusklasse
+%       - KarawitanRhythm
+%           - beat_count
+%           - level
+%
+%   3. Definition einer Melodie -> berühmtes Gamelanstück nehmen
+%
+%   4. Export der Melodie in eine MIDI Datei
+%
+%   5. NOTATE --- Definition eines Übersetzer (frontend)
+%       - BalunganToKepathian
+%      und mit "EventToAbjadVoice" westliche Notation erzeugen
+%
+%   6. Definition eines Übersetzer (symmetrical)
+%       - BalunganToBonangan
+%           - SymmetricalEventConverter
+
+
+% oder besser:
+
+% %%%% Karawitan in mutwo %%%% %
+
+% (1) Benutzerspezifische Parameter: Tonhöhe und Rhythmus
+
+% (2) Ereignisse: Melodien, Sequenzen, Noten
+
+% (3) Export von Ereignisse in MIDI Dateien und Notation
+
+% (4) Export von Ereignisse in Notation
+
+% (5) Benutzerspezifischer Export von Ereignisse: Kepathian
+
+% (6) Definition interner Algorithmen
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Limitierungen und Grenzen}
+\label{limitsAndBorders}
 
 Die in \emph{\nameref{compositionAndTools2}} verwendeten Begriffe Utopie und Versuch implizieren das Scheitern der Wirklichkeit.
 Sie implizieren zugleich ein kontinuierliches Weiter, in dem Scheitern Teil eines Zyklus ist.
@@ -1357,7 +1447,7 @@ Das Ungleichgewicht kann niemals aufgelöst werden.
 Es kann aber ausgeglichen werden, wenn die Anzahl der Entwickler:innen der Bibliothek \emph{mutwo} zunehmen.
 Eine höhere Anzahl Mitwirkender verdichtet die Menge unterschiedlicher Weltvorstellungen; die Bibliothek wird damit diverser und unparteiischer.
 Dieses Argument ist nicht nur für Ereignisse und Parameter, sondern auch für Übersetzer valide.
-Bestehende Übersetzerpakete wie \texttt{mutwo.mbrola} (Sprachsynthese), \texttt{mutwo.csound} (Klangsynthese) oder \texttt{mutwo.ekmelily} (mikrotonale Notation mit \emph{Lilypond}) spiegeln Anforderungen meiner eigenen künstlerischen Arbeit wieder, die nicht notwendigerweise den Anforderungen Dritter entsprechen.
+Bestehende Übersetzerpakete wie \texttt{mutwo.mbrola} (Sprachsynthese), \texttt{mutwo.csound} (Klangsynthese) oder \texttt{mutwo.ekmelily} (mikrotonale Notation mit \emph{Lilypond}) spiegeln Anforderungen meiner eigenen künstlerischen Arbeit wieder, die nicht notwendigerweise Anforderungen Dritter entsprechen.
 
 % Manche der Probleme sind schwieriger zu löse
 
@@ -1373,6 +1463,7 @@ Bestehende Übersetzerpakete wie \texttt{mutwo.mbrola} (Sprachsynthese), \texttt
 \subsection{Fallbeispiele}
 
 \subsubsection{\emph{thanatos trees for Tim Pauli}}
+\label{thanatosTreesChapter}
 
 Das erste Werk, welches mit \emph{mutwo} entstand, ist die Klanginstallation \emph{thanatos trees for Tim Pauli}.
 Sie besteht aus einer Klangdatei mit 15 bis 17 Audiokanäle, die über 25 Lautsprecher abgespielt wird.
@@ -1421,7 +1512,7 @@ Jeder Sinusoid sollte exakt einer Tonhöhe einer Harmonie und einem Lautsprecher
 
 \smallskip
 
-Der Quellcode des Projekts ist in vier Kategorien unterteilt.
+Der Quellcode des Projekts ist in vier Teilmodule gegliedert.
 
 \begin{enumerate}
     \item{%
@@ -1451,7 +1542,7 @@ Der Quellcode des Projekts ist in vier Kategorien unterteilt.
 \end{enumerate}
 
 Die wichtigste kompositorische Identität findet sich in den Kategorien \emph{converters} und \emph{constants}.
-Abbildung \ref{fig:thanatosMutwoStructure} zeigt schematisch, wie die Arbeit als eine Entwicklung unkonkreter Ereignisse in konkretere Ereignisse konzipiert ist.
+Abbildung \ref{fig:thanatosMutwoStructure} zeigt schematisch, wie die Arbeit als eine Entwicklung unkonkreter (grob aufgelöste) Ereignisse in konkretere (fein aufgelöste) Ereignisse konzipiert ist.
 Das Element \texttt{Weather} in der Abbildung beeinflusst die Übersetzung der \texttt{Partial} Instanzen in die \texttt{Vibration} Instanzen.
 Der Zyklus der harmonischen Gruppen wird in der Klangdatei mehrmals wiederholt.
 Jede Repetition variiert die Realisierung einer Gruppe.
@@ -1510,7 +1601,7 @@ Gegebenes Beispiel ist exemplarisch für einen bestimmten Mehrwert in der Wahl P
 \subsubsection{\emph{ohne Titel (2)} und \emph{ohne Titel (3)}}
 
 Die konzertanten Kompositionen \emph{ohne Titel (2)} und \emph{ohne Titel (3)} sind zeitnah und überschneidend innerhalb weniger Monate entstanden.
-Beide haben eine Dauer von etwa 45 Minuten, sind kammermusikalisch besetzt, kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen bestehen), entfalten sich in einer langsamen Form und spezifizieren für ihre geräuscharmen Klänge präzise Intonationen.
+Beide haben eine Dauer von etwa 45 Minuten, sind kammermusikalisch besetzt, kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen bestehen), entfalten sich in einer langsamen Form und spezifizieren geräuscharmen Klänge in präziser Intonationen.
 Die Instrumentalstimmen beider Werke sind überwiegend in Form von \emph{time--brackets} nach John Cage notiert.
 
 \bigskip
@@ -1522,7 +1613,7 @@ Die Instrumentalstimmen beider Werke sind überwiegend in Form von \emph{time--b
     \end{center}
     \caption{%
         % Exemplarische \emph{time--bracket} eines Mehrklangs der Saxophonstimme von \emph{ohne~Titel~(3)}.
-        Exemplarische \emph{time--bracket} der Violinstimme von \emph{ohne~Titel~(3)}.
+        Exemplarisches \emph{time--bracket} der Violinstimme von \emph{ohne~Titel~(3)}.
     }
 \end{figure}
 
@@ -1534,9 +1625,9 @@ Musiker:innen können autonom entscheiden, wann sie innerhalb gegebener Abschnit
 
 \bigskip
 
-Neben \emph{time-bracket} Passagen gibt es in beiden Arbeiten (quantitativ reduzierte) Passagen synchronisierter Notationen (als Partitur).
+Neben \emph{time-brackets} gibt es in beiden Arbeiten (quantitativ reduzierte) Passagen synchronisierter Notationen (als Partitur).
 Die synchronisierten Abschnitte basieren auf bestehende Literatur; in \emph{ohne Titel (2)} auf den cantus firmus Lassus' \emph{Quid prodest stulto habere divitias}; in \emph{ohne Titel (3)} auf den Westminsterschlag.
-Statt eines Startbereiches gibt es eine explizite Startzeit, statt eines Endbereiches eine Tempoangabe.
+Statt eines Startbereiches gibt es für synchronisierte Abschnitte eine explizite Startzeit, statt eines Endbereiches eine Tempoangabe.
 
 \bigskip
 
@@ -1549,7 +1640,9 @@ In den Videodateien wechseln die angezeigten Abschnitte mit dem Zeitverlauf auto
 Abbildung \ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation des Quellcode zum Erzeugen der Notation, Videos und Klangdateien.
 % von \emph{ohne Titel (2)} und \emph{ohne Titel (3)}.  % XXX Redundant!
 Zentrum der Struktur ist eine Instanz der Ereignisklasse \texttt{TimeBracketContainer}.
-Das Objekt sammelt alle \emph{time--brackets} aller Stimmen (elektronisch und instrumental).
+Das Objekt sammelt alle \texttt{TimeBracket} Instanzen aller Stimmen (elektronisch und instrumental)\footnote{%
+    In der Implementierung sind die synchronisierten Abschnitte mit expliziten Startwerte und Tempi nur Sonderformen einer allgemeinen \texttt{TimeBracket} Klasse.
+}.
 Sie werden über die \texttt{register} Routine dem \texttt{TimeBracketContainer} zugefügt.
 Abschließend wird der \texttt{TimeBracketContainer} in unterschiedliche Ausgangsformate übersetzt.
 
@@ -1557,11 +1650,11 @@ Abschließend wird der \texttt{TimeBracketContainer} in unterschiedliche Ausgang
 
 Die eigentlichen \emph{time--brackets} sind variabel gewonnen.
 Wichtigste Quelle ist eine Instanz der Ereignisklasse \texttt{FamilyOfPitchCurves} und verbundene Übersetzer.
-Die \texttt{FamilyOfPitchCurves} beschreibt Wahrscheinlichkeitsverläufe einzelner Intonationen über die Dauer eines Stückes.
+Eine \texttt{FamilyOfPitchCurves} beschreibt Wahrscheinlichkeitsverläufe einzelner Intonationen über die Dauer eines Stückes.
 
 \smallskip
 
-In \emph{ohne Titel (3)} pendeln Bewegungen zwischen zwei Extrema, die aus potenziellen Flageoletts beider Instrumente abgeleitet sind.
+In \emph{ohne Titel (3)} pendelt die Harmonie zwischen zwei Extrema, die aus potenziellen Flageoletts beider Instrumente abgeleitet sind.
 
 \smallskip
 
@@ -1596,21 +1689,72 @@ Diese Wahrscheinlichkeitsverläufe sind händisch definiert.
 \end{figure}
 
 
-% Unterschiede zwischen den beiden Stücken oT2 und oT3?
-% Zwar geteilte Programmstruktur und Rahmenbedingungen, aber letztenendes doch sehr unterschiedliche Arbeiten:
-%
-%   oT2:   gerichtete Zeit
-%           - irreversible Ereignisse
-%
-%   oT3: ungerichtete Zeit
-%           - pendeln
+%%% Unterschiede zwischen den beiden Stücken oT2 und oT3
+Trotz geteilter Strukturen, unterscheiden sich die Stücke \emph{ohne Titel (2)} und  \emph{ohne Titel (3)} in ihrem klanglichen Erleben.
+Über gemeinsamen Untergrund sind kompositorisch--kontrastierende Entscheidungen gesetzt.
+Zwischen den beiden Projektstrukturen gibt es redundante, sich wiederholende Abschnitte.
+Die Mehrheit des Textes ist aber über Implementierungen im generischen Quellcodes \emph{mutwo} geteilt.
+
+\smallskip
+
+In \emph{ohne Titel (2)} verläuft Zeit gerichtet.
+Die Form ist diskret geteilt.
+Einzelne Abschnitte alterieren zügig.
+Das Ende kann als irreversibles Ereignis gelesen werden, das kein Zurück zu einem Vorher (innerhalb der Form) erlaubt.
+Die Besetzung der fünf Instrumente ist offen.
+Die Klangdatei wird über vier möglichst neutrale, im Kreis aufgestellte Lautsprecher und drei, vor Spieler:innen aufgestellte Lautsprecher abgespielt.
+Ideale Aufführungssituation ist ein geschlossener, abgedunkelter Raum mit längerer Nachhallzeit.
+
+\smallskip
+
+In \emph{ohne Titel (3)} verläuft Zeit ungerichtet.
+Die Form ist kontinuierlich.
+Alterierende Formabschnitte laufen in langsamen Bewegungen ineinander über.
+Die global konstante, pendelnde Harmonie\footnote{%
+    Variiert werden Frequenz und Ambitus der Pendelbewegung.
+} verhindert im Zeitverlauf Orientierung.
+Die Abwesenheit der Orientierung bedingt ein Gefühl der Zeitlosigkeit.
+Die Besetzung der beiden Instrumente ist spezifiziert.
+Die Klangdatei wird über mobile Kassettenrekorder (Radios) abgespielt, die ungeordnet aufgestellt werden.
+Ideale Aufführungssituation ist ein offener Raum in der Natur.
+
+\bigskip
+
+Ausschlaggebend für die klangliche Wirklichkeit beider Werke ist die Angleichung von Elektronik und Instrumenten.
+Auf Aufnahmen ist stellenweise schwierig zu erkennen, welches Klangereignis instrumentalen oder elektronischen Ursprungs ist.
+Ursache der Ähnlichkeit ist das Erzeugen beider Bestandteile mit verwandten, innereren Repräsentationen.
+Weil Objekte innerhalb \emph{mutwos} bis zur Übersetzung nicht ihr Ausgangsformat kennen, können sie generisch verwendet werden.
+Klangdateien werden genauso wie instrumentale Stimmen als Sammlung von \emph{time--brackets} repräsentiert.
+Übersetzer zum Erzeugen der Ereignisinstanzen entsprechen oder ähneln den instrumentalen Übersetzer.
+Entscheidungen expliziter Start-- und Endzeiten trifft in Klangdateien ein (Pseudo--)Zufallsgenerator.
+Jedem Entscheider wird einen konstanten Startwert (\emph{random seed}) zugewiesen.
+
+\bigskip
+
+Flexible innere Repräsentationen sind signifikant für Flageoletts und Mehrklänge in \emph{ohne Titel (3)}.
+Im Umgang zwischen verschiedenen Bestandteilen und Algorithmen sind die resultierende Tonhöhen als Instanzen der Klasse \texttt{JustIntonationPitch} encodiert.
+% Um 
+
+\bigskip
+
+Die Arbeiten \emph{ohne Titel (2)} und  \emph{ohne Titel (3)} ergänzen das Fallbeispiel \nameref{thanatosTreesChapter} um ein weiteres Konzept, was in \emph{mutwos} Modell (der Ereignisse und Übersetzer) eingebettet realisiert werden kann.
+Beide Fallbeispiele teilen keinen generischen Algorithmus zum Erzeugen der umfassenden musikalischen Struktur.
+Sie teilen aber kleine, praktische Funktionseinheiten, ein Modell, das die Umsetzung innerer Vorstellungen erlaubt und Überschneidungen der Arbeitsweise.
+Die Arbeitsweise überschneidet sich, weil in allen Fallbeispiele Programmcode geschrieben wird, der für die Programmausführung einen Einstiegspunkt definiert.
+Der Einstiegspunkt generiert die gesamte Komposition für bestimmte oder alle Ausgangsmedien.
+Es werden nicht einzelne musikalische Identitäten wie Rhythmen oder Harmonien erzeugt, die anschließend händischen kompositorisch in eine Form gebracht werden.
+Stattdessen wird eine vollständige Form in Textdateien encodiert und in andere Medien (z.~B. Klangdateien) und Codierungen (z.~B. Notation) übersetzt.
+Die Überschneidungen brechen nicht mit \emph{mutwos} \emph{\nameref{motivationUndAbsicht}} eines interfaceagnostischen Designs, denn das \emph{mutwo} Ökosystem \emph{könnte} z.~B. zum Erzeugen singulärer Bestandteile verwendet werden.
+Zugleich muss angemerkt werden, dass das \emph{mutwo} Ökosystem gegenwärtig keine komplexe Benutzerschnittstelle implementiert. 
+Es gibt z.~B. keine GUI, keine reiche Unterstützung für Objektpermanenz (Abspeichern in Datenbanken), keine Musikauszeichnungssprache, keine integrierte Entwicklungsumgebung (IDE).
+\emph{\nameref{limitsAndBorders}} \emph{mutwos} sind aber nicht technische Kompatibilitätsschwierigkeiten oder Unzulänglichkeiten des Designs, sondern die Abwesenheit einer Notwendigkeit gegenwärtiger Nutzer:innen.
+
+\bigskip
 
 
 % Mutwo hints:
 %
-%   - es gibt ein Modell (Ereignisse, Übersetzer, etc.), in das ein Konzept eingebettet / realisiert werden kann.
 %   - Flexible Struktur (synchron vs. asynchron). 
-%   - Elektronik und Instrumente benutzen gleiche Daten, sind gleich erzeugt und vermischen sich deswegen sehr gut
 %   - Innere Repräsentation: JI pitches, äußere Repräsentation: normale europäische Tonhöhennotation
 %   - Saxophon Mehrklänge: einer funktioniert nicht, oder doch anderer Griff: an einer Stelle ändern,
 %     sofort alles geändert (einfach neues Video rendern).
