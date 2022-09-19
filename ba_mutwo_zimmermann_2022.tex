@@ -20,7 +20,7 @@
   stringstyle=\color{mauve},
   breaklines=false,
   breakatwhitespace=true,
-  tabsize=3
+  tabsize=4
 }
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
@@ -892,7 +892,8 @@ Das vereinfacht das Übersetzen derselben Entität mit unterschiedlichen Überse
 
 Generatoren liefern (zumeist generische) Daten, die für generative Kunst nützlich sein mögen.
 Generatoren umfassen Funktionen, Klassen, Konstanten oder andere Objekte.
-Die Rückgabewerte der Funktionen und Klassen sind häufig native Objekte der Programmiersprache, die von Benutzern kreativ angewendet werden können.
+Häufig sind Rückgabewerte der Funktionen und Klassen native Objekte der Programmiersprache.
+Sie können von Benutzer:innen kreativ angewendet werden.
 
 \begin{table}[h!]
     \begin{center}
@@ -1004,7 +1005,7 @@ Die folgende Zeile dokumentiert die in \emph{mutwo} bevorzugte Weise:
 \lstset{language=Python}
 
 \begin{lstlisting}
-    from mutwo import parameters
+    >>> from mutwo import parameters
 \end{lstlisting}
 
 Pythons Punktoperator ermöglicht direkten Zugriff auf öffentliche Objekte der auf diese Weise importierten Module.
@@ -1012,8 +1013,8 @@ Pythons Punktoperator ermöglicht direkten Zugriff auf öffentliche Objekte der 
 \lstset{language=Python}
 
 \begin{lstlisting}
-    # Direkter Zugriff auf die Klasse "WesternVolume"
-    my_volume = parameters.WesternVolume("p")
+    >>> # Direkter Zugriff auf die Klasse "WesternVolume"
+    >>> my_volume = parameters.WesternVolume("p")
 \end{lstlisting}
 
 Die Module können nur eine limitierte Anzahl expliziter Teilmodule enthalten.
@@ -1022,9 +1023,11 @@ Auf Objekte der Teilmodule muss mit Wiederholungen des Punktoperators zugegriffe
 \lstset{language=Python}
 
 \begin{lstlisting}
-    # Der Punktoperator ist zweimal notwendig, einmal für das
-    # "parameters" Modul und dann für das "configurations" Teilmodul.
-    parameters.configurations.DEFAULT_CONCERT_PITCH = 432
+    >>> # Der Punktoperator ist zweimal notwendig, einmal für Zugriff
+    >>> # auf das "configurations" Teilmodul und dann für die globale
+    >>> # Variable "DEFAULT_CONCERT_PITCH".
+    >>> print(parameters.configurations.DEFAULT_CONCERT_PITCH)
+    440
 \end{lstlisting}
 
 Abgesehen von den wenigen Teilmodulen genügt ein einziger Punktoperator, um auf Objekte zuzugreifen.
@@ -1113,9 +1116,9 @@ Präfix und Suffix sind durch einen Unterstrich getrennt.
 Das Importieren im Quellcode funktioniert auf gleiche Weise wie oben beschrieben:
 
 \begin{lstlisting}
-    from mutwo import core_parameters
-    from mutwo import music_events
-    from mutwo import midi_converters
+    >>> from mutwo import core_parameters
+    >>> from mutwo import music_events
+    >>> from mutwo import midi_converters
 \end{lstlisting}
 
 \subsubsection{Abstrakte Basisklassen}
