@@ -905,11 +905,10 @@ Wenn möglich, ist der Wert implizit einer physikalischen Einheit zugeordnet.
 \subsubsection{Übersetzer}
 
 Ein Übersetzer transformiert eine Entität in eine andere Entität.
-Entitäten sind entweder Objekte in Python oder externe Dateien.\footnote{%
-    Objekte in Python können Instanzen von \emph{mutwo} internen Klassen, dritten Bibliotheken oder nativen Klassen sein.
-    Externe Dateien umfassen beispielweise Mididateien oder Textdateien.
-}
-Transformieren bedeutet hier entweder eine Veränderung des Inhalts oder eine Veränderung des Formats.
+Entitäten sind entweder Objekte in Python oder externe Dateien.
+Objekte in Python können Instanzen von \emph{mutwos} internen Klassen, dritten Bibliotheken oder nativen Klassen sein.
+Externe Dateien umfassen z.~B.\ MIDI-- oder Textdateien.
+Transformieren bedeutet entweder eine Veränderung des Inhalts oder eine Veränderung des Formats.
 
 
 \begin{table}[h!]
@@ -1272,7 +1271,7 @@ Wird die Klangdatei in \emph{mutwo} erzeugt, kann der Kammerton an unterschiedli
 Im Quellcode \emph{mutwos} sind die für Dritte intendierten Objekte dokumentiert.
 Mithilfe der Software \emph{Sphinx} wird automatisiert aus dem Quellcode eine Dokumentation erzeugt.
 Das unterstützt die Transparenz vielfältiger Argumente und Konfigurationsvariablen.
-In Appendix kann die automatisierte Dokumentation gefunden werden.
+Im Appendix kann die automatisierte Dokumentation gefunden werden.
 % Um den Reichtum der Argumente und Konfigurationsvariablen transparent zu machen
 
 \subsubsection{Unspezifische Ereignisse; dynamische Akzessoren}
@@ -1680,7 +1679,7 @@ Gegebenes Beispiel ist exemplarisch für einen bestimmten Mehrwert in der Wahl P
 \subsubsection{\emph{ohne Titel (2)} und \emph{ohne Titel (3)}}
 
 Die konzertanten Kompositionen \emph{ohne Titel (2)} und \emph{ohne Titel (3)} sind zeitnah und überschneidend innerhalb weniger Monate entstanden.
-Beide haben eine Dauer von etwa 45 Minuten, sind kammermusikalisch besetzt, kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen bestehen), entfalten sich in einer langsamen Form und spezifizieren geräuscharmen Klänge in präziser Intonationen.
+Beide haben eine Dauer von etwa 45 Minuten, entfalten sich in einer langsamen Form, spezifizieren für geräuscharme Klänge präzise Intonationen, sind kammermusikalisch besetzt und kombinieren Instrumente mit einer mehrkanaligen Klangdatei (die in beiden Werken aus synthetisierten Klängen und Feldaufnahmen besteht).
 Die Instrumentalstimmen beider Werke sind überwiegend in Form von \emph{time--brackets} nach John Cage notiert.
 
 \bigskip
@@ -1712,11 +1711,11 @@ Statt eines Startbereiches gibt es für synchronisierte Abschnitte eine explizit
 
 Die einzelnen Stimmbücher der Musiker:innen können ausgedruckt oder mithilfe eines PDF--Lesers angezeigt werden, um mit einer Stoppuhr gespielt zu werden.
 Alle Stimmbücher werden aber in beiden Arbeiten alternativ als Videodateien bereitgestellt.
-In den Videodateien wechseln die angezeigten Abschnitte mit dem Zeitverlauf automatisch, auf eine Stoppuhr kann verzichtet werden.
+In den Videodateien wechseln die angezeigten Abschnitte im Verlauf der Zeit automatisch, auf eine Stoppuhr kann verzichtet werden.
 
 \bigskip
 
-Abbildung~\ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation des Quellcode zum Erzeugen der Notation, Videos und Klangdateien.
+Abbildung~\ref{fig:ohneTitelMutwoStructure} schematisch die Organisation des Quellcode zum Erzeugen der Notation, Videos und Klangdateien.
 % von \emph{ohne Titel (2)} und \emph{ohne Titel (3)}.  % XXX Redundant!
 Zentrum der Struktur ist eine Instanz der Ereignisklasse \texttt{TimeBracketContainer}.
 Das Objekt sammelt alle \texttt{TimeBracket} Instanzen aller Stimmen (elektronisch und instrumental)\footnote{%
@@ -1799,12 +1798,12 @@ Ideale Aufführungssituation ist ein offener Raum in der Natur.
 
 \bigskip
 
-Ausschlaggebend für die klangliche Wirklichkeit beider Werke ist die Angleichung von Elektronik und Instrumenten.
+Die klangliche Wirklichkeit beider Werke lebt von einer Angleichung von Elektronik und Instrumenten.
 Auf Aufnahmen ist stellenweise schwierig zu erkennen, welches Klangereignis instrumentalen oder elektronischen Ursprungs ist.
 Ursache der Ähnlichkeit ist das Erzeugen beider Bestandteile mit verwandten, innereren Repräsentationen.
 Weil Objekte innerhalb \emph{mutwos} bis zur Übersetzung nicht ihr Ausgangsformat kennen, können sie generisch verwendet werden.
 Klangdateien werden genauso wie instrumentale Stimmen als Sammlung von \emph{time--brackets} repräsentiert.
-Übersetzer zum Erzeugen der Ereignisinstanzen entsprechen oder ähneln den instrumentalen Übersetzer.
+Übersetzer zum Erzeugen der Ereignisinstanzen entsprechen oder ähneln den Übersetzer für die instrumentale Strukturen.
 Entscheidungen expliziter Start-- und Endzeiten trifft für Klangdateien ein (Pseudo--)Zufallsgenerator.
 Jedem Entscheider wird einen konstanten Startwert (\emph{random seed}) zugewiesen.
 
@@ -1813,8 +1812,8 @@ Jedem Entscheider wird einen konstanten Startwert (\emph{random seed}) zugewiese
 Der Umgang mit Flageoletts und Mehrklänge in \emph{ohne Titel (3)} ist exemplarisch für \emph{mutwos} Ideal variabler Repräsentationen.
 Innerlich wird von resultierenden Tonhöhen ausgegangen.
 Diese werden den Ereignissen (die später zur Notation der Instrumente übersetzt werden) zugewiesen.
-Dritte Programmkomponente können mit den Ereignissen (in ihrem klanglichen Resultat) umgehen, z.~B. können Simulationen der Instrumentalstimmen mit eine MIDI Übersetzer erzeugt werden oder dritte Übersetzer generieren aus ihnen Stimmen für Klangdateien.
-Bevor die Ereignisse dem Notationsübersetzer übergegeben werden, wird ein anderer Übersetzer dazwischengeschaltet.
+Dritte Programmkomponente können mit den Ereignissen (in ihrem klanglichen Resultat) umgehen, z.~B. können Simulationen der Instrumentalstimmen mit eine MIDI Übersetzer erzeugt werden oder andere Übersetzer leiten aus ihnen Stimmen für Klangdateien ab.
+Bevor die Ereignisse dem Notationsübersetzer übergeben werden, wird ein anderer Übersetzer dazwischengeschaltet.
 Dieser weist den Ereignissen je nach Tonhöhenstruktur Flageoletts oder Mehrklänge (mit Saxophongriffen) zu.
 
 \smallskip
@@ -1822,8 +1821,13 @@ Dieser weist den Ereignissen je nach Tonhöhenstruktur Flageoletts oder Mehrklä
 Ähnlich verhält es sich mit der Notation der Keyboardstimme in \emph{ohne Titel (2)}.
 Die Keyboardstimme spielt mithilfe eines Softwaresynthesizers mikrotonale Tonhöhen.
 Innerlich wird von klingenden Tonhöhen ausgegangen.
-Aber für die Spielnotation werden die chromatischen Tonhöhen der zu spielenden Tasten notiert.
-In synchronen Abschnitten der Stimmbücher anderer Instrumente werden hingegen klingende Tonhöhen des Keyboards notiert.
+Aber im Stimmbuch des Keyboards werden die chromatischen Tonhöhen der zu spielenden Tasten notiert.
+Ein dazwischengeschalteter Übersetzer kommuniziert zwischen den unterschiedlichen Repräsentationen.
+Die innere, klingende Repräsentation entspricht der Vorstellung der Komposition.
+Sie ist auch Grundlage für die Notation der Stimmbücher der anderen Instrumente.
+In ihren synchronisierten Abschnitten werden die Tonhöhen des Keyboards klingend notiert.
+Weil die Übersetzungen automatisiert erfolgen, ist der übersetzte Inhalt autark von ihnen.
+In der kompositorischen Arbeit kann sich deswegen auf den Inhalt konzentriert werden.
 
 % Diese werden den Ereignissen (die später zur Notation der Instrumente übersetzt werden) zugewiesen.
 % Dritte Programmkomponente können mit den Ereignissen (in ihrem klanglichen Resultat) umgehen, z.~B. können Simulationen der Instrumentalstimmen mit eine MIDI Übersetzer erzeugt werden oder dritte Übersetzer generieren aus ihnen Stimmen für Klangdateien.
@@ -1832,6 +1836,12 @@ In synchronen Abschnitten der Stimmbücher anderer Instrumente werden hingegen k
 % Im Umgang zwischen verschiedenen Bestandteilen und Algorithmen sind die resultierende Tonhöhen als Instanzen der Klasse \texttt{JustIntonationPitch} encodiert.
 % Um 
 
+% XXX: omit for now..there's already enough content
+% \bigskip
+%   - Saxophon Mehrklänge: einer funktioniert nicht, oder doch anderer Griff: an einer Stelle ändern,
+%     sofort alles geändert (einfach neues Video rendern).
+
+
 \bigskip
 
 Die Arbeiten \emph{ohne Titel (2)} und  \emph{ohne Titel (3)} ergänzen das Fallbeispiel \nameref{thanatosTreesChapter} um ein weiteres Konzept, was in \emph{mutwos} Modell (der Ereignisse und Übersetzer) eingebettet realisiert werden kann.
@@ -1839,32 +1849,36 @@ Beide Fallbeispiele teilen keinen generischen Algorithmus zum Erzeugen der umfas
 Sie teilen aber kleine, praktische Funktionseinheiten, ein Modell, das die Umsetzung innerer Vorstellungen erlaubt und Überschneidungen der Arbeitsweise.
 Die Arbeitsweise überschneidet sich, weil in allen Fallbeispiele Programmcode geschrieben wird, der für die Programmausführung einen Einstiegspunkt definiert.
 Der Einstiegspunkt generiert die gesamte Komposition für bestimmte oder alle Ausgangsmedien.
-Es werden nicht einzelne musikalische Identitäten wie Rhythmen oder Harmonien erzeugt, die anschließend händischen kompositorisch in eine Form gesetzt werden.
+Es werden nicht einzelne musikalische Identitäten wie Rhythmen oder Harmonien erzeugt, die anschließend händisch--kompositorisch in eine Form gesetzt werden.
 Stattdessen wird eine vollständige Form in Textdateien encodiert und in andere Medien (z.~B. Klangdateien) und Codierungen (z.~B. Notation) übersetzt.
 Die Überschneidungen brechen nicht mit \emph{mutwos} \emph{\nameref{motivationUndAbsicht}} eines interfaceagnostischen Designs, denn das \emph{mutwo} Ökosystem \emph{könnte} z.~B. zum Erzeugen singulärer Bestandteile verwendet werden.
-Zugleich muss angemerkt werden, dass das \emph{mutwo} Ökosystem gegenwärtig keine komplexe Benutzerschnittstelle implementiert. 
-Es gibt z.~B. keine GUI, keine reiche Unterstützung für Objektpermanenz (Abspeichern in Datenbanken), keine Musikauszeichnungssprache, keine integrierte Entwicklungsumgebung (IDE).
-In Abschnitt \emph{\nameref{limitsAndBorders}} \emph{mutwos} sind nicht technische Kompatibilitätsschwierigkeiten oder Unzulänglichkeiten des Designs, sondern die Abwesenheit einer Notwendigkeit gegenwärtiger Nutzer:innen.
-
-\bigskip
+Zugleich muss angemerkt werden, dass gegenwärtig  \emph{mutwo} keine komplexe Benutzerschnittstelle implementiert. 
+Es gibt z.~B.\ keine graphische Benutzeroberfläche, keine reiche Unterstützung für Objektpermanenz (Abspeichern in Datenbanken), keine Musikauszeichnungssprache, keine integrierte Entwicklungsumgebung (IDE).
+Wie in Abschnitt \emph{\nameref{limitsAndBorders}} beschrieben, sind nicht technische Kompatibilitätsschwierigkeiten oder Unzulänglichkeiten des Designs dafür verantwortlich, sondern die Abwesenheit einer Notwendigkeit gegenwärtiger Nutzer:innen.
 
 
-% Mutwo hints:
-%
-%   - Flexible Struktur (synchron vs. asynchron). 
-%   - Innere Repräsentation: JI pitches, äußere Repräsentation: normale europäische Tonhöhennotation
-%   - Saxophon Mehrklänge: einer funktioniert nicht, oder doch anderer Griff: an einer Stelle ändern,
-%     sofort alles geändert (einfach neues Video rendern).
+\section{Schlusswort}
 
+\subsection{Zusammenfassung}
 
+Komposition verwendet unterschiedliche Techniken.
+Wenn Komposition Algorithmen als Technik verwendet, wird sie als algorithmische Komposition bezeichnet.
+Algorithmische Komposition mag mithilfe einer Software praktiziert werden.
+\emph{Mutwo} ist eine Softwarebibliothek für algorithmische Komposition.
+Eine Kongruenz zwischen verwendeten Techniken und inneren Vorstellungen ist Absicht der Entwicklung \emph{mutwos}.
+\emph{Mutwo} muss generisch sein, aber zugleich allgemeine, praktische Repräsentationen bereitstellen.
+\emph{Mutwos} generische Design zielt auf langfristige Kongruenz bei sich verändernden Vorstellungen ab.
+Vordefinierte, allgemeine Repräsentationen machen \emph{mutwo} praktikabel.
+\emph{Mutwos} Modell zur Formalisierung von Kunst definiert die Elemente \emph{Ereignisse}, \emph{Parameter}, \emph{Übersetzer} und \emph{Generatoren}.
+\emph{Ereignisse} sind Bewegungen, \emph{Parameter} beschreiben Bewegungen, \emph{Übersetzer} transformieren Entitäten, \emph{Generatoren} erzeugen Daten.
+Konkrete Entwicklungsstrategien wie die Verwendung abstrakter Basisklassen realisieren \emph{mutwos} unterliegende Absichten.
+\emph{Mutwos} junges Lebensalter und die kleine Anzahl von Entwickler:innen limitieren die enthaltenen Funktionen und Konsistenz der Implementierung.
+In drei Fallbeispielen kann eine praxistaugliche Anwendung \emph{mutwos} nachvollzogen werden.
 
-\section{Zusammenfassung}
-
-\subsection{Evaluation}
-
-% Fallbeispiele: Unterschiedliche Stücke mit unterschiedlichen (innere und äußere) Aufbauten können realisiert werden.
-
-\subsection{Richtungen weiterer Entwicklungen}
+\subsection{Aussichten}
+Vorliegender Text dokumentiert \emph{mutwo} primär auf einer abstrakten, avancierten Vorstellungsebene.
+Diese Dokumentation unterstützt jede Person, die die Software entwickelt oder fortgeschritten mit ihr arbeitet.
+Um neuen Nutzer:innen den Einstieg zu erleichtern, sollte zukünftig eine niedrigschwellige, Beispiel--orientierte Einführung geschrieben werden.
 
 
 \newpage
