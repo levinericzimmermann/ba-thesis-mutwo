@@ -443,7 +443,7 @@ Struktureller Ausgangspunkt der Vorstellung \emph{mutwos} ist eine umfassende Da
 Daran knüpft eine abstrakte Spezifikation ihrer Architektur an.
 Anschließend werden konkrete Programmierstrategien zur Umsetzung der Absicht vorgestellt.
 Die Strategien dokumentieren innere Zusammenhänge der Software.
-Umfassendes Verständnis für sie sind für avancierte Anwendungen und Weiterentwicklung oder Instandhaltung der Software notwendig.
+Umfassendes Verständnis für sie sind für avancierte Anwendungen und Weiterentwicklung oder Instandhaltung \emph{mutwos} notwendig.
 % Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
 Vor abschließender Zusammenfassung werden zwei Fallbeispiele präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekten eingesetzt werden kann.
 
@@ -772,9 +772,16 @@ Objekte in \emph{mutwo} sind in strikte Kategorien eingeteilt:
     \end{description}
 \end{minipage}
 
+\vspace{0.2cm}
 \bigskip
 
 Abbildung~\ref{fig:mutwoStructure} skizziert die Beziehungen der unterschiedlichen Kategorien zueinander.
+Sie zeigt, wie sich \emph{mutwo} mithilfe von Übersetzer mit der äußeren Welt verbindet.
+Übersetzer können anhand ihrer Richtung unterteilt werden;
+entweder werden externe Daten in innere Repräsentation übersetzt (\emph{backend}) oder innere Repräsentation in externe Daten (\emph{frontend}) oder innere Repräsentationen in andere innere Repräsentationen (\emph{symmetrical}).
+Die Pfeile der Skizze markieren meist Eingangs- und Ausgangswerte eines Übersetzer.
+Gleiche Farben gehören zum gleichen Aufruf, Eingangswerte sind mit \emph{in} notiert und Ausgangswerte mit \emph{out}.
+Hat ein Element der Abbildung mehrere Ein-- oder Ausgangswerte, werden zusammengehörende Ein-- und Ausgangswerte mit Indizes notiert.
 
 \begin{figure}[H]
     % \hspace{-1cm}
@@ -850,7 +857,7 @@ Mit den drei Ereignisklassen \texttt{SimpleEvent}, \texttt{SequentialEvent} und 
 
 \begin{figure}[h!]
     \begin{center}
-        \includegraphics[scale=0.5]{pictures/nested_event.png}
+        \includegraphics[scale=0.65]{pictures/nested_event.png}
 
         \caption{Exemplarische Verschachtlung von Ereignissen}
     \end{center}
@@ -1285,12 +1292,6 @@ Die Abwesenheit spezifischer Ereignisklassen ist mithilfe Pythons Unterstützung
 Spezifische Klassen mögen darin begründet sein, dass dritte Programmkomponente bestimmte Attribute oder Methoden von ihren Eingangswerten erwarten (müssen).
 Indem dritte Programmkomponente als Funktionen höherer Ordnung implementiert sind, kann \emph{mutwo} diese Anforderung mit geringeren Einschränkungen von unterstützten Datentypen erfüllen.
 
-\bigskip
-
-Neben der Ereignisinstanz sind die Eingangswerte dritter Programmkomponente Funktionen.
-Diese Funktionen erhalten wiederum später die Ereignisinstanz als Eingangswert.
-Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
-Über den Umweg der als Eingangswert mitgegebenen Funktion, kann die dritte Programmkomponente somit versichern, ein spezifisches Attribut zu erhalten.
 
 % XXX: Ja, es ist auch möglich DEFAULT_PITCH_LIST_TO_SEARCH_NAME zu überschreiben.
 %      Aber dann wird immer noch eine pitch liste gesucht und nicht eine einzelne tonhöhe.
@@ -1306,11 +1307,18 @@ Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
 \hspace{-0.5cm}
 \fbox{\includegraphics[page=1,scale=0.85]{jupyter/unspezifische_ereignisse_1_improved.pdf}}
 
+Neben der Ereignisinstanz sind die Eingangswerte dritter Programmkomponente Funktionen.
+Diese Funktionen erhalten wiederum später die Ereignisinstanz als Eingangswert.
+Als Ausgangswert müssen sie ein bestimmtes erwartetes Attribut zurückgeben.
+Über den Umweg der als Eingangswert mitgegebenen Funktion, kann die dritte Programmkomponente somit versichern, ein spezifisches Attribut zu erhalten.
+
+\bigskip
+
 Python ermöglicht dynamische Zuweisungen von Attributen.
 Ein zusätzliches Entwurfsmuster in \emph{mutwos} Ereignismodell ist damit die ad-hoc Zuordnung benötigter Attribute.
 In manchen Fällen bedingt das elegantere Lösungen als das Schreiben einer neuen oder das Modifizieren einer bestehenden Klasse.
 
-\vspace{0.75cm}
+\vspace{1.25cm}
 
 
 % dynamic attributes
@@ -1319,7 +1327,8 @@ In manchen Fällen bedingt das elegantere Lösungen als das Schreiben einer neue
 \fbox{\includegraphics[page=1,scale=0.875]{jupyter/unspezifische_ereignisse_2.pdf}}
 % \end{center}
 
-\vspace{0.75cm}
+% \vspace{1cm}
+\newpage
 
 Die Komplexität unspezifischer Ereignisse wird mit der Strategie \nameref{conventionOverConfiguration} abgefangen.
 Das Paket \texttt{mutwo.music} implementiert die Klasse \texttt{NoteLike}.
@@ -1408,7 +1417,10 @@ Möglichst eindeutig und klar für Dritte zu sein wird als entscheidender gewich
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Beispiel-orientierte Einführung}
+% XXX: Leider kein Raum mehr :( Das sprengt den Umfang :(
+%      ...beim nächsten Mal!
+
+%% \subsection{Beispiel-orientierte Einführung}
 
 % Hier ist die Idee ein Art minimales Gamelanbeispiel zu geben.
 %
