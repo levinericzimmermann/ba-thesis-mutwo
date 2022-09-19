@@ -388,13 +388,34 @@ Sie tendieren z.~B. zum Ausschluss musikalischer Praxen, welche Improvisation de
 \bigskip
 
 % Abstatz: Struktur BA Arbeit
-Strukturell besteht der erste Teil der Arbeit aus einer knappen Übersicht bestehender Softwareprojekte.
-Im zweiten Teil wird \emph{mutwo} vorgestellt.
-Ausgangspunkt ist hierbei eine umfassende Darstellung der Motivation der Entwicklung und Absicht der Software.
+
+% % Strukturell besteht der erste Teil der Arbeit aus einer knappen Übersicht bestehender Softwareprojekte.
+% % Im zweiten Teil wird \emph{mutwo} vorgestellt.
+% % Ausgangspunkt ist hierbei eine umfassende Darstellung der Motivation der Entwicklung und Absicht der Software.
+% % Daran knüpft eine abstrakte Spezifikation ihrer Architektur an.
+% % Anschließend werden konkrete Programmierstrategien zur Umsetzung der Absicht vorgestellt.
+% % Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
+% % Vor abschließender Zusammenfassung werden zwei Fallbeispiele präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekten eingesetzt werden kann.
+
+Struktureller Ausgangspunkt der Vorstellung \emph{mutwos} ist eine umfassende Darstellung der Motivation und Absicht dessen Entwicklung.
 Daran knüpft eine abstrakte Spezifikation ihrer Architektur an.
 Anschließend werden konkrete Programmierstrategien zur Umsetzung der Absicht vorgestellt.
-Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
+Die Strategien dokumentieren innere Zusammenhänge der Software.
+Umfassendes Verständnis für sie sind für avancierte Anwendungen und Weiterentwicklung oder Instandhaltung der Software notwendig.
+% Eine Beispiel--orientierte Einführung ergänzt die abstrakte Architekturspezifikation.
 Vor abschließender Zusammenfassung werden zwei Fallbeispiele präsentiert, die zeigen wie \emph{mutwo} in komplexen Kompositionsprojekten eingesetzt werden kann.
+
+
+
+\bigskip
+
+Manchmal sind Konzepte mit Programmcode in der Programmiersprache Python verdeutlicht.
+Syntax der Sprache wird nicht erklärt, von einem grundsätzlichen Verständnis wird ausgegangen~\footnote{%
+    Bei Unklarheiten wird auf Pythons offizielle Sprachreferenz verwiesen~\parencite{pythonLanguageReference}.
+}.
+% Manche Programmcodebeispiele sind in Jupyter Notebooks realisiert.  % XXX: nicht so wichtig?
+Verdeutlichende Graphiken sind informell und folgen nicht (oder nur lose) einer formalisierten Strategie (wie z.~B. UML).
+
 
 % Code:
 %   core: 4314
@@ -711,7 +732,7 @@ Objekte in \emph{mutwo} sind in strikte Kategorien eingeteilt:
 
 \bigskip
 
-Abbildung \ref{fig:mutwoStructure} verdeutlicht die Beziehungen der unterschiedlichen Kategorien zueinander.
+Abbildung~\ref{fig:mutwoStructure} skizziert die Beziehungen der unterschiedlichen Kategorien zueinander.
 
 \begin{figure}[H]
     % \hspace{-1cm}
@@ -1542,7 +1563,7 @@ Der Quellcode des Projekts ist in vier Teilmodule gegliedert.
 \end{enumerate}
 
 Die wichtigste kompositorische Identität findet sich in den Kategorien \emph{converters} und \emph{constants}.
-Abbildung \ref{fig:thanatosMutwoStructure} zeigt schematisch, wie die Arbeit als eine Entwicklung unkonkreter (grob aufgelöste) Ereignisse in konkretere (fein aufgelöste) Ereignisse konzipiert ist.
+Abbildung~\ref{fig:thanatosMutwoStructure} zeigt schematisch, wie die Arbeit als eine Entwicklung unkonkreter (grob aufgelöste) Ereignisse in konkretere (fein aufgelöste) Ereignisse konzipiert ist.
 Das Element \texttt{Weather} in der Abbildung beeinflusst die Übersetzung der \texttt{Partial} Instanzen in die \texttt{Vibration} Instanzen.
 Der Zyklus der harmonischen Gruppen wird in der Klangdatei mehrmals wiederholt.
 Jede Repetition variiert die Realisierung einer Gruppe.
@@ -1637,7 +1658,7 @@ In den Videodateien wechseln die angezeigten Abschnitte mit dem Zeitverlauf auto
 
 \bigskip
 
-Abbildung \ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation des Quellcode zum Erzeugen der Notation, Videos und Klangdateien.
+Abbildung~\ref{fig:ohneTitelMutwoStructure} verdeutlicht schematisch die Organisation des Quellcode zum Erzeugen der Notation, Videos und Klangdateien.
 % von \emph{ohne Titel (2)} und \emph{ohne Titel (3)}.  % XXX Redundant!
 Zentrum der Struktur ist eine Instanz der Ereignisklasse \texttt{TimeBracketContainer}.
 Das Objekt sammelt alle \texttt{TimeBracket} Instanzen aller Stimmen (elektronisch und instrumental)\footnote{%
@@ -1726,7 +1747,7 @@ Ursache der Ähnlichkeit ist das Erzeugen beider Bestandteile mit verwandten, in
 Weil Objekte innerhalb \emph{mutwos} bis zur Übersetzung nicht ihr Ausgangsformat kennen, können sie generisch verwendet werden.
 Klangdateien werden genauso wie instrumentale Stimmen als Sammlung von \emph{time--brackets} repräsentiert.
 Übersetzer zum Erzeugen der Ereignisinstanzen entsprechen oder ähneln den instrumentalen Übersetzer.
-Entscheidungen expliziter Start-- und Endzeiten trifft in Klangdateien ein (Pseudo--)Zufallsgenerator.
+Entscheidungen expliziter Start-- und Endzeiten trifft für Klangdateien ein (Pseudo--)Zufallsgenerator.
 Jedem Entscheider wird einen konstanten Startwert (\emph{random seed}) zugewiesen.
 
 \bigskip
@@ -1742,12 +1763,12 @@ Beide Fallbeispiele teilen keinen generischen Algorithmus zum Erzeugen der umfas
 Sie teilen aber kleine, praktische Funktionseinheiten, ein Modell, das die Umsetzung innerer Vorstellungen erlaubt und Überschneidungen der Arbeitsweise.
 Die Arbeitsweise überschneidet sich, weil in allen Fallbeispiele Programmcode geschrieben wird, der für die Programmausführung einen Einstiegspunkt definiert.
 Der Einstiegspunkt generiert die gesamte Komposition für bestimmte oder alle Ausgangsmedien.
-Es werden nicht einzelne musikalische Identitäten wie Rhythmen oder Harmonien erzeugt, die anschließend händischen kompositorisch in eine Form gebracht werden.
+Es werden nicht einzelne musikalische Identitäten wie Rhythmen oder Harmonien erzeugt, die anschließend händischen kompositorisch in eine Form gesetzt werden.
 Stattdessen wird eine vollständige Form in Textdateien encodiert und in andere Medien (z.~B. Klangdateien) und Codierungen (z.~B. Notation) übersetzt.
 Die Überschneidungen brechen nicht mit \emph{mutwos} \emph{\nameref{motivationUndAbsicht}} eines interfaceagnostischen Designs, denn das \emph{mutwo} Ökosystem \emph{könnte} z.~B. zum Erzeugen singulärer Bestandteile verwendet werden.
 Zugleich muss angemerkt werden, dass das \emph{mutwo} Ökosystem gegenwärtig keine komplexe Benutzerschnittstelle implementiert. 
 Es gibt z.~B. keine GUI, keine reiche Unterstützung für Objektpermanenz (Abspeichern in Datenbanken), keine Musikauszeichnungssprache, keine integrierte Entwicklungsumgebung (IDE).
-\emph{\nameref{limitsAndBorders}} \emph{mutwos} sind aber nicht technische Kompatibilitätsschwierigkeiten oder Unzulänglichkeiten des Designs, sondern die Abwesenheit einer Notwendigkeit gegenwärtiger Nutzer:innen.
+In Abschnitt \emph{\nameref{limitsAndBorders}} \emph{mutwos} sind nicht technische Kompatibilitätsschwierigkeiten oder Unzulänglichkeiten des Designs, sondern die Abwesenheit einer Notwendigkeit gegenwärtiger Nutzer:innen.
 
 \bigskip
 
