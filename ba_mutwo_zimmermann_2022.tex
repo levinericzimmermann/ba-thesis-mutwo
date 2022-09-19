@@ -290,12 +290,6 @@ Prüfungsbehörde vorgelegt und auch noch nicht veröffentlicht.
 
 \subsection{Komposition und Werkzeuge (I)}
 
-\begin{quote}
-    ``It would seem axiomatic that any music [\dots] reveals the philosophic attitude of its creator.
-    It also seems self-evident that if his attitude is vigorous and individualistic, his practical requirements are not neccessarily satisfied by the traditions he was born to;
-    they may even require direct antitheses.''~\parencite[S. 3]{genesisOfMusic}
-\end{quote}
-
 \noindent
 Komposition ist von einer unbestimmten Menge Werkzeuge bedingt.
 Die Menge umfasst Kulturtechnologien wie Notation oder Stimmungen, Handwerk wie Instrumentenbau, Architekturen wie Konzerthäuser und \emph{pendapa}, soziale Strukturen des Musizierens oder mathematische und logische Denkmodelle.
@@ -337,6 +331,12 @@ Mit der Dokumentation \emph{mutwos} möchte ich einen Teil in die Gemeinschaften
 
 \subsection{Komposition und Werkzeuge (II)}
 \label{compositionAndTools2}
+
+\begin{quote}
+    ``It would seem axiomatic that any music [\dots] reveals the philosophic attitude of its creator.
+    It also seems self-evident that if his attitude is vigorous and individualistic, his practical requirements are not neccessarily satisfied by the traditions he was born to;
+    they may even require direct antitheses.''~\parencite[S. 3]{genesisOfMusic}
+\end{quote}
 
 \noindent
 % Absatz: Begründung Aufwand eigenes Werkzeug entwickeln
@@ -456,7 +456,7 @@ Syntax der Sprache wird nicht erklärt, von einem grundsätzlichen Verständnis 
     Bei Unklarheiten wird auf Pythons offizielle Sprachreferenz verwiesen~\parencite{pythonLanguageReference}.
 }.
 % Manche Programmcodebeispiele sind in Jupyter Notebooks realisiert.  % XXX: nicht so wichtig?
-Verdeutlichende Graphiken sind informell und folgen nicht (oder nur lose) einer formalisierten Strategie (wie z.~B. UML).
+Verdeutlichende Graphiken sind informell und folgen nicht (oder nur lose) einer Formalisierung (wie z.~B. UML).
 
 
 % Code:
@@ -729,7 +729,7 @@ Ist eine Bibliothek zu unspezifisch, mag diese Voraussetzung unerfüllt bleiben.
 \end{enumerate}
 
 % Der generische Aufbau wird flankiert von dem Designziel möglichst einfach, offen und verständlich zu sein
-Der Komplexität unspezifischer Abstraktionen wird die Absicht entgegengesetzt, möglichst einfach, intuitiv--verwendbar und verständlich zu sein.
+Der Komplexität unspezifischer Abstraktionen wird die Absicht entgegengesetzt, möglichst einfach, produktiv und (intuitiv) verständlich zu sein.
 Beide Zielen unterliegen der gemeinsamen Intention offen, zurückhaltend und freundlich gegenüber Benutzer:innen zu sein.
 In den folgenden Präzisierungen der Softwarearchitektur und der Entwicklungsstrategien wird verdeutlicht, wie diese Gegensätze ineinander integriert sind.
 
@@ -780,7 +780,7 @@ Sie zeigt, wie sich \emph{mutwo} mithilfe von Übersetzer mit der äußeren Welt
 Übersetzer können anhand ihrer Richtung unterteilt werden;
 entweder werden externe Daten in innere Repräsentation übersetzt (\emph{backend}) oder innere Repräsentation in externe Daten (\emph{frontend}) oder innere Repräsentationen in andere innere Repräsentationen (\emph{symmetrical}).
 Die Pfeile der Skizze markieren meist Eingangs- und Ausgangswerte eines Übersetzer.
-Gleiche Farben gehören zum gleichen Aufruf, Eingangswerte sind mit \emph{in} notiert und Ausgangswerte mit \emph{out}.
+Gleiche Farben gehören zur gleichen Übersetzungsrichtung, Eingangswerte sind mit \emph{in} notiert und Ausgangswerte mit \emph{out}.
 Hat ein Element der Abbildung mehrere Ein-- oder Ausgangswerte, werden zusammengehörende Ein-- und Ausgangswerte mit Indizes notiert.
 
 \begin{figure}[H]
@@ -811,7 +811,8 @@ Dimensionen können der Zeit, räumlichen Achsen (X, Y und Z) oder theoretischen
 
 \bigskip
 
-Ereignissen sind zusätzliche Objekte zugeordnet, die Eigenschaften der Bewegung definieren.
+Ereignissen sind zusätzliche Objekte zugeordnet.
+Die Objekte definieren Eigenschaften der Bewegung.
 Ein zugewiesenes Objekt könnte für einen Klang z.~B. eine Tonhöhe sein.
 Für eine zweidimensionale räumliche Bewegung wäre eine Farbe denkbar, für eine dreidimensionale Bewegung eine bestimmte Gangart.
 
@@ -877,7 +878,7 @@ Generische Kategorien können beispielweise eine Farbe, eine Tonhöhe oder ein L
 % Diese minimale Schnittstelle versucht Parameter auf eine kompakte Identität zu reduzieren, die unabhängig ist von bestimmten Traditionen.
 \emph{Mutwo} versucht Parameter über eine möglichst kompakte, generische Identität zu beschreiben.
 Wenn möglich besteht diese kompakte Identität aus nur einem Wert (z.~B. Zeichenkette oder Zahl).
-Wenn möglich ist der Wert implizit einer physikalischen Einheit zugeordnet.
+Wenn möglich, ist der Wert implizit einer physikalischen Einheit zugeordnet.
 
 \begin{table}[h!]
     \begin{center}
@@ -934,7 +935,7 @@ Transformieren bedeutet hier entweder eine Veränderung des Inhalts oder eine Ve
 \smallskip
 
 
-Übersetzer in \emph{mutwo} folgen einem funktionalem Paradigma, dh.\ ein Übersetzer verändert nicht die Eingangsentität (keine Seiteneffekte), sondern erzeugt eine neue, unabhängige Entität.
+Übersetzer in \emph{mutwo} folgen einem funktionalem Paradigma, d.~h.\ ein Übersetzer verändert nicht die Eingangsentität (keine Seiteneffekte), sondern erzeugt eine neue, unabhängige Entität.
 Das vereinfacht das Übersetzen derselben Entität mit unterschiedlichen Übersetzer.
 
 \subsubsection{Generatoren}
@@ -1004,7 +1005,7 @@ Die Entscheidung für die Implementierungs \emph{mutwo} in Python kann in folgen
 \subsubsection{Strukturierung des Quellcodes}
 \label{quellcodeStruktur}
 
-Der Quellcode von \emph{mutwo} ist nach rigiden Regeln strukturiert.
+\emph{Mutwos} Quellcode ist nach rigiden Regeln strukturiert.
 Die Struktur basiert auf Pythons System von verschachtelten Modulen, Importe und Paketen.
 Die Strenge der Struktur folgt zwei Absichten.
 Erstens soll sie für Benutzer:innen einfach -- da konsistent und repetitiv -- verwendbar sein.
@@ -1066,15 +1067,15 @@ Pythons Punktoperator ermöglicht direkten Zugriff auf öffentliche Objekte der 
     >>> my_volume = parameters.WesternVolume("p")
 \end{lstlisting}
 
-Die Module können nur eine limitierte Anzahl expliziter Teilmodule enthalten.
-Auf Objekte der Teilmodule muss mit Wiederholungen des Punktoperators zugegriffen werden.
+Die Module dürfen nur eine limitierte Anzahl expliziter Teilmodule enthalten.
+Wiederholungen des Punktoperators erlaubt Zugriff auf Objekte der Teilmodule.
 
 \lstset{language=Python}
 
 \begin{lstlisting}
     >>> # Der Punktoperator ist zweimal notwendig, einmal für Zugriff
-    >>> # auf das "configurations" Teilmodul und dann für die globale
-    >>> # Variable "DEFAULT_CONCERT_PITCH".
+    >>> # auf das "configurations" Teilmodul und dann für Zugriff auf
+    >>> # die globale Variable "DEFAULT_CONCERT_PITCH".
     >>> print(parameters.configurations.DEFAULT_CONCERT_PITCH)
     440
 \end{lstlisting}
@@ -1087,7 +1088,7 @@ Sie korreliert mit der fünften Zeile des \emph{Zen of Python}:
     ``Flat is better than nested.''~\parencite{theZenOfPython}
 \end{quote}
 
-Folgende Tabelle beschreibt alle möglichen Teilmodule eines Moduls:
+Folgende Tabelle beschreibt alle erlaubten Teilmodule eines Moduls:
 
 \begin{table}[H]
     \begin{center}
@@ -1188,7 +1189,7 @@ In \emph{mutwo} ermöglichen abstrakte Klassen die Definition der öffentlichen 
 Verschiedene, zusammenhängende Programmkomponente erwarten voneinander entsprechende API.
 Sie sind damit unabhängig von spezifischen Implementierungen.
 Diese Technologie unterliegt der im im Kapitel \emph{\nameref{parameterSpecification}} beschriebenen Definition der Parameterklassen.
-Die im \texttt{abc} Teilmodul des \texttt{parameters} Modul deklarierte Klassen definieren ihre kompakte Identität über ein nicht--implementiertes Attribut.
+Die im \texttt{abc} Teilmodul des \texttt{parameters} Modul deklarierte Klassen definieren ihre kompakte Identität über ein nicht--implementiertes (d.~h.\ abstraktes) Attribut.
 
 \begin{table}[H]
     \begin{center}
@@ -1771,7 +1772,7 @@ Diese Wahrscheinlichkeitsverläufe sind händisch definiert.
 Trotz geteilter Strukturen, unterscheiden sich die Stücke \emph{ohne Titel (2)} und  \emph{ohne Titel (3)} in ihrem klanglichen Erleben.
 Über gemeinsamen Untergrund sind kompositorisch--kontrastierende Entscheidungen gesetzt.
 Zwischen den beiden Projektstrukturen gibt es redundante, sich wiederholende Abschnitte.
-Die Mehrheit des Textes ist aber über Implementierungen im generischen Quellcodes \emph{mutwo} geteilt.
+Die Mehrheit des Quelltextes ist aber über Implementierungen im generischen Codes \emph{mutwo} geteilt.
 
 \smallskip
 
@@ -1809,8 +1810,26 @@ Jedem Entscheider wird einen konstanten Startwert (\emph{random seed}) zugewiese
 
 \bigskip
 
-Flexible innere Repräsentationen sind signifikant für Flageoletts und Mehrklänge in \emph{ohne Titel (3)}.
-Im Umgang zwischen verschiedenen Bestandteilen und Algorithmen sind die resultierende Tonhöhen als Instanzen der Klasse \texttt{JustIntonationPitch} encodiert.
+Der Umgang mit Flageoletts und Mehrklänge in \emph{ohne Titel (3)} ist exemplarisch für \emph{mutwos} Ideal variabler Repräsentationen.
+Innerlich wird von resultierenden Tonhöhen ausgegangen.
+Diese werden den Ereignissen (die später zur Notation der Instrumente übersetzt werden) zugewiesen.
+Dritte Programmkomponente können mit den Ereignissen (in ihrem klanglichen Resultat) umgehen, z.~B. können Simulationen der Instrumentalstimmen mit eine MIDI Übersetzer erzeugt werden oder dritte Übersetzer generieren aus ihnen Stimmen für Klangdateien.
+Bevor die Ereignisse dem Notationsübersetzer übergegeben werden, wird ein anderer Übersetzer dazwischengeschaltet.
+Dieser weist den Ereignissen je nach Tonhöhenstruktur Flageoletts oder Mehrklänge (mit Saxophongriffen) zu.
+
+\smallskip
+
+Ähnlich verhält es sich mit der Notation der Keyboardstimme in \emph{ohne Titel (2)}.
+Die Keyboardstimme spielt mithilfe eines Softwaresynthesizers mikrotonale Tonhöhen.
+Innerlich wird von klingenden Tonhöhen ausgegangen.
+Aber für die Spielnotation werden die chromatischen Tonhöhen der zu spielenden Tasten notiert.
+In synchronen Abschnitten der Stimmbücher anderer Instrumente werden hingegen klingende Tonhöhen des Keyboards notiert.
+
+% Diese werden den Ereignissen (die später zur Notation der Instrumente übersetzt werden) zugewiesen.
+% Dritte Programmkomponente können mit den Ereignissen (in ihrem klanglichen Resultat) umgehen, z.~B. können Simulationen der Instrumentalstimmen mit eine MIDI Übersetzer erzeugt werden oder dritte Übersetzer generieren aus ihnen Stimmen für Klangdateien.
+% 
+% Flexible innere Repräsentationen sind signifikant für Flageoletts und Mehrklänge in \emph{ohne Titel (3)}.
+% Im Umgang zwischen verschiedenen Bestandteilen und Algorithmen sind die resultierende Tonhöhen als Instanzen der Klasse \texttt{JustIntonationPitch} encodiert.
 % Um 
 
 \bigskip
