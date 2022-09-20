@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 biber ba_mutwo_zimmermann_2022.bcf
 lualatex ba_mutwo_zimmermann_2022.tex
+cd api-doc/adjusted-build/latex
+lualatex mutwo.tex
+cd ../../..
+pdftk ba_mutwo_zimmermann_2022.pdf api-doc/adjusted-build/latex/mutwo.pdf output ba_mutwo_zimmermann_2022_digital.pdf
